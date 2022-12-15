@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/com/demo/customer_management/customer", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/com/demo/customer_management/models", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CustomerController {
 
     private final CustomerService customerService;

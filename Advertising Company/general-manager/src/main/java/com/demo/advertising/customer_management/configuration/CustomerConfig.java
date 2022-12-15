@@ -10,10 +10,6 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
 
-//jasmine
-
-
-
 @Configuration
 public class CustomerConfig {
 

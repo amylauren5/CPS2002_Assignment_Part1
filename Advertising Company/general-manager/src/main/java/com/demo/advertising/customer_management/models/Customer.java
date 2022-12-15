@@ -1,4 +1,4 @@
-package com.demo.advertising.customer_management.customer;
+package com.demo.advertising.customer_management.models;
 
 import java.time.LocalDate;
 
