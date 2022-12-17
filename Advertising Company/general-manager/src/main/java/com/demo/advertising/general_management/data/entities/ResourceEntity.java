@@ -1,7 +1,12 @@
-package com.demo.advertising.customer_management.controllers.requests;
+package com.demo.advertising.general_management.data.entities;
 
-public class AdSpace {
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
+public class ResourceEntity {
+
+    @Id
     private String SpaceId;
     private int Popularity;     //people viewing space per day
     private String Type;        //billboard, buses, benches
@@ -11,25 +16,12 @@ public class AdSpace {
     private int BusRoute;       //bus route
 
 
-    public AdSpace(String SpaceId, int Popularity, String Type, int Size, int Price, String Location, int BusRoute) {
-        this.SpaceId = SpaceId;
-        this.Popularity = Popularity;
-        this.Type = Type;
-        this.Size = Size;
-        this.Price = Price;
-        this.Location = Location;
-        this.BusRoute = BusRoute;
-    }
-
-    public AdSpace(){
-    }
-
-    public String getItemId() {
+    public String getSpaceId() {
         return SpaceId;
     }
 
-    public void setItemId(String ItemId) {
-        this.SpaceId = ItemId;
+    public void setSpaceId(String SpaceId) {
+        this.SpaceId = SpaceId;
     }
 
     public int getPopularity() {
@@ -79,6 +71,4 @@ public class AdSpace {
     public void setBusRoute(int BusRoute) {
         this.BusRoute = BusRoute;
     }
-
 }
-

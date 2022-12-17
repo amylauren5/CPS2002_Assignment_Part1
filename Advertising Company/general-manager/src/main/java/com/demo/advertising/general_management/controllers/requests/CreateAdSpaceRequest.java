@@ -1,4 +1,4 @@
-package com.demo.advertising.customer_management.controllers.requests;
+package com.demo.advertising.general_management.controllers.requests;
 
 public class CreateAdSpaceRequest {
 

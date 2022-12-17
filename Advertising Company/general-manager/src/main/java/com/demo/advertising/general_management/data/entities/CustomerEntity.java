@@ -1,4 +1,4 @@
-package com.demo.advertising.customer_management.data.entities;
+package com.demo.advertising.general_management.data.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -12,7 +12,7 @@ import java.time.Period;
 public class CustomerEntity {
 
     @Id
-    private Long id;
+    private String customerId;
     private String name;
     private String email;
     private LocalDate dob;
@@ -22,35 +22,12 @@ public class CustomerEntity {
 
     private String paymentDetails;
 
-    public CustomerEntity() {
+    public String getCustomerId() {
+        return customerId;
     }
 
-    public CustomerEntity(Long id,
-                          String name,
-                          String email,
-                          LocalDate dob,
-                          String paymentDetails) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.dob = dob;
-        this.paymentDetails = paymentDetails;
-    }
-
-    public CustomerEntity(String name,
-                    String email,
-                    LocalDate dob) {
-        this.name = name;
-        this.email = email;
-        this.dob = dob;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
     }
 
     public String getName() {
@@ -91,17 +68,5 @@ public class CustomerEntity {
 
     public void setPaymentDetails(String paymentDetails) {
         this.paymentDetails = paymentDetails;
-    }
-
-    @Override
-    public String toString() {
-        return "CustomerEntity{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", dob=" + dob +
-                ", age=" + age +
-                ", paymentDetails='" + paymentDetails + '\'' +
-                '}';
     }
 }

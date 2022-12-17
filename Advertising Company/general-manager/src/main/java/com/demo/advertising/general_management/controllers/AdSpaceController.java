@@ -1,10 +1,10 @@
-package com.demo.advertising.customer_management.controllers;
+package com.demo.advertising.general_management.controllers;
 
-import com.demo.advertising.customer_management.models.Adspace;
-import com.demo.advertising.customer_management.controllers.requests.CreateAdSpaceRequest;
-import com.demo.advertising.customer_management.controllers.responses.CreateAdSpaceResponse;
-import com.demo.advertising.customer_management.controllers.responses.GetAdSpaceResponse;
-import com.demo.advertising.customer_management.services.AdSpaceService;
+import com.demo.advertising.general_management.services.models.Adspace;
+import com.demo.advertising.general_management.controllers.requests.CreateAdSpaceRequest;
+import com.demo.advertising.general_management.controllers.responses.CreateAdSpaceResponse;
+import com.demo.advertising.general_management.controllers.responses.GetAdSpaceResponse;
+import com.demo.advertising.general_management.services.AdSpaceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

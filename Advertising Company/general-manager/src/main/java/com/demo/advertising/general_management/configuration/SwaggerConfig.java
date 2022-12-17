@@ -1,4 +1,4 @@
-package com.demo.advertising.customer_management.configuration;
+package com.demo.advertising.general_management.configuration;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -22,7 +22,7 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.demo.advertising.customer_management.controllers"))
+                .apis(RequestHandlerSelectors.basePackage("com.demo.advertising.general_management.controllers"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo());
@@ -30,7 +30,7 @@ public class SwaggerConfig {
 
     ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Customer Management")
+                .title("Jamie Advertising Ltd")
                 .license("")
                 .licenseUrl("http://unlicense.org")
                 .termsOfServiceUrl("")

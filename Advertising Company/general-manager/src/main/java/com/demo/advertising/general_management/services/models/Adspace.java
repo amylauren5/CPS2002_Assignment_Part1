@@ -1,4 +1,4 @@
-package com.demo.advertising.customer_management.models;
+package com.demo.advertising.general_management.services.models;
 
 public class Adspace {
 

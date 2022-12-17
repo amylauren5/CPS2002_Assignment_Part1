@@ -1,8 +1,8 @@
-package com.demo.advertising.customer_management.services;
+package com.demo.advertising.general_management.services;
 
-import com.demo.advertising.customer_management.models.Adspace;
-import com.demo.advertising.customer_management.data.entities.ResourceEntity;
-import com.demo.advertising.customer_management.data.repositories.ResourceRepository;
+import com.demo.advertising.general_management.services.models.Adspace;
+import com.demo.advertising.general_management.data.entities.ResourceEntity;
+import com.demo.advertising.general_management.data.repositories.ResourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;

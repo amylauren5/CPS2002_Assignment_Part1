@@ -1,4 +1,4 @@
-package com.demo.advertising.customer_management.controllers.responses;
+package com.demo.advertising.general_management.controllers.responses;
 
 public class CreateAdSpaceResponse {
 

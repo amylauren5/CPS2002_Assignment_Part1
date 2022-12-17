@@ -1,6 +1,6 @@
-package com.demo.advertising.customer_management.data.repositories;
+package com.demo.advertising.general_management.data.repositories;
 
-import com.demo.advertising.customer_management.data.entities.ResourceEntity;
+import com.demo.advertising.general_management.data.entities.ResourceEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ResourceRepository extends JpaRepository<ResourceEntity, String> {

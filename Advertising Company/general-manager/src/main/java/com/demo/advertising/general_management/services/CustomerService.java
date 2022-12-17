@@ -1,19 +1,49 @@
-package com.demo.advertising.customer_management.services;
+package com.demo.advertising.general_management.services;
 
-import com.demo.advertising.customer_management.data.entities.CustomerEntity;
-import com.demo.advertising.customer_management.data.repositories.CustomerRepository;
+import com.demo.advertising.general_management.data.entities.CustomerEntity;
+import com.demo.advertising.general_management.data.repositories.CustomerRepository;
+import com.demo.advertising.general_management.services.models.Customer;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
-import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class CustomerService {
 
-    private final CustomerRepository customerRepository;
+    CustomerRepository customerRepository;
+
+    @Autowired
+    ModelMapper mapper;
+
+    //create resource
+    public String createCustomer(Customer customer) {
+        CustomerEntity customerEntity = mapper.map(customer, CustomerEntity.class);
+        customerEntity.setCustomerId(UUID.randomUUID().toString());
+        customerEntity = customerRepository.save(customerEntity);
+        return customerEntity.getCustomerId();
+    }
+
+    //read resource
+    public Customer getCustomer(String CustomerId) {
+        CustomerEntity customerEntityToFind = new CustomerEntity();
+        customerEntityToFind.setCustomerId(CustomerId);
+
+        Optional<CustomerEntity> retrievedCustomerEntity =
+                customerRepository.findOne(Example.of(customerEntityToFind, ExampleMatcher.matchingAll()));
+
+        if (retrievedCustomerEntity.isEmpty()) return null;
+
+        Customer customer = mapper.map(retrievedCustomerEntity.get(), Customer.class);
+
+        return customer;
+    }
+
+    /*
 
     @Autowired
     public CustomerService(CustomerRepository customerRepository){
@@ -23,7 +53,7 @@ public class CustomerService {
         return customerRepository.findAll();
     }
 
-    public void addNewCustomer(CustomerEntity customer) {
+    public void createCustomer(CustomerEntity customer) {
         Optional<CustomerEntity> customerOptional = customerRepository
                 .findCustomerByName(customer.getName());
 
@@ -68,5 +98,7 @@ public class CustomerService {
         }
 
     }
+
+     */
 
 }

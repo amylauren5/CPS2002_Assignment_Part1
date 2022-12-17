@@ -1,4 +1,4 @@
-package com.demo.advertising.customer_management.configuration;
+package com.demo.advertising.general_management.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
