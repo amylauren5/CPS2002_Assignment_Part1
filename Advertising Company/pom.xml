@@ -8,8 +8,6 @@
 	<packaging>pom</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 
-	<name>general-management</name>
-
 	<properties>
 		<java.version>17</java.version>
 		<spring-boot.version>2.5.3</spring-boot.version>
