@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.modelmapper.ModelMapper;
 
 @RestController
+@RequestMapping(path = "AdSpace",produces = MediaType.APPLICATION_JSON_VALUE)
 public class AdSpaceController {
 
     @Autowired
@@ -23,7 +24,7 @@ public class AdSpaceController {
         AdSpaceService.createAdSpace(adspace);
     }
 
-    @GetMapping(value = "{spaceId}")
+    @GetMapping(path = "{spaceId}")
     public Adspace getAdSpace(String spaceId){
         return AdSpaceService.getAdSpace(spaceId);
     }
@@ -33,7 +34,7 @@ public class AdSpaceController {
         AdSpaceService.updateAdSpace(spaceId, adspace);
     }
 
-    @DeleteMapping(value = "{spaceId}")
+    @DeleteMapping(path = "{spaceId}")
     public void deleteAdSpace(@PathVariable("spaceId") String spaceId) {
         AdSpaceService.deleteAdSpace(spaceId);
     }
