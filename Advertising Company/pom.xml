@@ -9,15 +9,12 @@
 	<version>0.0.1-SNAPSHOT</version>
 
 	<properties>
-		<maven.compiler.source>17</maven.compiler.source>
-		<maven.compiler.target>17</maven.compiler.target>
 		<java.version>17</java.version>
 		<spring-boot.version>2.5.3</spring-boot.version>
 		<springfox-swagger2.version>2.9.2</springfox-swagger2.version>
 		<jackson.version>2.14.0</jackson.version>
 	</properties>
 
-	<!-- Parent pom manages plugins for all submodules. These however need to be in submodule pom to be used. -->
 	<dependencyManagement>
 		<dependencies>
 
