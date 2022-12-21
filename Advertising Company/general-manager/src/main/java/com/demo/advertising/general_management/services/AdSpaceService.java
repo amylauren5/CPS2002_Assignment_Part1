@@ -25,7 +25,7 @@ public class AdSpaceService {
     //create resource
     public void createAdSpace(Adspace space) {
         AdSpaceEntity adSpaceEntity = mapper.map(space, AdSpaceEntity.class);
-        adSpaceEntity.setSpaceId(UUID.randomUUID().toString());
+        //adSpaceEntity.setSpaceId(UUID.randomUUID().toString());
         repository.save(adSpaceEntity);
     }
 

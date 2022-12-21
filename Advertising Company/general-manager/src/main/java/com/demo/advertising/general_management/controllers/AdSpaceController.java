@@ -24,17 +24,17 @@ public class AdSpaceController {
         AdSpaceService.createAdSpace(adspace);
     }
 
-    @GetMapping(path = "{spaceId}")
+    @GetMapping(value = "{spaceId}")
     public Adspace getAdSpace(String spaceId){
         return AdSpaceService.getAdSpace(spaceId);
     }
 
-    @PutMapping(path = "{spaceId}")
+    @PutMapping(value = "{spaceId}")
     public void updateAdSpace(@PathVariable("spaceId") String spaceId, @RequestBody Adspace adspace) {
         AdSpaceService.updateAdSpace(spaceId, adspace);
     }
 
-    @DeleteMapping(path = "{spaceId}")
+    @DeleteMapping(value = "{spaceId}")
     public void deleteAdSpace(@PathVariable("spaceId") String spaceId) {
         AdSpaceService.deleteAdSpace(spaceId);
     }
