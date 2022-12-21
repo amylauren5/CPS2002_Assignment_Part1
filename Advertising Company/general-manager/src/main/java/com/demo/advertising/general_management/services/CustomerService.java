@@ -9,6 +9,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
@@ -55,6 +56,7 @@ public class CustomerService {
         customerRepository.deleteById(customerId);
     }
 
+    @Transactional
     public void updateCustomer(String customerId, String name, String email) {
 
         CustomerEntity customer = customerRepository.findById(customerId).orElseThrow(

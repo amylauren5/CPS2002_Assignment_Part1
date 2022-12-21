@@ -32,9 +32,13 @@ public class AdSpaceController {
         adSpaceService.updateAdSpace(spaceId, adspace);
     }
 
+    /*
+
     @DeleteMapping(path = "{spaceId}")
     public void deleteAdSpace(@PathVariable("spaceId") String spaceId) {
         adSpaceService.deleteAdSpace(spaceId);
     }
+
+     */
 
 }

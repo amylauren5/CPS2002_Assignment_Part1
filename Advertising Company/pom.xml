@@ -8,8 +8,7 @@
 	<packaging>pom</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 
-	<name>advertising-space</name>
-	<description>Advertising Space Project for Spring Boot</description>
+	<name>general-management</name>
 
 	<properties>
 		<java.version>17</java.version>

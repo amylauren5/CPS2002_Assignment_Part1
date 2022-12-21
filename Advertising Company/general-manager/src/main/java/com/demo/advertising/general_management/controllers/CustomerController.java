@@ -28,14 +28,14 @@ public class CustomerController {
         return customerService.getCustomers(customerId);
     }
 
-    @DeleteMapping(path = "{customerId}")
-    public void deleteCustomer(@PathVariable("customerId") String id) {
-        customerService.deleteCustomer(id);
-    }
-
     @PutMapping(path = "{customerId}")
     public void updateCustomer(@PathVariable("customerId") String customerId, @RequestParam(required = false) String name, @RequestParam(required = false) String email) {
         customerService.updateCustomer(customerId, name, email);
+    }
+
+    @DeleteMapping(path = "{customerId}")
+    public void deleteCustomer(@PathVariable("customerId") String id) {
+        customerService.deleteCustomer(id);
     }
 
 }

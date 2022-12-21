@@ -52,9 +52,13 @@ public class AdSpaceService {
         if (space != null) space = newSpace;   //assign new variables
     }
 
+    /*
+
     //delete resource
     public void deleteAdSpace(String SpaceId){
         Adspace space = getAdSpace(SpaceId);
         if (space != null) adSpaceRepository.delete(space);
     }
+
+     */
 }
