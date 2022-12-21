@@ -2,8 +2,10 @@ package com.demo.advertising.general_management.data.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table
 public class AdSpaceEntity {
 
     @Id
