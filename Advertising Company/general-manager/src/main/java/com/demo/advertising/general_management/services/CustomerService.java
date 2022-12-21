@@ -9,46 +9,77 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
 @Service
 public class CustomerService {
 
-    CustomerRepository customerRepository;
+    private final CustomerRepository customerRepository;
 
     @Autowired
     ModelMapper mapper;
 
+    @Autowired
+    public CustomerService(CustomerRepository customerRepository){
+        this.customerRepository = customerRepository;
+    }
+
     //create resource
-    public String createCustomer(Customer customer) {
+    public void createCustomer(Customer customer) {
         CustomerEntity customerEntity = mapper.map(customer, CustomerEntity.class);
-        customerEntity.setCustomerId(UUID.randomUUID().toString());
-        customerEntity = customerRepository.save(customerEntity);
-        return customerEntity.getCustomerId();
+        customerRepository.save(customerEntity);
     }
 
     //read resource
-    public Customer getCustomer(String CustomerId) {
+    public Customer getCustomers(String customerId) {
         CustomerEntity customerEntityToFind = new CustomerEntity();
-        customerEntityToFind.setCustomerId(CustomerId);
+        customerEntityToFind.setCustomerId(customerId);
 
         Optional<CustomerEntity> retrievedCustomerEntity =
                 customerRepository.findOne(Example.of(customerEntityToFind, ExampleMatcher.matchingAll()));
 
         if (retrievedCustomerEntity.isEmpty()) return null;
 
-        Customer customer = mapper.map(retrievedCustomerEntity.get(), Customer.class);
+        return mapper.map(retrievedCustomerEntity.get(), Customer.class);
+    }
 
-        return customer;
+    public void deleteCustomer(String customerId){
+        boolean exists = customerRepository.existsById(customerId);
+
+        if(!exists){
+            throw new IllegalStateException("Customer with id " + customerId + "does not exist!");
+        }
+
+        customerRepository.deleteById(customerId);
+    }
+
+    public void updateCustomer(String customerId, String name, String email) {
+
+        CustomerEntity customer = customerRepository.findById(customerId).orElseThrow(
+                () -> new IllegalStateException("Customer with id " + customerId + " does not exist!")
+        );
+
+        if(name != null && name.length() > 0 && !Objects.equals(customer.getName(), name)){
+            customer.setName(name);
+        }
+
+        if(email != null && email.length() > 0
+                && !Objects.equals(customer.getEmail(), email)){
+            Optional<CustomerEntity> customerOptional = customerRepository
+                    .findCustomerByEmail(email);
+
+            if(customerOptional.isPresent()){
+                throw new IllegalStateException("Email taken!");
+            }
+            customer.setEmail(email);
+        }
+
     }
 
     /*
 
-    @Autowired
-    public CustomerService(CustomerRepository customerRepository){
-        this.customerRepository = customerRepository;
-    }
     public List<CustomerEntity> getCustomers() {
         return customerRepository.findAll();
     }

@@ -8,7 +8,6 @@ public class Customer {
     private String name;
     private String email;
     private LocalDate dob;
-    private Integer age;
     private String paymentDetails;
 
     public String getCustomerId() {
@@ -41,14 +40,6 @@ public class Customer {
 
     public void setDob(LocalDate dob) {
         this.dob = dob;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
     }
 
     public String getPaymentDetails() {

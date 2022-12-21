@@ -16,10 +16,6 @@ public class CustomerEntity {
     private String name;
     private String email;
     private LocalDate dob;
-
-    @Transient
-    private Integer age;
-
     private String paymentDetails;
 
     public String getCustomerId() {
@@ -52,14 +48,6 @@ public class CustomerEntity {
 
     public void setDob(LocalDate dob) {
         this.dob = dob;
-    }
-
-    public Integer getAge() {
-        return Period.between(this.dob, LocalDate.now()).getYears();
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
     }
 
     public String getPaymentDetails() {
