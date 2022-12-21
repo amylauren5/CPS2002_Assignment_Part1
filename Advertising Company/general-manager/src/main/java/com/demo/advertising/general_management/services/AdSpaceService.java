@@ -1,5 +1,6 @@
 package com.demo.advertising.general_management.services;
 
+import com.demo.advertising.general_management.data.repositories.CustomerRepository;
 import com.demo.advertising.general_management.services.models.Adspace;
 import com.demo.advertising.general_management.data.entities.AdSpaceEntity;
 import com.demo.advertising.general_management.data.repositories.AdSpaceRepository;
@@ -16,8 +17,13 @@ import java.util.UUID;
 @Service
 public class AdSpaceService {
 
+    private final AdSpaceRepository adSpaceRepository;
+
+
     @Autowired
-    AdSpaceRepository repository;
+    public AdSpaceService(AdSpaceRepository adSpaceRepository){
+        this.adSpaceRepository = adSpaceRepository;
+    }
 
     @Autowired
     ModelMapper mapper;
@@ -26,7 +32,7 @@ public class AdSpaceService {
     public void createAdSpace(Adspace space) {
         AdSpaceEntity adSpaceEntity = mapper.map(space, AdSpaceEntity.class);
         //adSpaceEntity.setSpaceId(UUID.randomUUID().toString());
-        repository.save(adSpaceEntity);
+        adSpaceRepository.save(adSpaceEntity);
     }
 
     //read resource
@@ -35,13 +41,9 @@ public class AdSpaceService {
         AdSpaceEntityToFind.setSpaceId(SpaceId);
 
         Optional<AdSpaceEntity> retrievedResourceEntity =
-                repository.findOne(Example.of(AdSpaceEntityToFind, ExampleMatcher.matchingAll()));
+                adSpaceRepository.findOne(Example.of(AdSpaceEntityToFind, ExampleMatcher.matchingAll()));
 
-        if (retrievedResourceEntity.isEmpty()) return null;
-
-        Adspace space = mapper.map(retrievedResourceEntity.get(), Adspace.class);
-
-        return space;
+        return retrievedResourceEntity.map(adSpaceEntity -> mapper.map(adSpaceEntity, Adspace.class)).orElse(null);
     }
 
     //update resource
@@ -53,6 +55,6 @@ public class AdSpaceService {
     //delete resource
     public void deleteAdSpace(String SpaceId){
         Adspace space = getAdSpace(SpaceId);
-        if (space != null) repository.delete(space);
+        if (space != null) adSpaceRepository.delete(space);
     }
 }

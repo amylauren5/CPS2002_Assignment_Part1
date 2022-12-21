@@ -1,5 +1,6 @@
 package com.demo.advertising.general_management.controllers;
 
+import com.demo.advertising.general_management.services.CustomerService;
 import com.demo.advertising.general_management.services.models.Adspace;
 import com.demo.advertising.general_management.services.AdSpaceService;
 import com.demo.advertising.general_management.services.models.Customer;
@@ -13,30 +14,31 @@ import org.modelmapper.ModelMapper;
 @RequestMapping(path = "AdSpace",produces = MediaType.APPLICATION_JSON_VALUE)
 public class AdSpaceController {
 
-    @Autowired
-    AdSpaceService AdSpaceService;
+    private final AdSpaceService adSpaceService;
 
     @Autowired
-    ModelMapper mapper;
+    public AdSpaceController(AdSpaceService adSpaceService) {
+        this.adSpaceService = adSpaceService;
+    }
 
     @PostMapping
     public void createAdSpace(@RequestBody Adspace adspace){
-        AdSpaceService.createAdSpace(adspace);
+        adSpaceService.createAdSpace(adspace);
     }
 
     @GetMapping(value = "{spaceId}")
     public Adspace getAdSpace(String spaceId){
-        return AdSpaceService.getAdSpace(spaceId);
+        return adSpaceService.getAdSpace(spaceId);
     }
 
     @PutMapping(value = "{spaceId}")
     public void updateAdSpace(@PathVariable("spaceId") String spaceId, @RequestBody Adspace adspace) {
-        AdSpaceService.updateAdSpace(spaceId, adspace);
+        adSpaceService.updateAdSpace(spaceId, adspace);
     }
 
     @DeleteMapping(value = "{spaceId}")
     public void deleteAdSpace(@PathVariable("spaceId") String spaceId) {
-        AdSpaceService.deleteAdSpace(spaceId);
+        adSpaceService.deleteAdSpace(spaceId);
     }
 
 }
