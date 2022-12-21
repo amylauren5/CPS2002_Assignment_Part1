@@ -1,8 +1,8 @@
 package com.demo.advertising.general_management.services;
 
 import com.demo.advertising.general_management.services.models.Adspace;
-import com.demo.advertising.general_management.data.entities.ResourceEntity;
-import com.demo.advertising.general_management.data.repositories.ResourceRepository;
+import com.demo.advertising.general_management.data.entities.AdSpaceEntity;
+import com.demo.advertising.general_management.data.repositories.AdSpaceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
@@ -17,26 +17,25 @@ import java.util.UUID;
 public class AdSpaceService {
 
     @Autowired
-    ResourceRepository repository;
+    AdSpaceRepository repository;
 
     @Autowired
     ModelMapper mapper;
 
     //create resource
-    public String createResource(Adspace space) {
-        ResourceEntity ResourceEntity = mapper.map(space, ResourceEntity.class);
-        ResourceEntity.setSpaceId(UUID.randomUUID().toString());
-        ResourceEntity = repository.save(ResourceEntity);
-        return ResourceEntity.getSpaceId();
+    public void createAdSpace(Adspace space) {
+        AdSpaceEntity adSpaceEntity = mapper.map(space, AdSpaceEntity.class);
+        adSpaceEntity.setSpaceId(UUID.randomUUID().toString());
+        repository.save(adSpaceEntity);
     }
 
     //read resource
-    public Adspace getResource(String SpaceId) {
-        ResourceEntity ResourceEntityToFind = new ResourceEntity();
-        ResourceEntityToFind.setSpaceId(SpaceId);
+    public Adspace getAdSpace(String SpaceId) {
+        AdSpaceEntity AdSpaceEntityToFind = new AdSpaceEntity();
+        AdSpaceEntityToFind.setSpaceId(SpaceId);
 
-        Optional<ResourceEntity> retrievedResourceEntity =
-                repository.findOne(Example.of(ResourceEntityToFind, ExampleMatcher.matchingAll()));
+        Optional<AdSpaceEntity> retrievedResourceEntity =
+                repository.findOne(Example.of(AdSpaceEntityToFind, ExampleMatcher.matchingAll()));
 
         if (retrievedResourceEntity.isEmpty()) return null;
 
@@ -46,5 +45,14 @@ public class AdSpaceService {
     }
 
     //update resource
+    public void updateAdSpace(String SpaceId, Adspace newSpace){
+        Adspace space = getAdSpace(SpaceId); //find ad space
+        if (space != null) space = newSpace;   //assign new variables
+    }
+
     //delete resource
+    public void deleteAdSpace(String SpaceId){
+        Adspace space = getAdSpace(SpaceId);
+        if (space != null) repository.delete(space);
+    }
 }

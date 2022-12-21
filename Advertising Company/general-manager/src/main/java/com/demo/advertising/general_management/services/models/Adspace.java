@@ -1,6 +1,8 @@
 package com.demo.advertising.general_management.services.models;
 
-public class Adspace {
+import com.demo.advertising.general_management.data.entities.AdSpaceEntity;
+
+public class Adspace extends AdSpaceEntity {
 
     private String SpaceId;
     private int Popularity;     //people viewing space per day

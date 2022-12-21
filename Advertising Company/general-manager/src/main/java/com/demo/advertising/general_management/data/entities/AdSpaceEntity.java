@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class ResourceEntity {
+public class AdSpaceEntity {
 
     @Id
     private String SpaceId;
