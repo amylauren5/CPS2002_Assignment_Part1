@@ -12,18 +12,12 @@
 		<java.version>17</java.version>
 		<spring-boot.version>2.5.3</spring-boot.version>
 		<springfox-swagger2.version>2.9.2</springfox-swagger2.version>
-		<jackson.version>2.13.2</jackson.version>
+		<jackson.version>2.14.0</jackson.version>
 	</properties>
 
 	<!-- Parent pom manages plugins for all submodules. These however need to be in submodule pom to be used. -->
 	<dependencyManagement>
 		<dependencies>
-
-			<dependency>
-				<groupId>org.jacoco</groupId>
-				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.8</version>
-			</dependency>
 
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
@@ -188,6 +182,40 @@
 					<artifactId>spring-boot-maven-plugin</artifactId>
 					<version>${spring-boot.version}</version>
 				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-dependency-plugin</artifactId>
+					<version>3.3.0</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>3.0.0-M7</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.jacoco</groupId>
+					<artifactId>jacoco-maven-plugin</artifactId>
+					<version>0.8.8</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>prepare-agent</goal>
+							</goals>
+						</execution>
+
+						<execution>
+							<id>report</id>
+							<phase>test</phase>
+							<goals>
+								<goal>report</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+
 			</plugins>
 		</pluginManagement>
 
