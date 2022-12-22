@@ -31,17 +31,11 @@ public class AdSpaceController {
     }
 
     @GetMapping(path = "{spaceId}")
-    public ResponseEntity<GetAdSpaceResponse> get(String spaceId) {
-
-        Adspace adspace = adSpaceService.getAdSpace(spaceId);
-
-        if (adspace == null) {
-            return ResponseEntity.notFound().build();
-        }
-
-        GetAdSpaceResponse getAdSpaceResponse = mapper.map(adspace, GetAdSpaceResponse.class);
-        return ResponseEntity.ok(getAdSpaceResponse);
+    public Adspace get(String spaceId){
+        return adSpaceService.getAdSpace(spaceId);
     }
+
+
 
     @PutMapping(path = "{spaceId}")
     public void updateAdSpace(@PathVariable("spaceId") String spaceId, @RequestBody Adspace adspace) {
