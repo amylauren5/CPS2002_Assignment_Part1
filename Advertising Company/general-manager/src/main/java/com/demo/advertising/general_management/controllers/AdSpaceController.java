@@ -20,7 +20,7 @@ public class AdSpaceController {
     ModelMapper mapper;
 
     @PostMapping(path = "{spaceId}")
-    public ResponseEntity<CreateAdSpaceResponse> submit(@RequestBody CreateAdSpaceResponse adspace) {
+    public ResponseEntity<CreateAdSpaceResponse> submit(@RequestBody Adspace adspace) {
         Adspace newAdSpace = mapper.map(adspace, Adspace.class);
 
         String adSpcaceID = adSpaceService.createAdSpace(newAdSpace);
