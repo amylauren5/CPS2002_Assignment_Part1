@@ -1,26 +1,32 @@
 package com.demo.advertising.general_management.controllers;
 
+import com.demo.advertising.general_management.controllers.responses.CreateAdSpaceResponse;
+import com.demo.advertising.general_management.data.repositories.AdSpaceRepository;
 import com.demo.advertising.general_management.services.models.Adspace;
 import com.demo.advertising.general_management.services.AdSpaceService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "AdSpace",produces = MediaType.APPLICATION_JSON_VALUE)
 public class AdSpaceController {
 
-    private final AdSpaceService adSpaceService;
-
     @Autowired
-    public AdSpaceController(AdSpaceService adSpaceService) {
-        this.adSpaceService = adSpaceService;
+    AdSpaceService adSpaceService;
+    @Autowired
+    ModelMapper mapper;
+
+    @PostMapping(path = "{spaceId}")
+    public ResponseEntity<CreateAdSpaceResponse> submit(@RequestHeader CreateAdSpaceResponse adspace) {
+        Adspace newAdSpace = mapper.map(adspace, Adspace.class);
+
+        String spaceId = adSpaceService.createAdSpace(newAdSpace);
+        return ResponseEntity.ok(new CreateAdSpaceResponse(spaceId));
     }
 
-    @PostMapping
-    public void createAdSpace(@RequestBody Adspace adspace){
-        adSpaceService.createAdSpace(adspace);
-    }
 
     @GetMapping(path = "{spaceId}")
     public Adspace getAdSpace(String spaceId){
