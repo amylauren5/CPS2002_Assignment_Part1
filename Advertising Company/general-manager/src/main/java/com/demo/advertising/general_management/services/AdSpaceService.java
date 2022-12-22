@@ -30,12 +30,14 @@ public class AdSpaceService {
     private final AdSpaceRepository adSpaceRepository;
 
     @Autowired
+    ModelMapper mapper;
+
+    @Autowired
     public AdSpaceService(AdSpaceRepository adSpaceRepository){
         this.adSpaceRepository = adSpaceRepository;
     }
 
-    @Autowired
-    ModelMapper mapper;
+
 
     //create resource
     public String createAdSpace(Adspace space) {
@@ -52,9 +54,7 @@ public class AdSpaceService {
         Optional<AdSpaceEntity> retrievedResourceEntity =
                 adSpaceRepository.findOne(Example.of(AdSpaceEntityToFind, ExampleMatcher.matchingAll()));
 
-        if (retrievedResourceEntity.isEmpty()) return null;
-
-        return mapper.map(retrievedResourceEntity.get(), Adspace.class);
+        return retrievedResourceEntity.map(adSpaceEntity -> mapper.map(adSpaceEntity, Adspace.class)).orElse(null);
     }
 
 

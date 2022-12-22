@@ -3,6 +3,7 @@ package com.demo.advertising.general_management.controllers;
 import com.demo.advertising.general_management.controllers.responses.CreateAdSpaceResponse;
 import com.demo.advertising.general_management.controllers.responses.GetAdSpaceResponse;
 import com.demo.advertising.general_management.data.repositories.AdSpaceRepository;
+import com.demo.advertising.general_management.services.CustomerService;
 import com.demo.advertising.general_management.services.models.Adspace;
 import com.demo.advertising.general_management.services.AdSpaceService;
 import com.demo.advertising.general_management.services.models.Booking;
@@ -17,8 +18,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "AdSpace",produces = MediaType.APPLICATION_JSON_VALUE)
 public class AdSpaceController {
 
+    private final AdSpaceService adSpaceService;
+
     @Autowired
-    AdSpaceService adSpaceService;
+    public AdSpaceController(AdSpaceService adSpaceService) {
+        this.adSpaceService = adSpaceService;
+    }
+
     @Autowired
     ModelMapper mapper;
 
