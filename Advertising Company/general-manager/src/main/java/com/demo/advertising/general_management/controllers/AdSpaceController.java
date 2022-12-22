@@ -22,7 +22,7 @@ public class AdSpaceController {
     ModelMapper mapper;
 
     @PostMapping(path = "{spaceId}")
-    public ResponseEntity<CreateAdSpaceResponse> submit(@RequestHeader Adspace adspace) {
+    public ResponseEntity<CreateAdSpaceResponse> submit(@RequestBody Adspace adspace) {
         Adspace newAdSpace = mapper.map(adspace, Adspace.class);
 
         String adSpcaceID = adSpaceService.createAdSpace(newAdSpace);
@@ -30,7 +30,7 @@ public class AdSpaceController {
     }
 
     @GetMapping(path = "{spaceId}")
-    public ResponseEntity<GetAdSpaceResponse> get(@RequestHeader(name = "X-Customer-Id") String filterBy, @PathVariable String filter) {
+    public ResponseEntity<GetAdSpaceResponse> get(@RequestHeader String filterBy, @PathVariable String filter) {
 
         Adspace adspace = adSpaceService.getAdSpace(filter);
 
