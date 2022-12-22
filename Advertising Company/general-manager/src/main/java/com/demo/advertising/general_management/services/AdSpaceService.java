@@ -7,6 +7,7 @@ import com.demo.advertising.general_management.services.models.Adspace;
 import com.demo.advertising.general_management.data.entities.AdSpaceEntity;
 import com.demo.advertising.general_management.data.repositories.AdSpaceRepository;
 import com.demo.advertising.general_management.services.models.Booking;
+import com.demo.advertising.general_management.services.models.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
@@ -35,7 +36,6 @@ public class AdSpaceService {
     //create resource
     public String createAdSpace(Adspace space) {
         AdSpaceEntity adSpaceEntity = mapper.map(space, AdSpaceEntity.class);
-        adSpaceEntity.setSpaceId(UUID.randomUUID().toString());
         adSpaceEntity = adSpaceRepository.save(adSpaceEntity);
         return adSpaceEntity.getSpaceId();
     }
@@ -47,8 +47,11 @@ public class AdSpaceService {
         Optional<AdSpaceEntity> retrievedResourceEntity =
                 adSpaceRepository.findOne(Example.of(AdSpaceEntityToFind, ExampleMatcher.matchingAll()));
 
-        return retrievedResourceEntity.map(adSpaceEntity -> mapper.map(adSpaceEntity, Adspace.class)).orElse(null);
+        if (retrievedResourceEntity.isEmpty()) return null;
+
+        return mapper.map(retrievedResourceEntity.get(), Adspace.class);
     }
+
 
     //update resource
     public void updateAdSpace(String SpaceId, Adspace newSpace){
