@@ -1,22 +1,24 @@
 package com.demo.advertising.general_management.controllers.responses;
 
+import com.demo.advertising.general_management.services.models.Adspace;
+
 public class CreateAdSpaceResponse {
 
-    private String adSpaceId;
+    private String SpaceId;
 
-    public CreateAdSpaceResponse(String adSpaceId) {
-        this.adSpaceId = adSpaceId;
+    public CreateAdSpaceResponse(String SpaceId) {
+        this.SpaceId = SpaceId;
     }
 
     public CreateAdSpaceResponse() {
     }
 
     public String getAdSpaceId() {
-        return adSpaceId;
+        return SpaceId;
     }
 
-    public void setAdSpaceId(String orderId) {
-        this.adSpaceId = adSpaceId;
+    public void setAdSpaceId(String SpaceId) {
+        this.SpaceId = SpaceId;
     }
 
 }

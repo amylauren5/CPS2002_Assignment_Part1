@@ -23,8 +23,8 @@ public class AdSpaceController {
     public ResponseEntity<CreateAdSpaceResponse> submit(@RequestBody CreateAdSpaceResponse adspace) {
         Adspace newAdSpace = mapper.map(adspace, Adspace.class);
 
-        String spaceId = adSpaceService.createAdSpace(newAdSpace);
-        return ResponseEntity.ok(new CreateAdSpaceResponse(spaceId));
+        String adSpcaceID = adSpaceService.createAdSpace(newAdSpace);
+        return ResponseEntity.ok(new CreateAdSpaceResponse(adSpcaceID));
     }
 
 
