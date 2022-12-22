@@ -26,14 +26,23 @@ public class CustomerService {
         this.customerRepository = customerRepository;
     }
 
-    //create resource
+    //create customer
     public void createCustomer(Customer customer) {
+
         CustomerEntity customerEntity = mapper.map(customer, CustomerEntity.class);
+
+        Optional<CustomerEntity> customerOptional = customerRepository
+                .findCustomerByCustomerId(customerEntity.getCustomerId());
+
+        if(customerOptional.isPresent()){
+            throw new IllegalStateException("Customer ID already exists!");
+        }
+
         customerRepository.save(customerEntity);
     }
 
-    //read resource
-    public Customer getCustomers(String customerId) {
+    //read customer
+    public Customer getCustomer(String customerId) {
         CustomerEntity customerEntityToFind = new CustomerEntity();
         customerEntityToFind.setCustomerId(customerId);
 
@@ -45,92 +54,47 @@ public class CustomerService {
         return mapper.map(retrievedCustomerEntity.get(), Customer.class);
     }
 
+    //update customer
+    @Transactional
+    public void updateCustomer(String customerId, String name, String email, String paymentDetails, int phoneNumber) {
+
+        CustomerEntity customer = customerRepository.findById(customerId).orElseThrow(
+                () -> new IllegalStateException("Customer ID " + customerId + " does not exist!")
+        );
+
+        if(name != null && name.length() > 0 && !Objects.equals(customer.getName(), name)){
+            customer.setName(name);
+        }
+
+        if(email != null && email.length() > 0
+                && !Objects.equals(customer.getEmail(), email)){
+            Optional<CustomerEntity> customerOptional = customerRepository
+                    .findCustomerByEmail(email);
+
+            if(customerOptional.isPresent()){
+                throw new IllegalStateException("Email taken!");
+            }
+            customer.setEmail(email);
+        }
+
+        if(paymentDetails != null && paymentDetails.length() > 0 && !Objects.equals(customer.getPaymentDetails(), paymentDetails)){
+            customer.setPaymentDetails(paymentDetails);
+        }
+
+        if(phoneNumber > 20000000 && !Objects.equals(customer.getPhoneNumber(), phoneNumber)){
+            customer.setPhoneNumber(phoneNumber);
+        }
+
+    }
+
+    //delete customer
     public void deleteCustomer(String customerId){
         boolean exists = customerRepository.existsById(customerId);
 
         if(!exists){
-            throw new IllegalStateException("Customer with id " + customerId + "does not exist!");
+            throw new IllegalStateException("Customer with ID " + customerId + "does not exist!");
         }
 
         customerRepository.deleteById(customerId);
     }
-
-    @Transactional
-    public void updateCustomer(String customerId, String name, String email) {
-
-        CustomerEntity customer = customerRepository.findById(customerId).orElseThrow(
-                () -> new IllegalStateException("Customer with id " + customerId + " does not exist!")
-        );
-
-        if(name != null && name.length() > 0 && !Objects.equals(customer.getName(), name)){
-            customer.setName(name);
-        }
-
-        if(email != null && email.length() > 0
-                && !Objects.equals(customer.getEmail(), email)){
-            Optional<CustomerEntity> customerOptional = customerRepository
-                    .findCustomerByEmail(email);
-
-            if(customerOptional.isPresent()){
-                throw new IllegalStateException("Email taken!");
-            }
-            customer.setEmail(email);
-        }
-
-    }
-
-    /*
-
-    public List<CustomerEntity> getCustomers() {
-        return customerRepository.findAll();
-    }
-
-    public void createCustomer(CustomerEntity customer) {
-        Optional<CustomerEntity> customerOptional = customerRepository
-                .findCustomerByName(customer.getName());
-
-        if(customerOptional.isPresent()){
-            throw new IllegalStateException("Name taken!");
-        }
-
-        customerRepository.save(customer);
-    }
-
-    public void deleteCustomer(Long customerId){
-        boolean exists = customerRepository.existsById(customerId);
-        if(!exists){
-            throw new IllegalStateException("Customer with id " + customerId + "does not exist!");
-        }
-        customerRepository.deleteById(customerId);
-    }
-
-    @Transactional
-    public void updateCustomer(
-            Long customerId,
-            String name,
-            String email) {
-
-        CustomerEntity customer = customerRepository.findById(customerId).orElseThrow(
-                () -> new IllegalStateException("Customer with id " + customerId + " does not exist!")
-        );
-
-        if(name != null && name.length() > 0 && !Objects.equals(customer.getName(), name)){
-            customer.setName(name);
-        }
-
-        if(email != null && email.length() > 0
-                && !Objects.equals(customer.getEmail(), email)){
-            Optional<CustomerEntity> customerOptional = customerRepository
-                    .findCustomerByEmail(email);
-
-            if(customerOptional.isPresent()){
-                throw new IllegalStateException("Email taken!");
-            }
-            customer.setEmail(email);
-        }
-
-    }
-
-     */
-
 }

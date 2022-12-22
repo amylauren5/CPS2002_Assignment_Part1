@@ -3,9 +3,6 @@ package com.demo.advertising.general_management.data.entities;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Transient;
-import java.time.LocalDate;
-import java.time.Period;
 
 @Entity
 @Table
@@ -15,7 +12,7 @@ public class CustomerEntity {
     private String customerId;
     private String name;
     private String email;
-    private LocalDate dob;
+    private int phoneNumber;
     private String paymentDetails;
 
     public String getCustomerId() {
@@ -42,12 +39,12 @@ public class CustomerEntity {
         this.email = email;
     }
 
-    public LocalDate getDob() {
-        return dob;
+    public int getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setDob(LocalDate dob) {
-        this.dob = dob;
+    public void setPhoneNumber(int phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getPaymentDetails() {
