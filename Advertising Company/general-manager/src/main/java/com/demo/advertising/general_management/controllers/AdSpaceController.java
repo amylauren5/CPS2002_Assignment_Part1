@@ -30,9 +30,9 @@ public class AdSpaceController {
     }
 
     @GetMapping(path = "{spaceId}")
-    public ResponseEntity<GetAdSpaceResponse> get(@RequestHeader String filter) {
+    public ResponseEntity<GetAdSpaceResponse> get(String spaceId) {
 
-        Adspace adspace = adSpaceService.getAdSpace(filter);
+        Adspace adspace = adSpaceService.getAdSpace(spaceId);
 
         if (adspace == null) {
             return ResponseEntity.notFound().build();
