@@ -27,8 +27,12 @@ public class AdSpaceService {
     //make deleteAdSpace work
     //make updateAdSpace work
 
+    private final AdSpaceRepository adSpaceRepository;
+
     @Autowired
-    AdSpaceRepository adSpaceRepository;
+    public AdSpaceService(AdSpaceRepository adSpaceRepository){
+        this.adSpaceRepository = adSpaceRepository;
+    }
 
     @Autowired
     ModelMapper mapper;
@@ -36,6 +40,7 @@ public class AdSpaceService {
     //create resource
     public String createAdSpace(Adspace space) {
         AdSpaceEntity adSpaceEntity = mapper.map(space, AdSpaceEntity.class);
+        adSpaceEntity.setSpaceId(UUID.randomUUID().toString());
         adSpaceEntity = adSpaceRepository.save(adSpaceEntity);
         return adSpaceEntity.getSpaceId();
     }
