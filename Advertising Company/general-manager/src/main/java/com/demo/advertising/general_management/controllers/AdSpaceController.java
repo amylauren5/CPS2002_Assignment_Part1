@@ -30,7 +30,7 @@ public class AdSpaceController {
     }
 
     @GetMapping(path = "{spaceId}")
-    public ResponseEntity<GetAdSpaceResponse> get(@RequestHeader String filterBy, @RequestBody String filter) {
+    public ResponseEntity<GetAdSpaceResponse> get(@RequestHeader String filter) {
 
         Adspace adspace = adSpaceService.getAdSpace(filter);
 
