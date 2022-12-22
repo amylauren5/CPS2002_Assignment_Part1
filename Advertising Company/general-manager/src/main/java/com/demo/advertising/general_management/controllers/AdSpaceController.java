@@ -28,26 +28,16 @@ public class AdSpaceController {
     @Autowired
     ModelMapper mapper;
 
-    @PostMapping(path = "{spaceId}")
-    public ResponseEntity<CreateAdSpaceResponse> submit(@RequestBody Adspace adspace) {
-        Adspace newAdSpace = mapper.map(adspace, Adspace.class);
 
-        String adSpcaceID = adSpaceService.createAdSpace(newAdSpace);
-        return ResponseEntity.ok(new CreateAdSpaceResponse(adSpcaceID));
+    @PostMapping
+    public void create(@RequestBody Adspace adspace){adSpaceService.createAdSpace(adspace);}
+
+    @GetMapping(path = "{AdSpaceId}")
+    public Adspace get(String spaceId){
+        return adSpaceService.getAdSpace(spaceId);
     }
 
-    @GetMapping(path = "{spaceId}")
-    public ResponseEntity<GetAdSpaceResponse> get(String spaceId) {
 
-        Adspace adspace = adSpaceService.getAdSpace(spaceId);
-
-        if (adspace == null) {
-            return ResponseEntity.notFound().build();
-        }
-
-        GetAdSpaceResponse getAdSpaceResponse = mapper.map(adspace, GetAdSpaceResponse.class);
-        return ResponseEntity.ok(getAdSpaceResponse);
-    }
 
     @PutMapping(path = "{spaceId}")
     public void updateAdSpace(@PathVariable("spaceId") String spaceId, @RequestBody Adspace adspace) {
