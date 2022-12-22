@@ -1,9 +1,11 @@
 package com.demo.advertising.general_management.controllers;
 
 import com.demo.advertising.general_management.controllers.responses.CreateAdSpaceResponse;
+import com.demo.advertising.general_management.controllers.responses.GetAdSpaceResponse;
 import com.demo.advertising.general_management.data.repositories.AdSpaceRepository;
 import com.demo.advertising.general_management.services.models.Adspace;
 import com.demo.advertising.general_management.services.AdSpaceService;
+import com.demo.advertising.general_management.services.models.Booking;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -20,17 +22,24 @@ public class AdSpaceController {
     ModelMapper mapper;
 
     @PostMapping(path = "{spaceId}")
-    public ResponseEntity<CreateAdSpaceResponse> submit(@RequestBody Adspace adspace) {
+    public ResponseEntity<CreateAdSpaceResponse> submit(@RequestHeader Adspace adspace) {
         Adspace newAdSpace = mapper.map(adspace, Adspace.class);
 
         String adSpcaceID = adSpaceService.createAdSpace(newAdSpace);
         return ResponseEntity.ok(new CreateAdSpaceResponse(adSpcaceID));
     }
 
-
     @GetMapping(path = "{spaceId}")
-    public Adspace getAdSpace(String spaceId){
-        return adSpaceService.getAdSpace(spaceId);
+    public ResponseEntity<GetAdSpaceResponse> get(@RequestHeader(name = "X-Customer-Id") String filterBy, @PathVariable String filter) {
+
+        Adspace adspace = adSpaceService.getAdSpace(filter);
+
+        if (adspace == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        GetAdSpaceResponse getAdSpaceResponse = mapper.map(adspace, GetAdSpaceResponse.class);
+        return ResponseEntity.ok(getAdSpaceResponse);
     }
 
     @PutMapping(path = "{spaceId}")
