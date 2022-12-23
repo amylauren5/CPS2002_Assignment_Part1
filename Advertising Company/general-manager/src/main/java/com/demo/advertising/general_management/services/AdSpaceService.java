@@ -44,7 +44,7 @@ public class AdSpaceService {
 
         if (retrievedOrderEntity.isEmpty()) return null;
 
-        Adspace space = mapper.map(retrievedOrderEntity.get(), Adspace.class);
+        Adspace space = mapper.map(retrievedOrderEntity, Adspace.class);
 
         return space;
     }
