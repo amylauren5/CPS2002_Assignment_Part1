@@ -1,6 +1,5 @@
 package com.demo.advertising.general_management.data.entities;
 
-import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;

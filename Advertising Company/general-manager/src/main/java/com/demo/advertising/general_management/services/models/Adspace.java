@@ -1,7 +1,5 @@
 package com.demo.advertising.general_management.services.models;
 
-import com.demo.advertising.general_management.data.entities.AdSpaceEntity;
-
 public class Adspace{
 
     private String SpaceId;

@@ -38,7 +38,6 @@ public class AdSpaceService {
     }
 
 
-
     //create resource
     public String createAdSpace(Adspace space) {
         AdSpaceEntity adSpaceEntity = mapper.map(space, AdSpaceEntity.class);
