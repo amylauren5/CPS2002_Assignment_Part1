@@ -4,22 +4,20 @@ import com.demo.advertising.general_management.services.models.Adspace;
 
 public class CreateAdSpaceResponse {
 
-    private Adspace adspace;
+    private String SpaceId;
 
-    public CreateAdSpaceResponse(Adspace adspace) {
-        this.adspace = adspace;
+    public CreateAdSpaceResponse(String SpaceId) {
+        this.SpaceId = SpaceId;
     }
 
     public CreateAdSpaceResponse() {
     }
 
-    public Adspace getAdSpace() {
-        return adspace;
+    public String getAdSpaceId() {
+        return SpaceId;
     }
 
-    public void setAdSpace(Adspace adspace) {
-        this.adspace = adspace;
+    public void setAdSpaceId(String SpaceId) {
+        this.SpaceId = SpaceId;
     }
-
-
 }

@@ -1,5 +1,6 @@
 package com.demo.advertising.general_management.controllers;
 
+import com.demo.advertising.general_management.controllers.requests.AdSpace;
 import com.demo.advertising.general_management.controllers.responses.CreateAdSpaceResponse;
 import com.demo.advertising.general_management.controllers.responses.GetAdSpaceResponse;
 import com.demo.advertising.general_management.data.entities.AdSpaceEntity;
@@ -26,13 +27,13 @@ public class AdSpaceController {
     ModelMapper mapper;
 
     @PostMapping
-    public ResponseEntity<CreateAdSpaceResponse> submit(@RequestBody CreateAdSpaceResponse newAdSpace) {
+    public ResponseEntity<CreateAdSpaceResponse> submit(@RequestBody AdSpace newAdSpace) {
 
         Adspace adSpace = mapper.map(newAdSpace, Adspace.class);
 
-        String orderId = adSpaceService.createAdSpace(adSpace);
+        String adSpaceId = adSpaceService.createAdSpace(adSpace);
 
-        return ResponseEntity.ok(new CreateAdSpaceResponse(adSpace));
+        return ResponseEntity.ok(new CreateAdSpaceResponse(adSpaceId));
     }
 
     @GetMapping(path = "{spaceId}")
