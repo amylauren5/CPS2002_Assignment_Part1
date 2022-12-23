@@ -49,12 +49,12 @@ public class AdSpaceService {
 
     //read resource
     public Adspace getAdSpace(String SpaceId) {
-        AdSpaceEntity AdSpaceEntityToFind = new AdSpaceEntity();
-        AdSpaceEntityToFind.setSpaceId(SpaceId);
-        Optional<AdSpaceEntity> retrievedResourceEntity =
-                adSpaceRepository.findOne(Example.of(AdSpaceEntityToFind, ExampleMatcher.matchingAll()));
+        AdSpaceEntity adSpaceEntityToFind = new AdSpaceEntity();
+        adSpaceEntityToFind.setSpaceId(SpaceId);
+        Optional<AdSpaceEntity> retrievedAdSpaceEntity =
+                adSpaceRepository.findOne(Example.of(adSpaceEntityToFind, ExampleMatcher.matchingAll()));
 
-        return retrievedResourceEntity.map(adSpaceEntity -> mapper.map(adSpaceEntity, Adspace.class)).orElse(null);
+        return retrievedAdSpaceEntity.map(adSpaceEntity -> mapper.map(adSpaceEntity, Adspace.class)).orElse(null);
     }
 
 
