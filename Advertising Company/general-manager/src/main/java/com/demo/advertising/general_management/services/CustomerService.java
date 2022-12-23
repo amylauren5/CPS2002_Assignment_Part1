@@ -49,14 +49,14 @@ public class CustomerService {
         Optional<CustomerEntity> retrievedCustomerEntity =
                 customerRepository.findOne(Example.of(customerEntityToFind, ExampleMatcher.matchingAll()));
 
-        if (retrievedCustomerEntity.isEmpty()) return null;
+        if (retrievedCustomerEntity.isEmpty()) throw new IllegalStateException("This customer does not exist!");
 
         return mapper.map(retrievedCustomerEntity.get(), Customer.class);
     }
 
     //update customer
     @Transactional
-    public void updateCustomer(String customerId, String name, String email, String paymentDetails, int phoneNumber) {
+    public void updateCustomer(String customerId, String name, String email, String paymentDetails, String phoneNumber) {
 
         CustomerEntity customer = customerRepository.findById(customerId).orElseThrow(
                 () -> new IllegalStateException("Customer ID " + customerId + " does not exist!")
@@ -81,7 +81,7 @@ public class CustomerService {
             customer.setPaymentDetails(paymentDetails);
         }
 
-        if(phoneNumber > 20000000 && !Objects.equals(customer.getPhoneNumber(), phoneNumber)){
+        if(phoneNumber != null && !Objects.equals(customer.getPhoneNumber(), phoneNumber)){
             customer.setPhoneNumber(phoneNumber);
         }
 

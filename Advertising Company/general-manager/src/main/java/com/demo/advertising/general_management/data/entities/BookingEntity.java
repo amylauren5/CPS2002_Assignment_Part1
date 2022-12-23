@@ -13,10 +13,8 @@ public class BookingEntity {
     private List<AdSpaceEntity> adSpaceItems;
 
     private String customerId;
-
     @Id
-    private String bookingsId;
-
+    private String bookingId;
     private LocalDate startingDate;
     private int minWeeks;
     private int noOfWeeks;
@@ -38,11 +36,11 @@ public class BookingEntity {
     }
 
     public String getBookingsId() {
-        return bookingsId;
+        return bookingId;
     }
 
-    public void setBookingsId(String bookingsId) {
-        this.bookingsId = bookingsId;
+    public void setBookingsId(String bookingId) {
+        this.bookingId = bookingId;
     }
 
     public LocalDate getStartingDate() {

@@ -1,13 +1,13 @@
 package com.demo.advertising.general_management.services.models;
 
-import java.time.LocalDate;
+import java.util.List;
 
 public class Customer {
 
     private String customerId;
     private String name;
     private String email;
-    private int phoneNumber;
+    private String phoneNumber;
     private String paymentDetails;
 
     public String getCustomerId() {
@@ -34,11 +34,11 @@ public class Customer {
         this.email = email;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -49,4 +49,5 @@ public class Customer {
     public void setPaymentDetails(String paymentDetails) {
         this.paymentDetails = paymentDetails;
     }
+
 }
