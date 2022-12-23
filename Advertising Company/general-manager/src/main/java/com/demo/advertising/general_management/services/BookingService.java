@@ -38,8 +38,6 @@ public class BookingService {
 
         if (retrievedBookingEntity.isEmpty()) return null;
 
-        Booking booking = mapper.map(retrievedBookingEntity.get(), Booking.class);
-
-        return booking;
+        return mapper.map(retrievedBookingEntity.get(), Booking.class);
     }
 }

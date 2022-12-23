@@ -26,9 +26,9 @@ public class BookingController {
         Booking bookingSubmission = mapper.map(request, Booking.class);
         bookingSubmission.setCustomerId(customerId);
 
-        String orderId = bookingService.submitBooking(bookingSubmission);
+        String bookingId = bookingService.submitBooking(bookingSubmission);
 
-        return ResponseEntity.ok(new SubmitBookingResponse(orderId));
+        return ResponseEntity.ok(new SubmitBookingResponse(bookingId));
     }
 
     @GetMapping(value = "bookings/{bookingId}", produces = MediaType.APPLICATION_JSON_VALUE)

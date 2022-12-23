@@ -1,6 +1,6 @@
 package com.demo.advertising.general_management.services.models;
 
-import java.time.LocalDate;
+import java.util.List;
 
 public class Customer {
 
@@ -49,4 +49,5 @@ public class Customer {
     public void setPaymentDetails(String paymentDetails) {
         this.paymentDetails = paymentDetails;
     }
+
 }

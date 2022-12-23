@@ -1,8 +1,7 @@
 package com.demo.advertising.general_management.data.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table
@@ -54,4 +53,5 @@ public class CustomerEntity {
     public void setPaymentDetails(String paymentDetails) {
         this.paymentDetails = paymentDetails;
     }
+
 }

@@ -13,10 +13,8 @@ public class BookingEntity {
     private List<AdSpaceEntity> adSpaceItems;
 
     private String customerId;
-
     @Id
     private String bookingsId;
-
     private LocalDate startingDate;
     private int minWeeks;
     private int noOfWeeks;
