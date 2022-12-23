@@ -32,7 +32,7 @@ public class AdSpaceController {
 
         String orderId = adSpaceService.createAdSpace(adSpace);
 
-        return ResponseEntity.ok(new CreateAdSpaceResponse(orderId));
+        return ResponseEntity.ok(new CreateAdSpaceResponse(orderId, adSpace));
     }
 
     @GetMapping(path = "{spaceId}")
