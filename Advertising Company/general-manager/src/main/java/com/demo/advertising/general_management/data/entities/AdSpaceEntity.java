@@ -5,8 +5,6 @@ import javax.persistence.*;
 @Entity
 public class AdSpaceEntity {
 
-    @ElementCollection
-    @CollectionTable(name="AD_SPACE", joinColumns=@JoinColumn(name="AD_SPACE_ID"))
 
     @Id
     private String SpaceId;
