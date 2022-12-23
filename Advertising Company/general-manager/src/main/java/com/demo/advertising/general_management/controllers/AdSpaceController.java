@@ -31,12 +31,12 @@ public class AdSpaceController {
 
         Adspace adSpace = mapper.map(newAdSpace, Adspace.class);
 
-        String adSpaceId = adSpaceService.createAdSpace(adSpace);
+        String SpaceId = adSpaceService.createAdSpace(adSpace);
 
-        return ResponseEntity.ok(new CreateAdSpaceResponse(adSpaceId));
+        return ResponseEntity.ok(new CreateAdSpaceResponse(SpaceId));
     }
 
-    @GetMapping(path = "{spaceId}")
+    @GetMapping(value = "{SpaceId}")
     public ResponseEntity<GetAdSpaceResponse> get(@PathVariable String spaceId) {
 
         Adspace adSpace = adSpaceService.getAdSpace(spaceId);
