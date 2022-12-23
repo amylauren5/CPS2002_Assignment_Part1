@@ -3,6 +3,7 @@ package com.demo.advertising.general_management.data.entities;
 import javax.persistence.*;
 
 @Entity
+@Table
 public class AdSpaceEntity {
 
 

@@ -14,12 +14,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class AdSpaceController {
 
-    private final AdSpaceService adSpaceService;
-
     @Autowired
-    public AdSpaceController(AdSpaceService adSpaceService) {
-        this.adSpaceService = adSpaceService;
-    }
+    AdSpaceService adSpaceService;
 
     @Autowired
     ModelMapper mapper;

@@ -21,15 +21,11 @@ public class AdSpaceService {
     //make deleteAdSpace work
     //make updateAdSpace work
 
-    private final AdSpaceRepository adSpaceRepository;
-
     @Autowired
     ModelMapper mapper;
 
     @Autowired
-    public AdSpaceService(AdSpaceRepository adSpaceRepository){
-        this.adSpaceRepository = adSpaceRepository;
-    }
+    AdSpaceRepository adSpaceRepository;
 
     //create resource
     public String createAdSpace(Adspace space) {
