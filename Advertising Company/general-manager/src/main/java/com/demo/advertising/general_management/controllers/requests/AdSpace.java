@@ -2,7 +2,6 @@ package com.demo.advertising.general_management.controllers.requests;
 
 public class AdSpace {
 
-    private String SpaceId;
     private int Popularity;     //people viewing space per day
     private String Type;        //billboard, buses, benches
     private int Size;           //size of advertising space
@@ -11,8 +10,7 @@ public class AdSpace {
     private int BusRoute;       //bus route
 
 
-    public AdSpace(String SpaceId, int Popularity, String Type, int Size, int Price, String Location, int BusRoute) {
-        this.SpaceId = SpaceId;
+    public AdSpace(int Popularity, String Type, int Size, int Price, String Location, int BusRoute) {
         this.Popularity = Popularity;
         this.Type = Type;
         this.Size = Size;
@@ -22,14 +20,6 @@ public class AdSpace {
     }
 
     public AdSpace(){
-    }
-
-    public String getItemId() {
-        return SpaceId;
-    }
-
-    public void setItemId(String ItemId) {
-        this.SpaceId = ItemId;
     }
 
     public int getPopularity() {

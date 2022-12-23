@@ -2,7 +2,6 @@ package com.demo.advertising.general_management.services.models;
 
 public class Adspace{
 
-    private String SpaceId;
     private int Popularity;     //people viewing space per day
     private String Type;        //billboard, buses, benches
     private int Size;           //size of advertising space
@@ -10,12 +9,6 @@ public class Adspace{
     private String Location;    //town/park where ad space is
     private int BusRoute;       //bus route
 
-
-    public String getSpaceId() { return SpaceId; }
-
-    public void setSpaceId(String SpaceId) {
-        this.SpaceId = SpaceId;
-    }
 
     public int getPopularity() { return Popularity; }
 
