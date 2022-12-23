@@ -35,12 +35,10 @@ public class AdSpaceService {
 
 
     //create resource
-    public String createAdSpace(Adspace space) {
+    public void createAdSpace(Adspace space) {
         AdSpaceEntity adSpaceEntity = mapper.map(space, AdSpaceEntity.class);
         adSpaceRepository.save(adSpaceEntity);
-        return adSpaceEntity.getSpaceId();
     }
-
 
     //read resource
     public Adspace getAdSpace(String SpaceId) {
