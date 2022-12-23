@@ -31,36 +31,27 @@ public class AdSpaceService {
         this.adSpaceRepository = adSpaceRepository;
     }
 
-
     //create resource
-    public AdSpaceEntity createAdSpace(Adspace space) {
+    public String createAdSpace(Adspace space) {
         AdSpaceEntity adSpaceEntity = mapper.map(space, AdSpaceEntity.class);
-        adSpaceRepository.save(adSpaceEntity);
-
-        AdSpaceEntity adSpaceEntityToFind = new AdSpaceEntity();
-        String SpaceId = adSpaceEntity.getSpaceId();
-        adSpaceEntityToFind.setSpaceId(SpaceId);
-        Optional<AdSpaceEntity> retrievedAdSpaceEntity =
-                adSpaceRepository.findOne(Example.of(adSpaceEntityToFind, ExampleMatcher.matchingAll()));
-
-        if (retrievedAdSpaceEntity.isEmpty()) throw new IllegalStateException("This ad space does not exist!");
-
-        return mapper.map(retrievedAdSpaceEntity.get(), AdSpaceEntity.class);
+        adSpaceEntity.setSpaceId(UUID.randomUUID().toString());
+        adSpaceEntity = adSpaceRepository.save(adSpaceEntity);
+        return adSpaceEntity.getSpaceId();
     }
 
-
-    //read resource
     public Adspace getAdSpace(String SpaceId) {
         AdSpaceEntity adSpaceEntityToFind = new AdSpaceEntity();
         adSpaceEntityToFind.setSpaceId(SpaceId);
-        Optional<AdSpaceEntity> retrievedAdSpaceEntity =
+
+        Optional<AdSpaceEntity> retrievedOrderEntity =
                 adSpaceRepository.findOne(Example.of(adSpaceEntityToFind, ExampleMatcher.matchingAll()));
 
-        if (retrievedAdSpaceEntity.isEmpty()) throw new IllegalStateException("This ad space does not exist!");
+        if (retrievedOrderEntity.isEmpty()) return null;
 
-        return mapper.map(retrievedAdSpaceEntity.get(), Adspace.class);
+        Adspace space = mapper.map(retrievedOrderEntity.get(), Adspace.class);
+
+        return space;
     }
-
 
     //update resource
     public void updateAdSpace(String SpaceId, Adspace newSpace){

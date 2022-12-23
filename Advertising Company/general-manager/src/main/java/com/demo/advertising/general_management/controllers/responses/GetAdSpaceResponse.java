@@ -1,8 +1,6 @@
 package com.demo.advertising.general_management.controllers.responses;
 import com.demo.advertising.general_management.services.models.Adspace;
 
-import java.util.List;
-
 public class GetAdSpaceResponse {
 
     private Adspace adspace;
