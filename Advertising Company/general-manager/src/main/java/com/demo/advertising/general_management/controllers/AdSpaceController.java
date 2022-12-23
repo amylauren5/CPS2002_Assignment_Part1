@@ -37,7 +37,7 @@ public class AdSpaceController {
     }
 
     @GetMapping(path = "{spaceId}")
-    public ResponseEntity<GetAdSpaceResponse> get(@RequestHeader String spaceId) {
+    public ResponseEntity<GetAdSpaceResponse> get(@PathVariable String spaceId) {
 
         Adspace adSpace = adSpaceService.getAdSpace(spaceId);
 
@@ -48,7 +48,6 @@ public class AdSpaceController {
         GetAdSpaceResponse getAdSpaceResponse = mapper.map(adSpace, GetAdSpaceResponse.class);
         return ResponseEntity.ok(getAdSpaceResponse);
     }
-
 
     @PutMapping(path = "{spaceId}")
     public void updateAdSpace(@PathVariable("spaceId") String spaceId, @RequestBody Adspace adspace) {
