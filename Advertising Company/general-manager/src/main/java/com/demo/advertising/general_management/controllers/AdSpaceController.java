@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "AdSpace",produces = MediaType.APPLICATION_JSON_VALUE)
 public class AdSpaceController {
 
     private final AdSpaceService adSpaceService;
@@ -25,7 +24,7 @@ public class AdSpaceController {
     @Autowired
     ModelMapper mapper;
 
-    @PostMapping
+    @PostMapping(value = "AdSpace", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<CreateAdSpaceResponse> submit(@RequestBody AdSpace newAdSpace) {
 
         Adspace adSpace = mapper.map(newAdSpace, Adspace.class);
@@ -35,7 +34,7 @@ public class AdSpaceController {
         return ResponseEntity.ok(new CreateAdSpaceResponse(SpaceId));
     }
 
-    @GetMapping(path = "{SpaceId}")
+    @GetMapping(value = "AdSpace/{SpaceId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<GetAdSpaceResponse> get(@PathVariable String SpaceId) {
 
         Adspace adSpace = adSpaceService.getAdSpace(SpaceId);
@@ -48,7 +47,7 @@ public class AdSpaceController {
         return ResponseEntity.ok(getAdSpaceResponse);
     }
 
-    @PutMapping(path = "{spaceId}")
+    @PutMapping(value = "AdSpace/{SpaceId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public void updateAdSpace(@PathVariable("spaceId") String spaceId, @RequestBody Adspace adspace) {
         adSpaceService.updateAdSpace(spaceId, adspace);
     }
