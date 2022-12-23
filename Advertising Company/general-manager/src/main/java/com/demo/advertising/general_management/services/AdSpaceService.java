@@ -1,8 +1,10 @@
 package com.demo.advertising.general_management.services;
 
 import com.demo.advertising.general_management.data.entities.AdSpaceEntity;
+import com.demo.advertising.general_management.data.entities.CustomerEntity;
 import com.demo.advertising.general_management.data.repositories.AdSpaceRepository;
 import com.demo.advertising.general_management.services.models.Adspace;
+import com.demo.advertising.general_management.services.models.Customer;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -35,7 +37,6 @@ public class AdSpaceService {
     //create resource
     public String createAdSpace(Adspace space) {
         AdSpaceEntity adSpaceEntity = mapper.map(space, AdSpaceEntity.class);
-        adSpaceEntity.setSpaceId(UUID.randomUUID().toString());
         adSpaceRepository.save(adSpaceEntity);
         return adSpaceEntity.getSpaceId();
     }
