@@ -22,13 +22,13 @@ public class AdSpaceController {
     ModelMapper mapper;
 
     @PostMapping(value = "AdSpace", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> submit(@RequestBody CreateAdSpaceRequest newAdSpace) {
+    public ResponseEntity<CreateAdSpaceResponse> submit(@RequestBody CreateAdSpaceRequest newAdSpace) {
 
         Adspace adSpace = mapper.map(newAdSpace, Adspace.class);
 
         String SpaceId = adSpaceService.createAdSpace(adSpace);
 
-        return ResponseEntity.ok(SpaceId);
+        return ResponseEntity.ok(new CreateAdSpaceResponse(SpaceId));
     }
 
     @GetMapping(value = "AdSpace/{SpaceId}", produces = MediaType.APPLICATION_JSON_VALUE)
