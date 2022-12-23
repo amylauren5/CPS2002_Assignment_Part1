@@ -18,8 +18,8 @@ public class AdSpaceController {
     }
 
     @PostMapping
-    public void createAdSpace(@RequestBody Adspace adspace){
-        adSpaceService.createAdSpace(adspace);
+    public Adspace createAdSpace(@RequestBody Adspace adspace){
+        return adSpaceService.createAdSpace(adspace);
     }
 
     @GetMapping(path = "{spaceId}")
