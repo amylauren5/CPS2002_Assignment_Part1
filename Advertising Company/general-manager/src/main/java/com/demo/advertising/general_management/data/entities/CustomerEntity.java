@@ -11,7 +11,7 @@ public class CustomerEntity {
     private String customerId;
     private String name;
     private String email;
-    private int phoneNumber;
+    private String phoneNumber;
     private String paymentDetails;
 
     public String getCustomerId() {
@@ -38,11 +38,11 @@ public class CustomerEntity {
         this.email = email;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
