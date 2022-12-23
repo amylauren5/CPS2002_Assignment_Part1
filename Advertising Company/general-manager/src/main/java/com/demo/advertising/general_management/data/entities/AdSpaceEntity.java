@@ -1,12 +1,12 @@
 package com.demo.advertising.general_management.data.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table
 public class AdSpaceEntity {
+
+    @ElementCollection
+    @CollectionTable(name="AD_SPACE", joinColumns=@JoinColumn(name="AD_SPACE_ID"))
 
     @Id
     private String SpaceId;

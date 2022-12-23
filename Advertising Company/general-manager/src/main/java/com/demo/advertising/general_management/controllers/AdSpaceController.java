@@ -3,7 +3,6 @@ package com.demo.advertising.general_management.controllers;
 import com.demo.advertising.general_management.controllers.requests.AdSpace;
 import com.demo.advertising.general_management.controllers.responses.CreateAdSpaceResponse;
 import com.demo.advertising.general_management.controllers.responses.GetAdSpaceResponse;
-import com.demo.advertising.general_management.data.entities.AdSpaceEntity;
 import com.demo.advertising.general_management.services.models.Adspace;
 import com.demo.advertising.general_management.services.AdSpaceService;
 import org.modelmapper.ModelMapper;
@@ -36,10 +35,10 @@ public class AdSpaceController {
         return ResponseEntity.ok(new CreateAdSpaceResponse(SpaceId));
     }
 
-    @GetMapping(value = "{SpaceId}")
-    public ResponseEntity<GetAdSpaceResponse> get(@PathVariable String spaceId) {
+    @GetMapping(path = "{SpaceId}")
+    public ResponseEntity<GetAdSpaceResponse> get(@PathVariable String SpaceId) {
 
-        Adspace adSpace = adSpaceService.getAdSpace(spaceId);
+        Adspace adSpace = adSpaceService.getAdSpace(SpaceId);
 
         if (adSpace == null) {
             return ResponseEntity.notFound().build();
