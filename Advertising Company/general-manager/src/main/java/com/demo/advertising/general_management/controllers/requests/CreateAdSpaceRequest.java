@@ -3,21 +3,21 @@ package com.demo.advertising.general_management.controllers.requests;
 import java.util.List;
 
 public class CreateAdSpaceRequest {
-    private List<AdSpace> adSpaces;
+    private AdSpace adSpace;
 
-    public CreateAdSpaceRequest(List<AdSpace> adSpaces) {
-        this.adSpaces = adSpaces;
+    public CreateAdSpaceRequest(AdSpace adSpace) {
+        this.adSpace = adSpace;
     }
 
     public CreateAdSpaceRequest() {
     }
 
-    public List<AdSpace> getBookingItems() {
-        return adSpaces;
+    public AdSpace getAdSpace() {
+        return adSpace;
     }
 
-    public void setBookingItems(List<AdSpace> bookingItems) {
-        this.adSpaces = bookingItems;
+    public void setAdSpace(AdSpace adSpace) {
+        this.adSpace = adSpace;
     }
 
 }
