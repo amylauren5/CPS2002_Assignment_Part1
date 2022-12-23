@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface AdSpaceRepository extends JpaRepository<AdSpaceEntity, String> {
 
-    @Query("SELECT c FROM AdSpaceEntity c WHERE c.SpaceId = ?1")
+/*    @Query("SELECT c FROM AdSpaceEntity c WHERE c.SpaceId = ?1")
     Optional<AdSpaceEntity> fineAdSpacebyId(String SpaceId);
 
     @Query("SELECT c FROM AdSpaceEntity c WHERE c.Popularity = ?1")
@@ -28,5 +28,5 @@ public interface AdSpaceRepository extends JpaRepository<AdSpaceEntity, String> 
     Optional<AdSpaceEntity> findAdSpaceLocation(String Location);
 
     @Query("SELECT c FROM AdSpaceEntity c WHERE c.BusRoute = ?1")
-    Optional<AdSpaceEntity> findAdSpaceBusRoute(String BusRoute);
+    Optional<AdSpaceEntity> findAdSpaceBusRoute(String BusRoute);*/
 }
