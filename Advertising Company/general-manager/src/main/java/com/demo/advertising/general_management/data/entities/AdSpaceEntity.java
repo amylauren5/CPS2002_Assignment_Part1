@@ -17,7 +17,6 @@ public class AdSpaceEntity {
     private String Location;    //town/park where ad space is
     private int BusRoute;       //bus route
 
-
     public String getSpaceId() {
         return SpaceId;
     }
