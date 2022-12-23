@@ -33,7 +33,7 @@ public class AdSpaceService {
 
 
     //create resource
-    public Adspace createAdSpace(Adspace space) {
+    public AdSpaceEntity createAdSpace(Adspace space) {
         AdSpaceEntity adSpaceEntity = mapper.map(space, AdSpaceEntity.class);
         adSpaceRepository.save(adSpaceEntity);
 
@@ -45,7 +45,7 @@ public class AdSpaceService {
 
         if (retrievedAdSpaceEntity.isEmpty()) throw new IllegalStateException("This ad space does not exist!");
 
-        return mapper.map(retrievedAdSpaceEntity.get(), Adspace.class);
+        return mapper.map(retrievedAdSpaceEntity.get(), AdSpaceEntity.class);
     }
 
 

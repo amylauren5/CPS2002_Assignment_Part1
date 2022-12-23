@@ -1,5 +1,6 @@
 package com.demo.advertising.general_management.controllers;
 
+import com.demo.advertising.general_management.data.entities.AdSpaceEntity;
 import com.demo.advertising.general_management.services.models.Adspace;
 import com.demo.advertising.general_management.services.AdSpaceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +19,12 @@ public class AdSpaceController {
     }
 
     @PostMapping
-    public Adspace createAdSpace(@RequestBody Adspace adspace){
+    public AdSpaceEntity createAdSpace(@RequestBody Adspace adspace){
         return adSpaceService.createAdSpace(adspace);
     }
 
     @GetMapping(path = "{spaceId}")
-    public Adspace getAdSpace(String spaceId){
+    public Adspace get(String spaceId){
         return adSpaceService.getAdSpace(spaceId);
     }
 

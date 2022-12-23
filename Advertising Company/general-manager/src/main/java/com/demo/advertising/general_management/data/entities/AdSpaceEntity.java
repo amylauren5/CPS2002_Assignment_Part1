@@ -21,9 +21,7 @@ public class AdSpaceEntity {
         return SpaceId;
     }
 
-    public void setSpaceId(String SpaceId) {
-        this.SpaceId = SpaceId;
-    }
+    public void setSpaceId(String SpaceId) {this.SpaceId = SpaceId;}
 
     public int getPopularity() {
         return Popularity;

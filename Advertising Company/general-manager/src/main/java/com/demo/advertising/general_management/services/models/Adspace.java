@@ -11,17 +11,13 @@ public class Adspace{
     private int BusRoute;       //bus route
 
 
-    public String getSpaceId() {
-        return SpaceId;
-    }
+    public String getSpaceId() { return SpaceId; }
 
     public void setSpaceId(String SpaceId) {
         this.SpaceId = SpaceId;
     }
 
-    public int getPopularity() {
-        return Popularity;
-    }
+    public int getPopularity() { return Popularity; }
 
     public void setPopularity(int Popularity) {
         this.Popularity = Popularity;
