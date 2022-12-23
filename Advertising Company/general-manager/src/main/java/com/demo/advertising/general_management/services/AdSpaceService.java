@@ -47,6 +47,7 @@ public class AdSpaceService {
         return adSpaceEntity.getSpaceId();
     }
 
+
     //read resource
     public Adspace getAdSpace(String SpaceId) {
         AdSpaceEntity adSpaceEntityToFind = new AdSpaceEntity();
@@ -54,7 +55,9 @@ public class AdSpaceService {
         Optional<AdSpaceEntity> retrievedAdSpaceEntity =
                 adSpaceRepository.findOne(Example.of(adSpaceEntityToFind, ExampleMatcher.matchingAll()));
 
-        return retrievedAdSpaceEntity.map(adSpaceEntity -> mapper.map(adSpaceEntity, Adspace.class)).orElse(null);
+        if (retrievedAdSpaceEntity.isEmpty()) throw new IllegalStateException("This ad space does not exist!");
+
+        return mapper.map(retrievedAdSpaceEntity.get(), Adspace.class);
     }
 
 

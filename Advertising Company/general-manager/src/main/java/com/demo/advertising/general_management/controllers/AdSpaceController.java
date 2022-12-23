@@ -33,7 +33,7 @@ public class AdSpaceController {
         return adSpaceService.createAdSpace(adspace);
     }
 
-    @GetMapping(value = "{spaceId}")
+    @GetMapping(path = "{spaceId}")
     public Adspace getAdSpace(String spaceId){
         return adSpaceService.getAdSpace(spaceId);
     }
