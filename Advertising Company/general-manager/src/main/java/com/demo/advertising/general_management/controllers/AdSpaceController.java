@@ -32,7 +32,7 @@ public class AdSpaceController {
     }
 
     @GetMapping(value = "AdSpace/{SpaceId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Adspace> get(@PathVariable String SpaceId) {
+    public ResponseEntity<GetAdSpaceResponse> get(@PathVariable String SpaceId) {
 
         Adspace adSpace = adSpaceService.getAdSpace(SpaceId);
 
@@ -40,7 +40,8 @@ public class AdSpaceController {
             return ResponseEntity.notFound().build();
         }
 
-        return ResponseEntity.ok(adSpace);
+        GetAdSpaceResponse getAdSpaceResponse = mapper.map(adSpace, GetAdSpaceResponse.class);
+        return ResponseEntity.ok(getAdSpaceResponse);
     }
 
     @PutMapping(value = "AdSpace/{SpaceId}", produces = MediaType.APPLICATION_JSON_VALUE)
