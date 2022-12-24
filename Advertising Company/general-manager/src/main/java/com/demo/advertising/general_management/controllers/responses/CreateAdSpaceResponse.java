@@ -11,11 +11,11 @@ public class CreateAdSpaceResponse {
     public CreateAdSpaceResponse() {
     }
 
-    public String getAdSpaceId() {
+    public String getSpaceId() {
         return SpaceId;
     }
 
-    public void setAdSpaceId(String SpaceId) {
+    public void setSpaceId(String SpaceId) {
         this.SpaceId = SpaceId;
     }
 }
