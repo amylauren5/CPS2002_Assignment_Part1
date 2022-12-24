@@ -30,14 +30,14 @@ public class AdSpaceService {
     //create resource
     public String createAdSpace(Adspace space) {
         AdSpaceEntity adSpaceEntity = mapper.map(space, AdSpaceEntity.class);
-        adSpaceEntity.setSpaceId(UUID.randomUUID().toString());
+        adSpaceEntity.setId(UUID.randomUUID().toString());
         adSpaceEntity = adSpaceRepository.save(adSpaceEntity);
-        return adSpaceEntity.getSpaceId();
+        return adSpaceEntity.getId();
     }
 
     public Adspace getAdSpace(String SpaceId) {
         AdSpaceEntity adSpaceEntityToFind = new AdSpaceEntity();
-        adSpaceEntityToFind.setSpaceId(SpaceId);
+        adSpaceEntityToFind.setId(SpaceId);
 
         Optional<AdSpaceEntity> retrievedOrderEntity =
                 adSpaceRepository.findOne(Example.of(adSpaceEntityToFind, ExampleMatcher.matchingAll()));
