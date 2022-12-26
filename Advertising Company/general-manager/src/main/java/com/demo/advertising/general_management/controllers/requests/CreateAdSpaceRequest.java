@@ -3,6 +3,8 @@ package com.demo.advertising.general_management.controllers.requests;
 import java.util.List;
 
 public class CreateAdSpaceRequest {
+
+    private AdSpace adSpace;
     private int Popularity;     //people viewing space per day
     private String Type;        //billboard, buses, benches
     private int Size;           //size of advertising space
@@ -10,7 +12,8 @@ public class CreateAdSpaceRequest {
     private String Location;    //town/park where ad space is
     private int BusRoute;       //bus route
 
-    public CreateAdSpaceRequest(int Popularity, String Type, int Size, int Price, String Location, int BusRoute) {
+    public CreateAdSpaceRequest(AdSpace adSpace, int Popularity, String Type, int Size, int Price, String Location, int BusRoute) {
+        this.adSpace = adSpace;
         this.Popularity = Popularity;
         this.Type = Type;
         this.Size = Size;
@@ -70,4 +73,11 @@ public class CreateAdSpaceRequest {
         this.BusRoute = BusRoute;
     }
 
+    public AdSpace getAdSpace() {
+        return adSpace;
+    }
+
+    public void setAdSpace(AdSpace adSpace) {
+        this.adSpace = adSpace;
+    }
 }
