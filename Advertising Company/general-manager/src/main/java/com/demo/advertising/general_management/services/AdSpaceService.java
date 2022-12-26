@@ -31,6 +31,7 @@ public class AdSpaceService {
     public String createAdSpace(Adspace space) {
         AdSpaceEntity adSpaceEntity = mapper.map(space, AdSpaceEntity.class);
         adSpaceEntity.setSpaceId(UUID.randomUUID().toString());
+        adSpaceEntity.setLocation("luqa");
         adSpaceEntity = adSpaceRepository.save(adSpaceEntity);
         return adSpaceEntity.getSpaceId();
     }
