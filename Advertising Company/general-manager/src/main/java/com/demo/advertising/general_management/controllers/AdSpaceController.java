@@ -62,13 +62,10 @@ public class AdSpaceController {
     }
 
 
-    /*
-
-    @DeleteMapping(path = "{spaceId}")
-    public void deleteAdSpace(@PathVariable("spaceId") String spaceId) {
-        adSpaceService.deleteAdSpace(spaceId);
+    @DeleteMapping(value = "AdSpace/{SpaceId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public void deleteAdSpace(@RequestHeader String SpaceId) {
+        adSpaceService.deleteAdSpace(SpaceId);
     }
 
-     */
 
 }

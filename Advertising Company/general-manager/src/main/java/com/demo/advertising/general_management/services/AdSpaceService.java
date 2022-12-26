@@ -29,7 +29,7 @@ public class AdSpaceService {
     @Autowired
     AdSpaceRepository adSpaceRepository;
 
-    //create resource
+    //create ad space
     public String createAdSpace(Adspace space) {
         AdSpaceEntity adSpaceEntity = mapper.map(space, AdSpaceEntity.class);
         adSpaceEntity.setSpaceId(UUID.randomUUID().toString());
@@ -37,6 +37,7 @@ public class AdSpaceService {
         return adSpaceEntity.getSpaceId();
     }
 
+    //get ad space
     public List<Adspace> getAdSpace(String FilterBy, String Filter) {
         AdSpaceEntity adSpaceEntityToFind = new AdSpaceEntity();
 
@@ -69,6 +70,7 @@ public class AdSpaceService {
         return spaces;
     }
 
+    //update ad space
     @Transactional
     public void updateAdSpace(String SpaceId, String Popularity, String Type, String Size, String Price, String Location, String BusRoute) {
 
@@ -102,18 +104,14 @@ public class AdSpaceService {
 
     }
 
-    //update resource
-    public void updateAdSpace(String SpaceId, Adspace newSpace){
-
-    }
-
-    /*
-
     //delete resource
     public void deleteAdSpace(String SpaceId){
-        Adspace space = getAdSpace(SpaceId);
-        if (space != null) adSpaceRepository.delete(space);
-    }
+        boolean exists = adSpaceRepository.existsById(SpaceId);
 
-     */
+        if(!exists){
+            throw new IllegalStateException("Ad space does not exist!");
+        }
+
+        adSpaceRepository.deleteById(SpaceId);
+    }
 }
