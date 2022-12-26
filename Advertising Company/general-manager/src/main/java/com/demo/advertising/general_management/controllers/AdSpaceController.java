@@ -54,9 +54,13 @@ public class AdSpaceController {
     }
 
     @PutMapping(value = "AdSpace/{SpaceId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public void updateAdSpace(@PathVariable("spaceId") String spaceId, @RequestBody Adspace adspace) {
-        adSpaceService.updateAdSpace(spaceId, adspace);
+    public void updateCustomer(@RequestHeader String SpaceId, @RequestParam(required = false) String Popularity,
+                               @RequestParam(required = false) String Type, @RequestParam(required = false) String Size,
+                               @RequestParam(required = false) String Price, @RequestParam(required = false) String Location,
+                               @RequestParam(required = false) String BusRoute) {
+        adSpaceService.updateAdSpace(SpaceId, Popularity, Type, Size, Price, Location, BusRoute);
     }
+
 
     /*
 

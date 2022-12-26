@@ -1,6 +1,7 @@
 package com.demo.advertising.general_management.services;
 
 import com.demo.advertising.general_management.data.entities.AdSpaceEntity;
+import com.demo.advertising.general_management.data.entities.CustomerEntity;
 import com.demo.advertising.general_management.data.repositories.AdSpaceRepository;
 import com.demo.advertising.general_management.services.models.Adspace;
 import org.modelmapper.ModelMapper;
@@ -9,6 +10,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -65,6 +67,38 @@ public class AdSpaceService {
                 .collect(Collectors.toList());
 
         return spaces;
+    }
+
+    @Transactional
+    public void updateAdSpace(String SpaceId, String Popularity, String Type, String Size, String Price, String Location, String BusRoute) {
+
+        List<Adspace> adSpaces = getAdSpace("SpaceId", SpaceId);
+        Adspace adSpace = adSpaces.get(0);
+
+        if(Popularity != null && Popularity.length() > 0 && !Objects.equals(adSpace.getPopularity(), Popularity)){
+            adSpace.setPopularity(Popularity);
+        }
+
+        if(Type != null && Type.length() > 0 && !Objects.equals(adSpace.getType(), Type)){
+            adSpace.setType(Type);
+        }
+
+        if(Size != null && Size.length() > 0 && !Objects.equals(adSpace.getSize(), Size)){
+            adSpace.setSize(Size);
+        }
+
+        if(Price != null && Price.length() > 0 && !Objects.equals(adSpace.getPrice(), Price)){
+            adSpace.setPrice(Price);
+        }
+
+        if(Location != null && Location.length() > 0 && !Objects.equals(adSpace.getLocation(), Location)){
+            adSpace.setLocation(Location);
+        }
+
+        if(BusRoute != null && BusRoute.length() > 0 && !Objects.equals(adSpace.getBusRoute(), BusRoute)){
+            adSpace.setBusRoute(BusRoute);
+        }
+
     }
 
     //update resource
