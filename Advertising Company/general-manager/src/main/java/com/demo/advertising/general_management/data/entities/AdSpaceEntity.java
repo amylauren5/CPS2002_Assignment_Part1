@@ -6,8 +6,9 @@ import javax.persistence.*;
 @Table
 public class AdSpaceEntity {
 
+
     @Id
-    private String id;
+    private String SpaceId;
     private int Popularity;     //people viewing space per day
     private String Type;        //billboard, buses, benches
     private int Size;           //size of advertising space
@@ -15,11 +16,11 @@ public class AdSpaceEntity {
     private String Location;    //town/park where ad space is
     private int BusRoute;       //bus route
 
-    public String getId() {
-        return id;
+    public String getSpaceId() {
+        return SpaceId;
     }
 
-    public void setId(String id) {this.id = id;}
+    public void setSpaceId(String SpaceId) {this.SpaceId = SpaceId;}
 
     public int getPopularity() {
         return Popularity;
