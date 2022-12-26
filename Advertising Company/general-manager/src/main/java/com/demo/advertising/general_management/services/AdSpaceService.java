@@ -35,11 +35,11 @@ public class AdSpaceService {
         return adSpaceEntity.getSpaceId();
     }
 
-    public Adspace getAdSpace(String SpaceId) {
+    public Adspace getAdSpace(String Filter) {
         AdSpaceEntity adSpaceEntityToFind = new AdSpaceEntity();
 
 
-        adSpaceEntityToFind.setSpaceId(SpaceId);
+        adSpaceEntityToFind.setSpaceId(Filter);
 
         Optional<AdSpaceEntity> retrievedOrderEntity =
                 adSpaceRepository.findOne(Example.of(adSpaceEntityToFind, ExampleMatcher.matchingAll()));

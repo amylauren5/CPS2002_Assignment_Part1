@@ -31,10 +31,10 @@ public class AdSpaceController {
         return ResponseEntity.ok(new CreateAdSpaceResponse(SpaceId));
     }
 
-    @GetMapping(value = "AdSpace/{SpaceId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<GetAdSpaceResponse> get(@RequestHeader String filterBy, @RequestHeader String SpaceId) {
+    @GetMapping(value = "AdSpace/{Filter}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<GetAdSpaceResponse> get(@RequestHeader String filterBy, @RequestHeader String Filter) {
 
-        Adspace adSpace = adSpaceService.getAdSpace(SpaceId);
+        Adspace adSpace = adSpaceService.getAdSpace(Filter);
 
         if (adSpace == null) {
             return ResponseEntity.notFound().build();
