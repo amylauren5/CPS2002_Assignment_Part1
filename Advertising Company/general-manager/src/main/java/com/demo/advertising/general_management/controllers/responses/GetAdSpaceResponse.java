@@ -7,11 +7,14 @@ public class GetAdSpaceResponse {
     private AdSpace adspace;
     private String SpaceId;
     private String Location;    //town/park where ad space is
+    private int BusRoute;       //bus route
 
-    public GetAdSpaceResponse(AdSpace adspace, String SpaceId, String Location) {
+
+    public GetAdSpaceResponse(AdSpace adspace, String SpaceId, String Location, int BusRoute) {
         this.adspace = adspace;
         this.SpaceId = SpaceId;
         this.Location = Location;
+        this.BusRoute = BusRoute;
     }
 
     public GetAdSpaceResponse() {
@@ -39,5 +42,13 @@ public class GetAdSpaceResponse {
 
     public void setLocation(String location) {
         Location = location;
+    }
+
+    public int getBusRoute() {
+        return BusRoute;
+    }
+
+    public void setBusRoute(int busRoute) {
+        BusRoute = busRoute;
     }
 }
