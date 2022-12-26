@@ -54,12 +54,12 @@ public class AdSpaceService {
             adSpaceEntityToFind.setBusRoute(Filter);
         }
 
-        Optional<AdSpaceEntity> retrievedOrderEntity =
-                adSpaceRepository.findOne(Example.of(adSpaceEntityToFind, ExampleMatcher.matchingAll()));
+        List<AdSpaceEntity> retrievedOrderEntity =
+                adSpaceRepository.findAll(Example.of(adSpaceEntityToFind, ExampleMatcher.matchingAll()));
 
         if (retrievedOrderEntity.isEmpty()) return Optional.empty();
 
-        Optional<Adspace>spaces = Optional.ofNullable(mapper.map(retrievedOrderEntity.get(), Adspace.class));
+        Optional<Adspace>spaces = Optional.ofNullable(mapper.map(retrievedOrderEntity, Adspace.class));
 
         return spaces;
     }
