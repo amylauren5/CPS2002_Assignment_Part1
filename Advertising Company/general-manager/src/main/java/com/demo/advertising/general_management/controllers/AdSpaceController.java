@@ -12,6 +12,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Objects;
+
 @RestController
 public class AdSpaceController {
 
@@ -32,16 +34,20 @@ public class AdSpaceController {
     }
 
     @GetMapping(value = "AdSpace/{Filter}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<GetAdSpaceResponse> get(@RequestHeader String filterBy, @RequestHeader String Filter) {
+    public ResponseEntity<GetAdSpaceResponse> get(@RequestHeader String FilterBy, @RequestHeader String Filter) {
 
-        Adspace adSpace = adSpaceService.getAdSpace(Filter);
+        if(Objects.equals(FilterBy, "SpaceId")){
+            Adspace adSpace = adSpaceService.getAdSpace(Filter);
 
-        if (adSpace == null) {
-            return ResponseEntity.notFound().build();
+            if (adSpace == null) {
+                return ResponseEntity.notFound().build();
+            }
+
+            GetAdSpaceResponse getAdSpaceResponse = mapper.map(adSpace, GetAdSpaceResponse.class);
+            return ResponseEntity.ok(getAdSpaceResponse);
         }
 
-        GetAdSpaceResponse getAdSpaceResponse = mapper.map(adSpace, GetAdSpaceResponse.class);
-        return ResponseEntity.ok(getAdSpaceResponse);
+        return null;
     }
 
     @PutMapping(value = "AdSpace/{SpaceId}", produces = MediaType.APPLICATION_JSON_VALUE)
