@@ -72,8 +72,9 @@ public class AdSpaceService {
     @Transactional
     public void updateAdSpace(String SpaceId, String Popularity, String Type, String Size, String Price, String Location, String BusRoute) {
 
-        List<Adspace> adSpaces = getAdSpace("SpaceId", SpaceId);
-        Adspace adSpace = adSpaces.get(0);
+        AdSpaceEntity adSpace = adSpaceRepository.findById(SpaceId).orElseThrow(
+                () -> new IllegalStateException("Ad space does not exist!")
+        );
 
         if(Popularity != null && Popularity.length() > 0 && !Objects.equals(adSpace.getPopularity(), Popularity)){
             adSpace.setPopularity(Popularity);
