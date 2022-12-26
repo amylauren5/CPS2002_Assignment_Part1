@@ -35,7 +35,7 @@ public class AdSpaceService {
         return adSpaceEntity.getSpaceId();
     }
 
-    public Optional<Adspace> getAdSpace(String FilterBy, String Filter) {
+    public List<Adspace> getAdSpace(String FilterBy, String Filter) {
         AdSpaceEntity adSpaceEntityToFind = new AdSpaceEntity();
 
         if(Objects.equals(FilterBy, "SpaceId")){
@@ -57,9 +57,12 @@ public class AdSpaceService {
         List<AdSpaceEntity> retrievedOrderEntity =
                 adSpaceRepository.findAll(Example.of(adSpaceEntityToFind, ExampleMatcher.matchingAll()));
 
-        if (retrievedOrderEntity.isEmpty()) return Optional.empty();
+        if (retrievedOrderEntity.isEmpty()) return null;
 
-        Optional<Adspace>spaces = Optional.ofNullable(mapper.map(retrievedOrderEntity, Adspace.class));
+        List<Adspace> spaces = retrievedOrderEntity
+                .stream()
+                .map(user -> mapper.map(user, Adspace.class))
+                .collect(Collectors.toList());
 
         return spaces;
     }

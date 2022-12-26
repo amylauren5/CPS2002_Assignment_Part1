@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 public class AdSpaceController {
@@ -36,15 +37,19 @@ public class AdSpaceController {
     }
 
     @GetMapping(value = "AdSpace/{Filter}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Optional<GetAdSpaceResponse>> get(@RequestHeader String FilterBy, @RequestHeader String Filter) {
+    public ResponseEntity<List<GetAdSpaceResponse>> get(@RequestHeader String FilterBy, @RequestHeader String Filter) {
 
-        Optional<Adspace> adSpaces = adSpaceService.getAdSpace(FilterBy, Filter);
+        List<Adspace> adSpaces = adSpaceService.getAdSpace(FilterBy, Filter);
 
-        if (adSpaces.isEmpty()) {
+        if (adSpaces == null) {
             return ResponseEntity.notFound().build();
         }
 
-        Optional<GetAdSpaceResponse> getAdSpaceResponse = Optional.ofNullable(mapper.map(adSpaces, GetAdSpaceResponse.class));
+        List<GetAdSpaceResponse> getAdSpaceResponse = adSpaces
+                .stream()
+                .map(user -> mapper.map(user, GetAdSpaceResponse.class))
+                .collect(Collectors.toList());
+
         return ResponseEntity.ok(getAdSpaceResponse);
     }
 
