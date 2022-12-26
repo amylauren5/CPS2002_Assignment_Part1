@@ -12,11 +12,11 @@ public class CreateAdSpaceRequest {
     public CreateAdSpaceRequest() {
     }
 
-    public AdSpace getAd() {
+    public AdSpace getAdSpace() {
         return adSpace;
     }
 
-    public void setBookingItems(AdSpace adSpace) {
+    public void setAdSpace(AdSpace adSpace) {
         this.adSpace = adSpace;
     }
 
