@@ -37,6 +37,8 @@ public class AdSpaceService {
 
     public Adspace getAdSpace(String SpaceId) {
         AdSpaceEntity adSpaceEntityToFind = new AdSpaceEntity();
+
+
         adSpaceEntityToFind.setSpaceId(SpaceId);
 
         Optional<AdSpaceEntity> retrievedOrderEntity =
