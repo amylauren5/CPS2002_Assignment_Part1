@@ -5,11 +5,13 @@ import java.util.List;
 public class CreateAdSpaceRequest {
     private AdSpace adSpace;
     private String Location;    //town/park where ad space is
+    private int BusRoute;       //bus route
 
 
-    public CreateAdSpaceRequest(AdSpace adSpace, String Location) {
+    public CreateAdSpaceRequest(AdSpace adSpace, String Location, int BusRoute) {
         this.adSpace = adSpace;
         this.Location = Location;
+        this.BusRoute = BusRoute;
     }
 
     public CreateAdSpaceRequest() {
@@ -29,5 +31,13 @@ public class CreateAdSpaceRequest {
 
     public void setLocation(String location) {
         Location = location;
+    }
+
+    public int getBusRoute() {
+        return BusRoute;
+    }
+
+    public void setBusRoute(int busRoute) {
+        BusRoute = busRoute;
     }
 }
