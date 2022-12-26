@@ -9,12 +9,12 @@ public class AdSpaceEntity {
 
     @Id
     private String SpaceId;
-    private int Popularity;     //people viewing space per day
+    private String Popularity;     //people viewing space per day
     private String Type;        //billboard, buses, benches
-    private int Size;           //size of advertising space
-    private int Price;          //cost to rent space per week
+    private String Size;           //size of advertising space
+    private String Price;          //cost to rent space per week
     private String Location;    //town/park where ad space is
-    private int BusRoute;       //bus route
+    private String BusRoute;       //bus route
 
     public String getSpaceId() {
         return SpaceId;
@@ -22,11 +22,11 @@ public class AdSpaceEntity {
 
     public void setSpaceId(String SpaceId) {this.SpaceId = SpaceId;}
 
-    public int getPopularity() {
+    public String getPopularity() {
         return Popularity;
     }
 
-    public void setPopularity(int Popularity) {
+    public void setPopularity(String Popularity) {
         this.Popularity = Popularity;
     }
 
@@ -38,19 +38,19 @@ public class AdSpaceEntity {
         this.Type = Type;
     }
 
-    public int getSize() {
+    public String getSize() {
         return Size;
     }
 
-    public void setSize(int Size) {
+    public void setSize(String Size) {
         this.Size = Size;
     }
 
-    public int getPrice() {
+    public String getPrice() {
         return Price;
     }
 
-    public void setPrice(int Price) {
+    public void setPrice(String Price) {
         this.Price = Price;
     }
 
@@ -62,11 +62,11 @@ public class AdSpaceEntity {
         this.Location = Location;
     }
 
-    public int getBusRoute() {
+    public String getBusRoute() {
         return BusRoute;
     }
 
-    public void setBusRoute(int BusRoute) {
+    public void setBusRoute(String BusRoute) {
         this.BusRoute = BusRoute;
     }
 }
