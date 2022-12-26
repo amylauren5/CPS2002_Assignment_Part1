@@ -9,9 +9,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
-import java.util.Objects;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 
 @Service
@@ -36,7 +34,7 @@ public class AdSpaceService {
         return adSpaceEntity.getSpaceId();
     }
 
-    public Adspace getAdSpace(String FilterBy, String Filter) {
+    public List<Adspace> getAdSpace(String FilterBy, String Filter) {
         AdSpaceEntity adSpaceEntityToFind = new AdSpaceEntity();
 
         if(Objects.equals(FilterBy, "SpaceId")){
@@ -60,9 +58,9 @@ public class AdSpaceService {
 
         if (retrievedOrderEntity.isEmpty()) return null;
 
-        Adspace space = mapper.map(retrievedOrderEntity.get(), Adspace.class);
+        List<Adspace>spaces = Collections.singletonList(mapper.map(retrievedOrderEntity.get(), Adspace.class));
 
-        return space;
+        return spaces;
     }
 
     //update resource
