@@ -10,6 +10,7 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -34,7 +35,7 @@ public class AdSpaceService {
         return adSpaceEntity.getSpaceId();
     }
 
-    public List<Adspace> getAdSpace(String FilterBy, String Filter) {
+    public Optional<Adspace> getAdSpace(String FilterBy, String Filter) {
         AdSpaceEntity adSpaceEntityToFind = new AdSpaceEntity();
 
         if(Objects.equals(FilterBy, "SpaceId")){
@@ -56,9 +57,9 @@ public class AdSpaceService {
         Optional<AdSpaceEntity> retrievedOrderEntity =
                 adSpaceRepository.findOne(Example.of(adSpaceEntityToFind, ExampleMatcher.matchingAll()));
 
-        if (retrievedOrderEntity.isEmpty()) return null;
+        if (retrievedOrderEntity.isEmpty()) return Optional.empty();
 
-        List<Adspace>spaces = Collections.singletonList(mapper.map(retrievedOrderEntity.get(), Adspace.class));
+        Optional<Adspace>spaces = Optional.ofNullable(mapper.map(retrievedOrderEntity.get(), Adspace.class));
 
         return spaces;
     }
