@@ -41,6 +41,8 @@ public class AdSpaceService {
 
         if(Objects.equals(FilterBy, "SpaceId")){
             adSpaceEntityToFind.setSpaceId(Filter);
+        }else if(Objects.equals(FilterBy, "Location")){
+            adSpaceEntityToFind.setLocation(Filter);
         }
 
         Optional<AdSpaceEntity> retrievedOrderEntity =
