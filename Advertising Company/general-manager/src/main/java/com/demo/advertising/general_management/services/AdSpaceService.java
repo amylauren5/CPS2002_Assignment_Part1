@@ -41,8 +41,18 @@ public class AdSpaceService {
 
         if(Objects.equals(FilterBy, "SpaceId")){
             adSpaceEntityToFind.setSpaceId(Filter);
+        }else if(Objects.equals(FilterBy, "Popularity")){
+            adSpaceEntityToFind.setPopularity(Filter);
+        }else if(Objects.equals(FilterBy, "Type")){
+            adSpaceEntityToFind.setType(Filter);
+        }else if(Objects.equals(FilterBy, "Size")){
+            adSpaceEntityToFind.setSize(Filter);
+        }else if(Objects.equals(FilterBy, "Price")){
+            adSpaceEntityToFind.setPrice(Filter);
         }else if(Objects.equals(FilterBy, "Location")){
             adSpaceEntityToFind.setLocation(Filter);
+        }else if(Objects.equals(FilterBy, "BusRoute")){
+            adSpaceEntityToFind.setBusRoute(Filter);
         }
 
         Optional<AdSpaceEntity> retrievedOrderEntity =
