@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -34,7 +35,7 @@ public class AdSpaceController {
     }
 
     @GetMapping(value = "AdSpace/{Filter}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<GetAdSpaceResponse> get(@RequestHeader String FilterBy, @RequestHeader String Filter) {
+    public ResponseEntity<List<GetAdSpaceResponse>> get(@RequestHeader String FilterBy, @RequestHeader String Filter) {
 
         List<Adspace> adSpaces = adSpaceService.getAdSpace(FilterBy, Filter);
 
@@ -42,7 +43,7 @@ public class AdSpaceController {
             return ResponseEntity.notFound().build();
         }
 
-        GetAdSpaceResponse getAdSpaceResponse = mapper.map(adSpaces, GetAdSpaceResponse.class);
+        List<GetAdSpaceResponse> getAdSpaceResponse = Collections.singletonList(mapper.map(adSpaces, GetAdSpaceResponse.class));
         return ResponseEntity.ok(getAdSpaceResponse);
     }
 
