@@ -5,9 +5,9 @@ import com.demo.advertising.general_management.services.models.Adspace;
 public class GetAdSpaceResponse {
 
     private String SpaceId;
-    private AdSpace adSpace;
+    private Adspace adSpace;
 
-    public GetAdSpaceResponse(String SpaceId, AdSpace adSpace) {
+    public GetAdSpaceResponse(String SpaceId, Adspace adSpace) {
         this.SpaceId = SpaceId;
         this.adSpace = adSpace;
     }
@@ -15,11 +15,11 @@ public class GetAdSpaceResponse {
     public GetAdSpaceResponse() {
     }
 
-    public AdSpace getAdSpace() {
+    public Adspace getAdSpace() {
         return adSpace;
     }
 
-    public void setAdSpace(AdSpace adSpace) {
+    public void setAdSpace(Adspace adSpace) {
         this.adSpace = adSpace;
     }
 
