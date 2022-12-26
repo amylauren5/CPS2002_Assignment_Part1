@@ -4,9 +4,12 @@ import java.util.List;
 
 public class CreateAdSpaceRequest {
     private AdSpace adSpace;
+    private String Location;    //town/park where ad space is
 
-    public CreateAdSpaceRequest(AdSpace adSpace) {
+
+    public CreateAdSpaceRequest(AdSpace adSpace, String Location) {
         this.adSpace = adSpace;
+        this.Location = Location;
     }
 
     public CreateAdSpaceRequest() {
@@ -20,4 +23,11 @@ public class CreateAdSpaceRequest {
         this.adSpace = adSpace;
     }
 
+    public String getLocation() {
+        return Location;
+    }
+
+    public void setLocation(String location) {
+        Location = location;
+    }
 }
