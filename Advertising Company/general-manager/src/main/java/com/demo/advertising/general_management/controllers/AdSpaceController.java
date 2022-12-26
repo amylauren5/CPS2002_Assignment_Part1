@@ -31,7 +31,7 @@ public class AdSpaceController {
         return ResponseEntity.ok(new CreateAdSpaceResponse(SpaceId));
     }
 
-    @GetMapping(value = "AdSpace/{SpaceId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "AdSpace/{filter}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<GetAdSpaceResponse> get(@RequestHeader String filterBy, @PathVariable String filter) {
 
         Adspace adSpace = adSpaceService.getAdSpace(filter);
