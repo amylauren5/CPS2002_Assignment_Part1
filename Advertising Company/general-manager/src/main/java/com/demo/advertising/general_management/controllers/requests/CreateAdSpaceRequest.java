@@ -4,12 +4,10 @@ import java.util.List;
 
 public class CreateAdSpaceRequest {
     private String Location;    //town/park where ad space is
-    private int BusRoute;       //bus route
 
 
     public CreateAdSpaceRequest(String Location, int BusRoute) {
         this.Location = Location;
-        this.BusRoute = BusRoute;
     }
 
     public CreateAdSpaceRequest() {
@@ -23,11 +21,4 @@ public class CreateAdSpaceRequest {
         Location = location;
     }
 
-    public int getBusRoute() {
-        return BusRoute;
-    }
-
-    public void setBusRoute(int busRoute) {
-        BusRoute = busRoute;
-    }
 }
