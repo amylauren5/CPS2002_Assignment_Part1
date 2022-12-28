@@ -10,7 +10,7 @@ public class Booking {
     private String SpaceId;
     private String customerId;
     private String bookingId;
-    private LocalDate startingDate;
+    private String startingDate;
     private String noOfWeeks;
 
     public String getCustomerId() {
@@ -29,11 +29,11 @@ public class Booking {
         this.bookingId = bookingId;
     }
 
-    public LocalDate getStartingDate() {
+    public String getStartingDate() {
         return startingDate;
     }
 
-    public void setStartingDate(LocalDate startingDate) {
+    public void setStartingDate(String startingDate) {
         this.startingDate = startingDate;
     }
 
