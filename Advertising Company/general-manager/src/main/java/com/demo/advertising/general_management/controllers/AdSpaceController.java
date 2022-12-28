@@ -24,16 +24,6 @@ public class AdSpaceController {
     @Autowired
     ModelMapper mapper;
 
-    private String SpaceId;
-    private String Popularity;     //people viewing space per day
-    private String Type;        //billboard, buses, benches
-    private String Size;           //size of advertising space
-    private String Price;          //cost to rent space per week
-    private String Location;    //town/park where ad space is
-    private String BusRoute;       //bus route
-    private String MinWeeks;
-    private String MaxWeeks;
-
     @PostMapping(value = "AdSpace", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<CreateAdSpaceResponse> submit(@RequestBody CreateAdSpaceRequest newAdSpace) {
 
@@ -44,6 +34,9 @@ public class AdSpaceController {
                 Objects.equals(newAdSpace.getPrice(), "string")||Objects.equals(newAdSpace.getMinWeeks(), "string")||
                 Objects.equals(newAdSpace.getMaxWeeks(), "string")){
             throw new IllegalStateException("Please fill in all fields!");
+        }else if((Objects.equals(newAdSpace.getLocation(), "string")&&!Objects.equals(newAdSpace.getBusRoute(), "string"))||
+                (!Objects.equals(newAdSpace.getLocation(), "string")&&Objects.equals(newAdSpace.getBusRoute(), "string"))){
+            throw new IllegalStateException("Please only fill in busRoute or location!");
         }
 
         Adspace adSpace = mapper.map(newAdSpace, Adspace.class);
