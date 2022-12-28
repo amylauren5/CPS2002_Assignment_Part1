@@ -40,9 +40,9 @@ public class AdSpaceController {
         if(!Objects.equals(newAdSpace.getType(), "bus") && !Objects.equals(newAdSpace.getType(), "bench") &&
                 !Objects.equals(newAdSpace.getType(), "billboard")){
             throw new IllegalStateException("Type must be bus, bench or billboard!");
-        }else if(Objects.equals(newAdSpace.getPopularity(), "String")||Objects.equals(newAdSpace.getSize(), "String")||
-                Objects.equals(newAdSpace.getPrice(), "String")||Objects.equals(newAdSpace.getMinWeeks(), "String")||
-                Objects.equals(newAdSpace.getMaxWeeks(), "String")){
+        }else if(Objects.equals(newAdSpace.getPopularity(), "string")||Objects.equals(newAdSpace.getSize(), "string")||
+                Objects.equals(newAdSpace.getPrice(), "string")||Objects.equals(newAdSpace.getMinWeeks(), "string")||
+                Objects.equals(newAdSpace.getMaxWeeks(), "string")){
             throw new IllegalStateException("Please fill in all fields!");
         }
 
