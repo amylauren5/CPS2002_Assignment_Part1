@@ -53,6 +53,12 @@ public class BookingController {
         List<Adspace> adspace = adSpaceService.getAdSpace("SpaceId",SpaceId);
         getBookingResponse.setAdspace(adspace);
 
+        int weeks = Integer.parseInt(getBookingResponse.getNoOfWeeks());
+        int cost = Integer.parseInt(adspace.get(0).getPrice());
+
+        String price = Integer.toString(weeks*cost);
+        getBookingResponse.setPrice(price);
+
         return ResponseEntity.ok(getBookingResponse);
     }
 }

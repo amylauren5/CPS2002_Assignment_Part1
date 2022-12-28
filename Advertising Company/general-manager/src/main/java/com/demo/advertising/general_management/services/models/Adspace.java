@@ -8,6 +8,8 @@ public class Adspace{
     private String Price;          //cost to rent space per week
     private String Location;    //town/park where ad space is
     private String BusRoute;       //bus route
+    private String MinWeeks;
+    private String MaxWeeks;
 
     public String getSpaceId() {
         return SpaceId;
@@ -61,5 +63,20 @@ public class Adspace{
         this.BusRoute = BusRoute;
     }
 
+    public String getMinWeeks() {
+        return MinWeeks;
+    }
+
+    public void setMinWeeks(String minWeeks) {
+        MinWeeks = minWeeks;
+    }
+
+    public String getMaxWeeks() {
+        return MaxWeeks;
+    }
+
+    public void setMaxWeeks(String maxWeeks) {
+        MaxWeeks = maxWeeks;
+    }
 }
 

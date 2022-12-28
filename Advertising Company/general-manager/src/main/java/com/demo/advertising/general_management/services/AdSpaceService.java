@@ -50,6 +50,10 @@ public class AdSpaceService {
             adSpaceEntityToFind.setLocation(Filter);
         }else if(Objects.equals(FilterBy, "BusRoute")){
             adSpaceEntityToFind.setBusRoute(Filter);
+        }else if(Objects.equals(FilterBy, "MinWeeks")){
+            adSpaceEntityToFind.setMinWeeks(Filter);
+        }else if(Objects.equals(FilterBy, "MaxWeeks")){
+            adSpaceEntityToFind.setMaxWeeks(Filter);
         }
 
         List<AdSpaceEntity> retrievedOrderEntity =
