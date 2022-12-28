@@ -3,7 +3,8 @@ package com.demo.advertising.general_management.controllers;
 import com.demo.advertising.general_management.controllers.requests.SubmitBookingRequest;
 import com.demo.advertising.general_management.controllers.responses.GetBookingResponse;
 import com.demo.advertising.general_management.controllers.responses.SubmitBookingResponse;
-
+import com.demo.advertising.general_management.services.models.Adspace;
+import com.demo.advertising.general_management.services.AdSpaceService;
 import com.demo.advertising.general_management.services.BookingService;
 import com.demo.advertising.general_management.services.models.Booking;
 import org.modelmapper.ModelMapper;
@@ -20,7 +21,8 @@ public class BookingController {
     @Autowired
     BookingService bookingService;
 
-
+    @Autowired
+    AdSpaceService adSpaceService;
 
     @Autowired
     ModelMapper mapper;
@@ -46,6 +48,10 @@ public class BookingController {
         }
 
         GetBookingResponse getBookingResponse = mapper.map(booking, GetBookingResponse.class);
+
+        String SpaceId = getBookingResponse.getSpaceId();
+        List<Adspace> adspace = adSpaceService.getAdSpace("SpaceId",SpaceId);
+        getBookingResponse.setAdspace(adspace);
 
         return ResponseEntity.ok(getBookingResponse);
     }
