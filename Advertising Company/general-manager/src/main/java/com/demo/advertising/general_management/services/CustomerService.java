@@ -49,7 +49,7 @@ public class CustomerService {
         Optional<CustomerEntity> retrievedCustomerEntity =
                 customerRepository.findOne(Example.of(customerEntityToFind, ExampleMatcher.matchingAll()));
 
-        if (retrievedCustomerEntity.isEmpty()) throw new IllegalStateException("This customer does not exist!");
+        if (retrievedCustomerEntity.isEmpty()) return null;
 
         return mapper.map(retrievedCustomerEntity.get(), Customer.class);
     }

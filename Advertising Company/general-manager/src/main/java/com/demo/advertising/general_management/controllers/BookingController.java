@@ -3,6 +3,7 @@ package com.demo.advertising.general_management.controllers;
 import com.demo.advertising.general_management.controllers.requests.SubmitBookingRequest;
 import com.demo.advertising.general_management.controllers.responses.GetBookingResponse;
 import com.demo.advertising.general_management.controllers.responses.SubmitBookingResponse;
+import com.demo.advertising.general_management.services.CustomerService;
 import com.demo.advertising.general_management.services.models.Adspace;
 import com.demo.advertising.general_management.services.AdSpaceService;
 import com.demo.advertising.general_management.services.BookingService;
@@ -25,10 +26,15 @@ public class BookingController {
     AdSpaceService adSpaceService;
 
     @Autowired
+    CustomerService customerService;
+
+    @Autowired
     ModelMapper mapper;
 
     @PostMapping(value = "bookings", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<SubmitBookingResponse> submit(@RequestHeader(name = "X-Customer-Id") String customerId, @RequestBody SubmitBookingRequest request) {
+
+        if(customerService.getCustomer(customerId).isEmpty())
 
         Booking bookingSubmission = mapper.map(request, Booking.class);
         bookingSubmission.setCustomerId(customerId);
