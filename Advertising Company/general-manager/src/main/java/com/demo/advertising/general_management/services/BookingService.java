@@ -28,15 +28,14 @@ public class BookingService {
         return bookingEntity.getBookingsId();
     }
 
-    public Booking getBooking(String bookingId, String customerId) {
+    public Booking getBooking(String bookingId) {
         BookingEntity bookingEntityToFind = new BookingEntity();
-        bookingEntityToFind.setCustomerId(customerId);
         bookingEntityToFind.setBookingsId(bookingId);
 
         Optional<BookingEntity> retrievedBookingEntity =
                 bookingsRepository.findOne(Example.of(bookingEntityToFind, ExampleMatcher.matchingAll()));
 
-        if (retrievedBookingEntity.isEmpty()) throw new IllegalStateException("Booking does not exist!");
+        if (retrievedBookingEntity.isEmpty()) return null;
 
         return mapper.map(retrievedBookingEntity.get(), Booking.class);
     }

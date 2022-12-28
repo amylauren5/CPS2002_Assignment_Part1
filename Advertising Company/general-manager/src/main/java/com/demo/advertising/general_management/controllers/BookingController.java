@@ -3,6 +3,8 @@ package com.demo.advertising.general_management.controllers;
 import com.demo.advertising.general_management.controllers.requests.SubmitBookingRequest;
 import com.demo.advertising.general_management.controllers.responses.GetBookingResponse;
 import com.demo.advertising.general_management.controllers.responses.SubmitBookingResponse;
+import com.demo.advertising.general_management.services.models.Adspace;
+import com.demo.advertising.general_management.services.AdSpaceService;
 import com.demo.advertising.general_management.services.BookingService;
 import com.demo.advertising.general_management.services.models.Booking;
 import org.modelmapper.ModelMapper;
@@ -11,11 +13,16 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class BookingController {
 
     @Autowired
     BookingService bookingService;
+
+    @Autowired
+    AdSpaceService adSpaceService;
 
     @Autowired
     ModelMapper mapper;
@@ -32,15 +39,20 @@ public class BookingController {
     }
 
     @GetMapping(value = "bookings/{bookingId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<GetBookingResponse> get(@RequestHeader(name = "X-Customer-Id") String customerId, @PathVariable String bookingId) {
+    public ResponseEntity<GetBookingResponse> get(@PathVariable String bookingId) {
 
-        Booking booking = bookingService.getBooking(bookingId, customerId);
+        Booking booking = bookingService.getBooking(bookingId);
 
         if (booking == null) {
             return ResponseEntity.notFound().build();
         }
 
         GetBookingResponse getBookingResponse = mapper.map(booking, GetBookingResponse.class);
+
+        String SpaceId = getBookingResponse.getSpaceId();
+        List<Adspace> adspace = adSpaceService.getAdSpace("SpaceId",SpaceId);
+        getBookingResponse.setAdspace(adspace);
+
         return ResponseEntity.ok(getBookingResponse);
     }
 }
