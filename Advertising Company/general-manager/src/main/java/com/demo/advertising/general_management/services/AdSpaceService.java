@@ -18,11 +18,6 @@ import java.util.stream.Collectors;
 @Service
 public class AdSpaceService {
 
-    //make AdSpaceId generate random without output
-    //make getAdSpace work by filters
-    //make deleteAdSpace work
-    //make updateAdSpace work
-
     @Autowired
     ModelMapper mapper;
 
