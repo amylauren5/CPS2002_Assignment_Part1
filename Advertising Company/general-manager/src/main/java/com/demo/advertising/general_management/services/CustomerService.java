@@ -5,6 +5,8 @@ import com.demo.advertising.general_management.data.repositories.CustomerReposit
 import com.demo.advertising.general_management.services.models.Customer;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
+@Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
 public class CustomerService {
 
     private final CustomerRepository customerRepository;
