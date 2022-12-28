@@ -15,16 +15,13 @@ public class GetBookingResponse {
     private String SpaceId;
     private String startingDate;
     private String noOfWeeks;
-    private List<Adspace> adspace;
 
-
-    public GetBookingResponse(String customerId, String bookingId, String SpaceId, String startingDate, String noOfWeeks, List<Adspace> adspace) {
+    public GetBookingResponse(String customerId, String bookingId, String SpaceId, String startingDate, String noOfWeeks) {
         this.customerId = customerId;
         this.bookingId = bookingId;
         this.SpaceId = SpaceId;
         this.startingDate= startingDate;
         this.noOfWeeks = noOfWeeks;
-        this.adspace = adspace;
     }
 
     public GetBookingResponse() {
@@ -54,13 +51,6 @@ public class GetBookingResponse {
         this.noOfWeeks = noOfWeeks;
     }
 
-    public List<Adspace> getAdspace() {
-        return adspace;
-    }
-
-    public void setAdspace(List<Adspace> adspace) {
-        this.adspace = adspace;
-    }
 
     public String getCustomerId() {
         return customerId;
