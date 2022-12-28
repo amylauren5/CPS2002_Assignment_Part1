@@ -1,5 +1,7 @@
 package com.demo.advertising.general_management.data.entities;
 
+import com.demo.advertising.general_management.services.models.Adspace;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -12,9 +14,10 @@ public class BookingEntity {
     private String customerId;
     @Id
     private String bookingId;
-    private String startingDate;
+    private LocalDate startingDate;
     //private int minWeeks;
-    private String noOfWeeks;
+    private int noOfWeeks;
+    private List<Adspace> adspace;
 
     public String getSpaceId() {
         return SpaceId;
@@ -40,19 +43,27 @@ public class BookingEntity {
         this.bookingId = bookingId;
     }
 
-    public String getStartingDate() {
+    public LocalDate getStartingDate() {
         return startingDate;
     }
 
-    public void setStartingDate(String startingDate) {
+    public void setStartingDate(LocalDate startingDate) {
         this.startingDate = startingDate;
     }
 
-    public String getNoOfWeeks() {
+    public int getNoOfWeeks() {
         return noOfWeeks;
     }
 
-    public void setNoOfWeeks(String noOfWeeks) {
+    public void setNoOfWeeks(int noOfWeeks) {
         this.noOfWeeks = noOfWeeks;
+    }
+
+    public List<Adspace> getAdspace() {
+        return adspace;
+    }
+
+    public void setAdspace(List<Adspace> adspace) {
+        this.adspace = adspace;
     }
 }

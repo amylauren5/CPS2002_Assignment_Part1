@@ -13,15 +13,18 @@ public class GetBookingResponse {
     String customerId;
     String bookingId;
     private String SpaceId;
-    private String startingDate;
-    private String noOfWeeks;
+    private LocalDate startingDate;
+    private int noOfWeeks;
+    private List<Adspace> adspace;
 
-    public GetBookingResponse(String customerId, String bookingId, String SpaceId, String startingDate, String noOfWeeks) {
+
+    public GetBookingResponse(String customerId, String bookingId, String SpaceId, LocalDate startingDate, int noOfWeeks, List<Adspace> adspace) {
         this.customerId = customerId;
         this.bookingId = bookingId;
         this.SpaceId = SpaceId;
         this.startingDate= startingDate;
         this.noOfWeeks = noOfWeeks;
+        this.adspace = adspace;
     }
 
     public GetBookingResponse() {
@@ -35,22 +38,29 @@ public class GetBookingResponse {
         SpaceId = spaceId;
     }
 
-    public String getStartingDate() {
+    public LocalDate getStartingDate() {
         return startingDate;
     }
 
-    public void setStartingDate(String startingDate) {
+    public void setStartingDate(LocalDate startingDate) {
         this.startingDate = startingDate;
     }
 
-    public String getNoOfWeeks() {
+    public int getNoOfWeeks() {
         return noOfWeeks;
     }
 
-    public void setNoOfWeeks(String noOfWeeks) {
+    public void setNoOfWeeks(int noOfWeeks) {
         this.noOfWeeks = noOfWeeks;
     }
 
+    public List<Adspace> getAdspace() {
+        return adspace;
+    }
+
+    public void setAdspace(List<Adspace> adspace) {
+        this.adspace = adspace;
+    }
 
     public String getCustomerId() {
         return customerId;
