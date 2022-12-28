@@ -14,6 +14,18 @@ public class CustomerEntity {
     private String phoneNumber;
     private String paymentDetails;
 
+    public CustomerEntity(){
+
+    }
+
+    public CustomerEntity(String customerId, String name, String email, String phoneNumber, String paymentDetails) {
+        this.customerId = customerId;
+        this.name = name;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.paymentDetails = paymentDetails;
+    }
+
     public String getCustomerId() {
         return customerId;
     }

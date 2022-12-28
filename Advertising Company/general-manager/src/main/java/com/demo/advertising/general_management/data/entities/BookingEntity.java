@@ -1,10 +1,7 @@
 package com.demo.advertising.general_management.data.entities;
 
-import com.demo.advertising.general_management.services.models.Adspace;
-
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @Table
