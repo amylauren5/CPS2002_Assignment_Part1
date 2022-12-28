@@ -12,7 +12,6 @@ public class BookingEntity {
     @Id
     private String bookingId;
     private LocalDate startingDate;
-    //private int minWeeks;
     private int noOfWeeks;
 
     public String getSpaceId() {
