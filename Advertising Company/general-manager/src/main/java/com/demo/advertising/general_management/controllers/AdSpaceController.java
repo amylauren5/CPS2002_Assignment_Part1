@@ -1,6 +1,5 @@
 package com.demo.advertising.general_management.controllers;
 
-import com.demo.advertising.general_management.controllers.requests.AdSpace;
 import com.demo.advertising.general_management.controllers.requests.CreateAdSpaceRequest;
 import com.demo.advertising.general_management.controllers.responses.CreateAdSpaceResponse;
 import com.demo.advertising.general_management.controllers.responses.GetAdSpaceResponse;
@@ -12,9 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController

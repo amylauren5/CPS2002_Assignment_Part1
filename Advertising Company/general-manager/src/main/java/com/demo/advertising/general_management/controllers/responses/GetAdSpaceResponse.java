@@ -1,5 +1,4 @@
 package com.demo.advertising.general_management.controllers.responses;
-import com.demo.advertising.general_management.controllers.requests.AdSpace;
 
 
 public class GetAdSpaceResponse {
@@ -11,15 +10,19 @@ public class GetAdSpaceResponse {
     private String Price;          //cost to rent space per week
     private String Location;    //town/park where ad space is
     private String BusRoute;       //bus route
+    private String MinWeeks;
+    private String MaxWeeks;
 
-    public GetAdSpaceResponse(String SpaceId, String Popularity, String Type, String Size, String Price, String Location, String BusRoute) {
-        this.SpaceId = SpaceId;
+    public GetAdSpaceResponse(String Popularity, String Type, String Size, String Price, String Location,
+                                String BusRoute, String MinWeeks, String MaxWeeks) {
         this.Popularity = Popularity;
         this.Type = Type;
         this.Size = Size;
         this.Price = Price;
         this.Location = Location;
         this.BusRoute = BusRoute;
+        this.MinWeeks = MinWeeks;
+        this.MaxWeeks = MaxWeeks;
     }
 
     public GetAdSpaceResponse() {
@@ -79,5 +82,21 @@ public class GetAdSpaceResponse {
 
     public void setType(String type) {
         Type = type;
+    }
+
+    public String getMinWeeks() {
+        return MinWeeks;
+    }
+
+    public void setMinWeeks(String minWeeks) {
+        MinWeeks = minWeeks;
+    }
+
+    public String getMaxWeeks() {
+        return MaxWeeks;
+    }
+
+    public void setMaxWeeks(String maxWeeks) {
+        MaxWeeks = maxWeeks;
     }
 }

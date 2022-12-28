@@ -11,14 +11,17 @@ public class GetBookingResponse {
     private String SpaceId;
     private String startingDate;
     private String noOfWeeks;
+
+    private String price;
     private List<Adspace> adspace;
 
-    public GetBookingResponse(String customerId, String bookingId, String SpaceId, String startingDate, String noOfWeeks, List<Adspace> adspace) {
+    public GetBookingResponse(String customerId, String bookingId, String SpaceId, String startingDate, String noOfWeeks, String price, List<Adspace> adspace) {
         this.customerId = customerId;
         this.bookingId = bookingId;
         this.SpaceId = SpaceId;
         this.startingDate= startingDate;
         this.noOfWeeks = noOfWeeks;
+        this.price = price;
         this.adspace = adspace;
     }
 
@@ -73,4 +76,11 @@ public class GetBookingResponse {
         this.bookingId = bookingId;
     }
 
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
 }

@@ -9,14 +9,19 @@ public class CreateAdSpaceRequest {
     private String Price;          //cost to rent space per week
     private String Location;    //town/park where ad space is
     private String BusRoute;       //bus route
+    private String MinWeeks;
+    private String MaxWeeks;
 
-    public CreateAdSpaceRequest(String Popularity, String Type, String Size, String Price, String Location, String BusRoute) {
+    public CreateAdSpaceRequest(String Popularity, String Type, String Size, String Price, String Location,
+                                String BusRoute, String MinWeeks, String MaxWeeks) {
         this.Popularity = Popularity;
         this.Type = Type;
         this.Size = Size;
         this.Price = Price;
         this.Location = Location;
         this.BusRoute = BusRoute;
+        this.MinWeeks = MinWeeks;
+        this.MaxWeeks = MaxWeeks;
     }
 
     public CreateAdSpaceRequest() {
@@ -68,5 +73,21 @@ public class CreateAdSpaceRequest {
 
     public void setType(String type) {
         Type = type;
+    }
+
+    public String getMinWeeks() {
+        return MinWeeks;
+    }
+
+    public void setMinWeeks(String minWeeks) {
+        MinWeeks = minWeeks;
+    }
+
+    public String getMaxWeeks() {
+        return MaxWeeks;
+    }
+
+    public void setMaxWeeks(String maxWeeks) {
+        MaxWeeks = maxWeeks;
     }
 }
