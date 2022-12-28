@@ -8,23 +8,20 @@ import java.util.List;
 @Table
 public class BookingEntity {
 
-    @ElementCollection
-    @CollectionTable(name="AD_SPACES", joinColumns = @JoinColumn(name="BOOKINGS_ID"))
-    private List<AdSpaceEntity> adSpaceItems;
-
+    private String SpaceId;
     private String customerId;
     @Id
     private String bookingId;
     private LocalDate startingDate;
-    private int minWeeks;
+    //private int minWeeks;
     private int noOfWeeks;
 
-    public List<AdSpaceEntity> getAdSpaceItems() {
-        return adSpaceItems;
+    public String getSpaceId() {
+        return SpaceId;
     }
 
-    public void setAdSpaceItems(List<AdSpaceEntity> adSpaceItems) {
-        this.adSpaceItems = adSpaceItems;
+    public void setSpaceId(String SpaceId) {
+        this.SpaceId = SpaceId;
     }
 
     public String getCustomerId() {
@@ -49,14 +46,6 @@ public class BookingEntity {
 
     public void setStartingDate(LocalDate startingDate) {
         this.startingDate = startingDate;
-    }
-
-    public int getMinWeeks() {
-        return minWeeks;
-    }
-
-    public void setMinWeeks(int minWeeks) {
-        this.minWeeks = minWeeks;
     }
 
     public int getNoOfWeeks() {

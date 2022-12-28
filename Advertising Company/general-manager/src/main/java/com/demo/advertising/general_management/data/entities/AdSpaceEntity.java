@@ -6,7 +6,6 @@ import javax.persistence.*;
 @Table
 public class AdSpaceEntity {
 
-
     @Id
     private String SpaceId;
     private String Popularity;     //people viewing space per day
