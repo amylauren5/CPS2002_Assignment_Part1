@@ -17,7 +17,6 @@ public class BookingEntity {
     private LocalDate startingDate;
     //private int minWeeks;
     private int noOfWeeks;
-    private List<Adspace> adspace;
 
     public String getSpaceId() {
         return SpaceId;
@@ -59,11 +58,4 @@ public class BookingEntity {
         this.noOfWeeks = noOfWeeks;
     }
 
-    public List<Adspace> getAdspace() {
-        return adspace;
-    }
-
-    public void setAdspace(List<Adspace> adspace) {
-        this.adspace = adspace;
-    }
 }

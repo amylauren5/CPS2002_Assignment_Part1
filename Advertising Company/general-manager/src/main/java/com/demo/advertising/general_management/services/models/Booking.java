@@ -1,7 +1,5 @@
 package com.demo.advertising.general_management.services.models;
 
-import com.demo.advertising.general_management.data.entities.AdSpaceEntity;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -12,7 +10,6 @@ public class Booking {
     private String bookingId;
     private LocalDate startingDate;
     private int noOfWeeks;
-    private List<Adspace> adspace;
 
     public String getCustomerId() {
         return customerId;
@@ -54,11 +51,4 @@ public class Booking {
         SpaceId = spaceId;
     }
 
-    public List<Adspace> getAdspace() {
-        return adspace;
-    }
-
-    public void setAdspace(List<Adspace> adspace) {
-        this.adspace = adspace;
-    }
 }
