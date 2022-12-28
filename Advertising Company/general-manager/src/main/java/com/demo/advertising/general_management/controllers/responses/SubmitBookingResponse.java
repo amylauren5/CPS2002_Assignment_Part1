@@ -15,7 +15,7 @@ public class SubmitBookingResponse {
         return bookingId;
     }
 
-    public void setBookingId(String orderId) {
+    public void setBookingId(String bookingId) {
         this.bookingId = bookingId;
     }
 }

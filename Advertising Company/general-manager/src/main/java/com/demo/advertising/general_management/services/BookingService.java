@@ -23,14 +23,14 @@ public class BookingService {
 
     public String submitBooking(Booking booking) {
         BookingEntity bookingEntity = mapper.map(booking, BookingEntity.class);
-        bookingEntity.setBookingsId(UUID.randomUUID().toString());
+        bookingEntity.setBookingId(UUID.randomUUID().toString());
         bookingEntity = bookingsRepository.save(bookingEntity);
-        return bookingEntity.getBookingsId();
+        return bookingEntity.getBookingId();
     }
 
     public Booking getBooking(String bookingId) {
         BookingEntity bookingEntityToFind = new BookingEntity();
-        bookingEntityToFind.setBookingsId(bookingId);
+        bookingEntityToFind.setBookingId(bookingId);
 
         Optional<BookingEntity> retrievedBookingEntity =
                 bookingsRepository.findOne(Example.of(bookingEntityToFind, ExampleMatcher.matchingAll()));
