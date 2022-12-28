@@ -1,24 +1,19 @@
 package com.demo.advertising.general_management.controllers.responses;
-
-import com.demo.advertising.general_management.controllers.requests.AdSpace;
-import com.demo.advertising.general_management.services.AdSpaceService;
 import com.demo.advertising.general_management.services.models.Adspace;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
 import java.util.List;
 
 public class GetBookingResponse {
 
-    String customerId;
-    String bookingId;
+    private String customerId;
+    private String bookingId;
     private String SpaceId;
-    private LocalDate startingDate;
-    private int noOfWeeks;
+    private String startingDate;
+    private String noOfWeeks;
     private List<Adspace> adspace;
 
-
-    public GetBookingResponse(String customerId, String bookingId, String SpaceId, LocalDate startingDate, int noOfWeeks, List<Adspace> adspace) {
+    public GetBookingResponse(String customerId, String bookingId, String SpaceId, String startingDate, String noOfWeeks, List<Adspace> adspace) {
         this.customerId = customerId;
         this.bookingId = bookingId;
         this.SpaceId = SpaceId;
@@ -38,19 +33,19 @@ public class GetBookingResponse {
         SpaceId = spaceId;
     }
 
-    public LocalDate getStartingDate() {
+    public String getStartingDate() {
         return startingDate;
     }
 
-    public void setStartingDate(LocalDate startingDate) {
+    public void setStartingDate(String startingDate) {
         this.startingDate = startingDate;
     }
 
-    public int getNoOfWeeks() {
+    public String getNoOfWeeks() {
         return noOfWeeks;
     }
 
-    public void setNoOfWeeks(int noOfWeeks) {
+    public void setNoOfWeeks(String noOfWeeks) {
         this.noOfWeeks = noOfWeeks;
     }
 

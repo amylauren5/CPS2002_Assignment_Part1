@@ -11,8 +11,9 @@ public class BookingEntity {
     private String customerId;
     @Id
     private String bookingId;
-    private LocalDate startingDate;
-    private int noOfWeeks;
+    private String startingDate;
+    //private int minWeeks;
+    private String noOfWeeks;
 
     public String getSpaceId() {
         return SpaceId;
@@ -30,27 +31,27 @@ public class BookingEntity {
         this.customerId = customerId;
     }
 
-    public String getBookingsId() {
+    public String getBookingId() {
         return bookingId;
     }
 
-    public void setBookingsId(String bookingId) {
+    public void setBookingId(String bookingId) {
         this.bookingId = bookingId;
     }
 
-    public LocalDate getStartingDate() {
+    public String getStartingDate() {
         return startingDate;
     }
 
-    public void setStartingDate(LocalDate startingDate) {
+    public void setStartingDate(String startingDate) {
         this.startingDate = startingDate;
     }
 
-    public int getNoOfWeeks() {
+    public String getNoOfWeeks() {
         return noOfWeeks;
     }
 
-    public void setNoOfWeeks(int noOfWeeks) {
+    public void setNoOfWeeks(String noOfWeeks) {
         this.noOfWeeks = noOfWeeks;
     }
 
