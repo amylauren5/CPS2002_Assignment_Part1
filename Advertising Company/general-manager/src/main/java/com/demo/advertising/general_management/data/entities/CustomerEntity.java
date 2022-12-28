@@ -1,7 +1,6 @@
 package com.demo.advertising.general_management.data.entities;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table

@@ -39,7 +39,7 @@ public class BookingController {
     }
 
     @GetMapping(value = "bookings/{bookingId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<GetBookingResponse> get(@PathVariable String bookingId) {
+    public ResponseEntity<GetBookingResponse> get(@RequestHeader String bookingId) {
 
         Booking booking = bookingService.getBooking(bookingId);
 
