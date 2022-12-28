@@ -7,10 +7,10 @@ import java.util.List;
 public class SubmitBookingRequest {
 
     private String SpaceId;
-    private LocalDate startingDate;
-    private int noOfWeeks;
+    private String startingDate;
+    private String noOfWeeks;
 
-    public SubmitBookingRequest(String SpaceId,LocalDate startingDate, int noOfWeeks) {
+    public SubmitBookingRequest(String SpaceId,String startingDate, String noOfWeeks) {
         this.SpaceId = SpaceId;
         this.startingDate = startingDate;
         this.noOfWeeks = noOfWeeks;
@@ -27,19 +27,19 @@ public class SubmitBookingRequest {
         SpaceId = spaceId;
     }
 
-    public LocalDate getStartingDate() {
+    public String getStartingDate() {
         return startingDate;
     }
 
-    public void setStartingDate(LocalDate startingDate) {
+    public void setStartingDate(String startingDate) {
         this.startingDate = startingDate;
     }
 
-    public int getNoOfWeeks() {
+    public String getNoOfWeeks() {
         return noOfWeeks;
     }
 
-    public void setNoOfWeeks(int noOfWeeks) {
+    public void setNoOfWeeks(String noOfWeeks) {
         this.noOfWeeks = noOfWeeks;
     }
 }

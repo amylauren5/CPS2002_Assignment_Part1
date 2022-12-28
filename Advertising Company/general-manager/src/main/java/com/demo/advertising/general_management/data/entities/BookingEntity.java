@@ -12,9 +12,9 @@ public class BookingEntity {
     private String customerId;
     @Id
     private String bookingId;
-    private LocalDate startingDate;
+    private String startingDate;
     //private int minWeeks;
-    private int noOfWeeks;
+    private String noOfWeeks;
 
     public String getSpaceId() {
         return SpaceId;
@@ -40,19 +40,19 @@ public class BookingEntity {
         this.bookingId = bookingId;
     }
 
-    public LocalDate getStartingDate() {
+    public String getStartingDate() {
         return startingDate;
     }
 
-    public void setStartingDate(LocalDate startingDate) {
+    public void setStartingDate(String startingDate) {
         this.startingDate = startingDate;
     }
 
-    public int getNoOfWeeks() {
+    public String getNoOfWeeks() {
         return noOfWeeks;
     }
 
-    public void setNoOfWeeks(int noOfWeeks) {
+    public void setNoOfWeeks(String noOfWeeks) {
         this.noOfWeeks = noOfWeeks;
     }
 }
