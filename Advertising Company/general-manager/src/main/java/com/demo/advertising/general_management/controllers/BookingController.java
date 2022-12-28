@@ -34,7 +34,14 @@ public class BookingController {
     @PostMapping(value = "bookings", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<SubmitBookingResponse> submit(@RequestHeader(name = "X-Customer-Id") String customerId, @RequestBody SubmitBookingRequest request) {
 
-        if(customerService.getCustomer(customerId).isEmpty())
+        if(customerService.getCustomer(customerId)==null){
+            throw new IllegalStateException("This customer does not exist!");
+        }
+
+        String SpaceId = request.getSpaceId();
+        if(adSpaceService.getAdSpace("SpaceId",SpaceId)==null){
+            throw new IllegalStateException("This ad space does not exist!");
+        }
 
         Booking bookingSubmission = mapper.map(request, Booking.class);
         bookingSubmission.setCustomerId(customerId);
