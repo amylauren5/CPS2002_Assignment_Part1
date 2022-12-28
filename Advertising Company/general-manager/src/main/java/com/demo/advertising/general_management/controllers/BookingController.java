@@ -43,6 +43,21 @@ public class BookingController {
             throw new IllegalStateException("This ad space does not exist!");
         }
 
+        List<Adspace> adspace = adSpaceService.getAdSpace("SpaceId",SpaceId);
+
+        int weeks = Integer.parseInt(request.getNoOfWeeks());
+        int minweeks = Integer.parseInt(adspace.get(0).getMinWeeks());
+        int maxweeks = Integer.parseInt(adspace.get(0).getMaxWeeks());
+
+        if(weeks<minweeks){
+            throw new IllegalStateException("Minimum number of weeks not reached");
+        }else if(weeks>maxweeks){
+            throw new IllegalStateException("Maximum number of weeks exceeded");
+        }
+
+        //scheduling - bookings do not overlap
+        //error handle incorrect dates (dates that have already past)
+
         Booking bookingSubmission = mapper.map(request, Booking.class);
         bookingSubmission.setCustomerId(customerId);
 
