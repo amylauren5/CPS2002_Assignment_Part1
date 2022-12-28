@@ -13,8 +13,6 @@
 		<spring-boot.version>2.5.3</spring-boot.version>
 		<springfox-swagger2.version>2.9.2</springfox-swagger2.version>
 		<jackson.version>2.14.0</jackson.version>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 
 	<dependencyManagement>
@@ -175,9 +173,9 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.1</version>
 				<configuration>
-					<release>11</release>
-					<source>11</source>
-					<target>11</target>
+					<release>1.8</release>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
 		</plugins>
