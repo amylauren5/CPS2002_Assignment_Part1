@@ -10,16 +10,6 @@ public class Adspace{
     private String Location;    //town/park where ad space is
     private String BusRoute;       //bus route
 
-
-    public Adspace(String popularity, String type, String size, String price, String location, String busRoute) {
-        Popularity = popularity;
-        Type = type;
-        Size = size;
-        Price = price;
-        Location = location;
-        BusRoute = busRoute;
-    }
-
     public String getSpaceId() {
         return SpaceId;
     }
