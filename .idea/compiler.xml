@@ -7,7 +7,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="advertising-space" />
-        <module name="general-management" />
         <module name="customer-management" />
         <module name="general-manager" />
       </profile>
