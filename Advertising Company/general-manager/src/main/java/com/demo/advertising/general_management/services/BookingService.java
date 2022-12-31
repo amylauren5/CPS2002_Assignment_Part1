@@ -56,15 +56,11 @@ public class BookingService {
         LocalDate today = java.time.LocalDate.now();
 
         //checks if date has passed
-        if(startingDateConverted.isBefore(today)){
-            return false;
-
-        }else if(getSchedule(startingDateConverted, SpaceId, noOfWeeks)){
+        if(startingDateConverted.isBefore(today) || getSchedule(startingDateConverted, SpaceId, noOfWeeks)){
             return false;
         }
 
         return true;
-
     }
 
     public boolean getSchedule(LocalDate startingDate, String SpaceId, int noOfWeeks){
@@ -82,7 +78,7 @@ public class BookingService {
             Optional<ScheduleEntity> retrievedScheduleEntity =
                     scheduleRepository.findOne(Example.of(scheduleEntityToFind, ExampleMatcher.matchingAll()));
 
-            if (retrievedScheduleEntity.isEmpty()) {
+            if (!retrievedScheduleEntity.isEmpty()) {
                 booked = true;
                 break;
             }
@@ -95,8 +91,8 @@ public class BookingService {
                 scheduleEntity.setDate(date);
                 scheduleEntity = scheduleRepository.save(scheduleEntity);
             }
-
         }
+
         return booked;
     }
 
