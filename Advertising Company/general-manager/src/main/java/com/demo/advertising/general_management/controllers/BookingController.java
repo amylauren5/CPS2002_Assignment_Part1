@@ -14,6 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -57,6 +58,13 @@ public class BookingController {
 
         //scheduling - bookings do not overlap
         //error handle incorrect dates (dates that have already past)
+
+        String startingDate = request.getStartingDate();
+        boolean checkBooking = bookingService.checkBookingAvailability(startingDate);
+
+        if(!checkBooking){
+            throw new IllegalStateException("Date not available!");
+        }
 
         Booking bookingSubmission = mapper.map(request, Booking.class);
         bookingSubmission.setCustomerId(customerId);

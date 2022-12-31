@@ -1,7 +1,6 @@
 package com.demo.advertising.general_management.data.entities;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 @Entity
 @Table
@@ -12,7 +11,6 @@ public class BookingEntity {
     @Id
     private String bookingId;
     private String startingDate;
-    //private int minWeeks;
     private String noOfWeeks;
 
     public String getSpaceId() {
