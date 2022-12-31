@@ -1,8 +1,11 @@
 package com.demo.advertising.general_management.services;
 
 import com.demo.advertising.general_management.data.entities.BookingEntity;
+import com.demo.advertising.general_management.data.entities.ScheduleEntity;
 import com.demo.advertising.general_management.data.repositories.BookingsRepository;
+import com.demo.advertising.general_management.data.repositories.ScheduleRepository;
 import com.demo.advertising.general_management.services.models.Booking;
+import com.demo.advertising.general_management.services.models.Schedule;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -18,6 +21,9 @@ public class BookingService {
 
     @Autowired
     BookingsRepository bookingsRepository;
+
+    @Autowired
+    ScheduleRepository scheduleRepository;
 
     @Autowired
     ModelMapper mapper;
@@ -41,7 +47,7 @@ public class BookingService {
         return mapper.map(retrievedBookingEntity.get(), Booking.class);
     }
 
-    public boolean checkBookingAvailability(String startingDate){
+    public boolean checkBookingAvailability(String startingDate, String SpaceId, int noOfWeeks){
 
         //converts string to LocalDate
         LocalDate startingDateConverted = LocalDate.parse(startingDate);
@@ -52,9 +58,46 @@ public class BookingService {
         //checks if date has passed
         if(startingDateConverted.isBefore(today)){
             return false;
+
+        }else if(getSchedule(startingDateConverted, SpaceId, noOfWeeks)){
+            return false;
         }
 
         return true;
 
     }
+
+    public boolean getSchedule(LocalDate startingDate, String SpaceId, int noOfWeeks){
+
+        ScheduleEntity scheduleEntityToFind = new ScheduleEntity();
+
+        boolean booked=false;
+
+        LocalDate endDate = startingDate.plusDays(noOfWeeks* 7L);
+
+        for(LocalDate date= startingDate; date.isBefore(endDate); date=date.plusDays(1)) {
+            scheduleEntityToFind.setDate(date);
+            scheduleEntityToFind.setSpaceId(SpaceId);
+
+            Optional<ScheduleEntity> retrievedScheduleEntity =
+                    scheduleRepository.findOne(Example.of(scheduleEntityToFind, ExampleMatcher.matchingAll()));
+
+            if (retrievedScheduleEntity.isEmpty()) {
+                booked = true;
+                break;
+            }
+        }
+
+        if (!booked){ //create schedule
+
+            for(LocalDate date= startingDate; date.isBefore(endDate); date=date.plusDays(1)) {
+                ScheduleEntity scheduleEntity = new ScheduleEntity();
+                scheduleEntity.setDate(date);
+                scheduleEntity = scheduleRepository.save(scheduleEntity);
+            }
+
+        }
+        return booked;
+    }
+
 }

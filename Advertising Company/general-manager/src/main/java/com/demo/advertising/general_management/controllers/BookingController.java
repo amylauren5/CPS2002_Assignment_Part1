@@ -60,7 +60,7 @@ public class BookingController {
         //error handle incorrect dates (dates that have already past)
 
         String startingDate = request.getStartingDate();
-        boolean checkBooking = bookingService.checkBookingAvailability(startingDate);
+        boolean checkBooking = bookingService.checkBookingAvailability(startingDate, SpaceId, weeks);
 
         if(!checkBooking){
             throw new IllegalStateException("Date not available!");
