@@ -9,11 +9,11 @@ public class ScheduleEntity {
 
     @Id
     LocalDate date;
-    String spaceId;
+    String SpaceId;
 
-    public ScheduleEntity(LocalDate date, String spaceId){
+    public ScheduleEntity(LocalDate date, String SpaceId){
         this.date = date;
-        this.spaceId = spaceId;
+        this.SpaceId = SpaceId;
     }
 
     public ScheduleEntity(){
@@ -29,10 +29,10 @@ public class ScheduleEntity {
     }
 
     public String getSpaceId() {
-        return spaceId;
+        return SpaceId;
     }
 
-    public void setSpaceId(String spaceId) {
-        this.spaceId = spaceId;
+    public void setSpaceId(String SpaceId) {
+        this.SpaceId = SpaceId;
     }
 }

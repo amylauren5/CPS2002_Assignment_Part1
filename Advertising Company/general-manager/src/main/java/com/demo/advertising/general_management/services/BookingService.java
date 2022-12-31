@@ -5,7 +5,6 @@ import com.demo.advertising.general_management.data.entities.ScheduleEntity;
 import com.demo.advertising.general_management.data.repositories.BookingsRepository;
 import com.demo.advertising.general_management.data.repositories.ScheduleRepository;
 import com.demo.advertising.general_management.services.models.Booking;
-import com.demo.advertising.general_management.services.models.Schedule;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -66,6 +65,7 @@ public class BookingService {
     public boolean getSchedule(LocalDate startingDate, String SpaceId, int noOfWeeks){
 
         ScheduleEntity scheduleEntityToFind = new ScheduleEntity();
+        scheduleEntityToFind.setSpaceId(SpaceId);
 
         boolean booked=false;
 
@@ -73,12 +73,11 @@ public class BookingService {
 
         for(LocalDate date= startingDate; date.isBefore(endDate); date=date.plusDays(1)) {
             scheduleEntityToFind.setDate(date);
-            scheduleEntityToFind.setSpaceId(SpaceId);
 
             Optional<ScheduleEntity> retrievedScheduleEntity =
                     scheduleRepository.findOne(Example.of(scheduleEntityToFind, ExampleMatcher.matchingAll()));
 
-            if (!retrievedScheduleEntity.isEmpty()) {
+            if (retrievedScheduleEntity.isPresent()) {
                 booked = true;
                 break;
             }
@@ -89,7 +88,7 @@ public class BookingService {
             for(LocalDate date= startingDate; date.isBefore(endDate); date=date.plusDays(1)) {
                 ScheduleEntity scheduleEntity = new ScheduleEntity();
                 scheduleEntity.setDate(date);
-                scheduleEntity = scheduleRepository.save(scheduleEntity);
+                scheduleRepository.save(scheduleEntity);
             }
         }
 
