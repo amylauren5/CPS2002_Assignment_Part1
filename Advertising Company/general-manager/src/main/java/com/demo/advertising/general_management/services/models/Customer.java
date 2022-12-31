@@ -10,6 +10,18 @@ public class Customer {
     private String phoneNumber;
     private String paymentDetails;
 
+    public Customer(){
+
+    }
+
+    public Customer(String customerId, String name, String email, String phoneNumber, String paymentDetails) {
+        this.customerId = customerId;
+        this.name = name;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.paymentDetails = paymentDetails;
+    }
+
     public String getCustomerId() {
         return customerId;
     }
