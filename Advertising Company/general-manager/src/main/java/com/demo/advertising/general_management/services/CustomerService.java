@@ -31,11 +31,27 @@ public class CustomerService {
 
         CustomerEntity customerEntity = mapper.map(customer, CustomerEntity.class);
 
+        //check if customer id already exists
+
         Optional<CustomerEntity> customerOptional = customerRepository
                 .findCustomerByCustomerId(customerEntity.getCustomerId());
 
         if(customerOptional.isPresent()){
             throw new IllegalStateException("Customer ID already exists!");
+        }
+
+        //check if all properties are filled in
+
+        if(customer.getCustomerId().equals("string")){
+            throw new IllegalStateException("Customer ID is required!");
+        } else if(customer.getName().equals("string")){
+            throw new IllegalStateException("Name is required!");
+        } else if(customer.getEmail().equals("string")){
+            throw new IllegalStateException("Email is required!");
+        } else if(customer.getPhoneNumber().equals("string")){
+            throw new IllegalStateException("Phone number is required!");
+        } else if(customer.getPaymentDetails().equals("string")) {
+            throw new IllegalStateException("Payment details are required!");
         }
 
         customerRepository.save(customerEntity);
