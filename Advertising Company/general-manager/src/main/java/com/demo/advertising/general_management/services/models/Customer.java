@@ -22,6 +22,13 @@ public class Customer {
         this.paymentDetails = paymentDetails;
     }
 
+    public Customer(String name, String email, String phoneNumber, String paymentDetails) {
+        this.name = name;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.paymentDetails = paymentDetails;
+    }
+
     public String getCustomerId() {
         return customerId;
     }
