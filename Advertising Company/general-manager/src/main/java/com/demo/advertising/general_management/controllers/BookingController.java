@@ -4,7 +4,7 @@ import com.demo.advertising.general_management.controllers.requests.SubmitBookin
 import com.demo.advertising.general_management.controllers.responses.GetBookingResponse;
 import com.demo.advertising.general_management.controllers.responses.SubmitBookingResponse;
 import com.demo.advertising.general_management.services.CustomerService;
-import com.demo.advertising.general_management.services.models.Adspace;
+import com.demo.advertising.general_management.services.models.AdSpace;
 import com.demo.advertising.general_management.services.AdSpaceService;
 import com.demo.advertising.general_management.services.BookingService;
 import com.demo.advertising.general_management.services.models.Booking;
@@ -14,7 +14,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -44,7 +43,7 @@ public class BookingController {
             throw new IllegalStateException("This ad space does not exist!");
         }
 
-        List<Adspace> adspace = adSpaceService.getAdSpace("SpaceId",SpaceId);
+        List<AdSpace> adspace = adSpaceService.getAdSpace("SpaceId",SpaceId);
 
         int weeks = Integer.parseInt(request.getNoOfWeeks());
         int minweeks = Integer.parseInt(adspace.get(0).getMinWeeks());
@@ -86,7 +85,7 @@ public class BookingController {
         GetBookingResponse getBookingResponse = mapper.map(booking, GetBookingResponse.class);
 
         String SpaceId = getBookingResponse.getSpaceId();
-        List<Adspace> adspace = adSpaceService.getAdSpace("SpaceId",SpaceId);
+        List<AdSpace> adspace = adSpaceService.getAdSpace("SpaceId",SpaceId);
         getBookingResponse.setAdspace(adspace);
 
         int weeks = Integer.parseInt(getBookingResponse.getNoOfWeeks());

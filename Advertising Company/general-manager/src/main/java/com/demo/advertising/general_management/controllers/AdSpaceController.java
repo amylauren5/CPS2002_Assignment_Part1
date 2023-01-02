@@ -3,7 +3,7 @@ package com.demo.advertising.general_management.controllers;
 import com.demo.advertising.general_management.controllers.requests.CreateAdSpaceRequest;
 import com.demo.advertising.general_management.controllers.responses.CreateAdSpaceResponse;
 import com.demo.advertising.general_management.controllers.responses.GetAdSpaceResponse;
-import com.demo.advertising.general_management.services.models.Adspace;
+import com.demo.advertising.general_management.services.models.AdSpace;
 import com.demo.advertising.general_management.services.AdSpaceService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 @RestController
 public class AdSpaceController {
 
@@ -24,8 +26,8 @@ public class AdSpaceController {
     @Autowired
     ModelMapper mapper;
 
-    @PostMapping(value = "AdSpace", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CreateAdSpaceResponse> submit(@RequestBody CreateAdSpaceRequest newAdSpace) {
+    @PostMapping(value = "/AdSpace", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<CreateAdSpaceResponse> submit(@Valid @RequestBody CreateAdSpaceRequest newAdSpace) {
 
         if(!Objects.equals(newAdSpace.getType(), "bus") && !Objects.equals(newAdSpace.getType(), "bench") &&
                 !Objects.equals(newAdSpace.getType(), "billboard")){
@@ -39,17 +41,17 @@ public class AdSpaceController {
             throw new IllegalStateException("Please only fill in busRoute or location!");
         }
 
-        Adspace adSpace = mapper.map(newAdSpace, Adspace.class);
+        AdSpace adSpace = mapper.map(newAdSpace, AdSpace.class);
 
         String SpaceId = adSpaceService.createAdSpace(adSpace);
 
         return ResponseEntity.ok(new CreateAdSpaceResponse(SpaceId));
     }
 
-    @GetMapping(value = "AdSpace/{Filter}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/AdSpace/{Filter}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<GetAdSpaceResponse>> get(@RequestHeader String FilterBy, @RequestHeader String Filter) {
 
-        List<Adspace> adSpaces = adSpaceService.getAdSpace(FilterBy, Filter);
+        List<AdSpace> adSpaces = adSpaceService.getAdSpace(FilterBy, Filter);
 
         if (adSpaces == null) {
             return ResponseEntity.notFound().build();
@@ -63,7 +65,7 @@ public class AdSpaceController {
         return ResponseEntity.ok(getAdSpaceResponse);
     }
 
-    @PutMapping(value = "AdSpace/{SpaceId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/AdSpace/{SpaceId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public void updateAdSpace(@RequestHeader String SpaceId, @RequestParam(required = false) String Popularity,
                                @RequestParam(required = false) String Type, @RequestParam(required = false) String Size,
                                @RequestParam(required = false) String Price, @RequestParam(required = false) String Location,
@@ -72,7 +74,7 @@ public class AdSpaceController {
     }
 
 
-    @DeleteMapping(value = "AdSpace/{SpaceId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/AdSpace/{SpaceId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public void deleteAdSpace(@RequestHeader String SpaceId) {
         adSpaceService.deleteAdSpace(SpaceId);
     }

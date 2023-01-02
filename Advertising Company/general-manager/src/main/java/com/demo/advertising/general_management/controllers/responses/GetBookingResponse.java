@@ -1,7 +1,6 @@
 package com.demo.advertising.general_management.controllers.responses;
-import com.demo.advertising.general_management.services.models.Adspace;
+import com.demo.advertising.general_management.services.models.AdSpace;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public class GetBookingResponse {
@@ -13,9 +12,9 @@ public class GetBookingResponse {
     private String noOfWeeks;
 
     private String price;
-    private List<Adspace> adspace;
+    private List<AdSpace> adspace;
 
-    public GetBookingResponse(String customerId, String bookingId, String SpaceId, String startingDate, String noOfWeeks, String price, List<Adspace> adspace) {
+    public GetBookingResponse(String customerId, String bookingId, String SpaceId, String startingDate, String noOfWeeks, String price, List<AdSpace> adspace) {
         this.customerId = customerId;
         this.bookingId = bookingId;
         this.SpaceId = SpaceId;
@@ -52,11 +51,11 @@ public class GetBookingResponse {
         this.noOfWeeks = noOfWeeks;
     }
 
-    public List<Adspace> getAdspace() {
+    public List<AdSpace> getAdspace() {
         return adspace;
     }
 
-    public void setAdspace(List<Adspace> adspace) {
+    public void setAdspace(List<AdSpace> adspace) {
         this.adspace = adspace;
     }
 

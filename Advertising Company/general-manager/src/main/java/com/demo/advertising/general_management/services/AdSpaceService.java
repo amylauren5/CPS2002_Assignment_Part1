@@ -1,9 +1,8 @@
 package com.demo.advertising.general_management.services;
 
 import com.demo.advertising.general_management.data.entities.AdSpaceEntity;
-import com.demo.advertising.general_management.data.entities.CustomerEntity;
 import com.demo.advertising.general_management.data.repositories.AdSpaceRepository;
-import com.demo.advertising.general_management.services.models.Adspace;
+import com.demo.advertising.general_management.services.models.AdSpace;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -25,7 +24,7 @@ public class AdSpaceService {
     AdSpaceRepository adSpaceRepository;
 
     //create ad space
-    public String createAdSpace(Adspace space) {
+    public String createAdSpace(AdSpace space) {
         AdSpaceEntity adSpaceEntity = mapper.map(space, AdSpaceEntity.class);
         adSpaceEntity.setSpaceId(UUID.randomUUID().toString());
         adSpaceEntity = adSpaceRepository.save(adSpaceEntity);
@@ -33,7 +32,7 @@ public class AdSpaceService {
     }
 
     //get ad space
-    public List<Adspace> getAdSpace(String FilterBy, String Filter) {
+    public List<AdSpace> getAdSpace(String FilterBy, String Filter) {
         AdSpaceEntity adSpaceEntityToFind = new AdSpaceEntity();
 
         if(Objects.equals(FilterBy, "SpaceId")){
@@ -61,9 +60,9 @@ public class AdSpaceService {
 
         if (retrievedOrderEntity.isEmpty()) return null;
 
-        List<Adspace> spaces = retrievedOrderEntity
+        List<AdSpace> spaces = retrievedOrderEntity
                 .stream()
-                .map(user -> mapper.map(user, Adspace.class))
+                .map(user -> mapper.map(user, AdSpace.class))
                 .collect(Collectors.toList());
 
         return spaces;
