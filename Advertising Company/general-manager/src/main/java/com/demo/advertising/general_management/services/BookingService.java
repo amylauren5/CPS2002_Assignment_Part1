@@ -58,7 +58,6 @@ public class BookingService {
         if(startingDateConverted.isBefore(today) || getSchedule(startingDateConverted, SpaceId, noOfWeeks)){
             return false;
         }
-
         return true;
     }
 
@@ -88,6 +87,7 @@ public class BookingService {
             for(LocalDate date= startingDate; date.isBefore(endDate); date=date.plusDays(1)) {
                 ScheduleEntity scheduleEntity = new ScheduleEntity();
                 scheduleEntity.setDate(date);
+                scheduleEntity.setSpaceId(SpaceId);
                 scheduleRepository.save(scheduleEntity);
             }
         }
