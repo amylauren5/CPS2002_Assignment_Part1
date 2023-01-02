@@ -2,7 +2,6 @@ package com.demo.advertising.general_management.controllers;
 
 import com.demo.advertising.general_management.services.models.Customer;
 import com.demo.advertising.general_management.services.CustomerService;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -15,7 +14,12 @@ import javax.validation.Valid;
 public class CustomerController {
 
     @Autowired
-    CustomerService customerService;
+    private final CustomerService customerService;
+
+    @Autowired
+    public CustomerController(CustomerService customerService){
+        this.customerService = customerService;
+    }
 
     @PostMapping(value = "/Customer", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Customer> registerCustomer(@Valid @RequestBody Customer customer){

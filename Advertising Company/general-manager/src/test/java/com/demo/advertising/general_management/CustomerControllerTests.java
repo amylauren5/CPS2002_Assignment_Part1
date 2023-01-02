@@ -1,18 +1,15 @@
 package com.demo.advertising.general_management;
 
 import com.demo.advertising.general_management.controllers.CustomerController;
-import com.demo.advertising.general_management.data.repositories.CustomerRepository;
 import com.demo.advertising.general_management.services.CustomerService;
 import com.demo.advertising.general_management.services.models.Customer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
