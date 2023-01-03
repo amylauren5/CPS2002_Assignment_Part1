@@ -6,8 +6,6 @@ public class AdSpace {
     private String Type;        //billboard, buses, benches
     private String Size;           //size of advertising space
     private String Price;          //cost to rent space per week
-    private String Location;    //town/park where ad space is
-    private String BusRoute;       //bus route
     private String MinWeeks;
     private String MaxWeeks;
 
@@ -47,22 +45,6 @@ public class AdSpace {
         this.Price = Price;
     }
 
-    public String getLocation() {
-        return Location;
-    }
-
-    public void setLocation(String Location) {
-        this.Location = Location;
-    }
-
-    public String getBusRoute() {
-        return BusRoute;
-    }
-
-    public void setBusRoute(String BusRoute) {
-        this.BusRoute = BusRoute;
-    }
-
     public String getMinWeeks() {
         return MinWeeks;
     }
@@ -80,3 +62,65 @@ public class AdSpace {
     }
 }
 
+class BusAd extends AdSpace{
+    private String BusRoute;       //bus route
+    private String Position;       //side or back of bus
+
+    public String getBusRoute() {
+        return BusRoute;
+    }
+
+    public void setBusRoute(String BusRoute) {
+        this.BusRoute = BusRoute;
+    }
+
+    public String getPosition() {
+        return Position;
+    }
+
+    public void setPosition(String Position) {
+        this.Position = Position;
+    }
+}
+
+class BillboardAd extends AdSpace{
+    private String Location;    //town/park where ad space is
+    private String Index;       //index of ad
+
+    public String getLocation() {
+        return Location;
+    }
+
+    public void setLocation(String Location) {
+        this.Location = Location;
+    }
+
+    public String getIndex() {
+        return Index;
+    }
+
+    public void setIndex(String Index) {
+        this.Index = Index;
+    }
+}
+
+class BenchAd extends AdSpace{
+    private String Location;       //town/park where ad space is
+    private String Position;       //back or seat of bench
+
+    public String getLocation() {
+        return Location;
+    }
+
+    public void setLocation(String Location) {
+        this.Location = Location;
+    }
+
+    public String getPosition() {
+        return Position;
+    }
+
+    public void setPosition(String Position) {
+        this.Position = Position;
+    }
+}

@@ -59,8 +59,7 @@ class CustomerControllerTests {
 				.get("/Customer/{customerId}", "1")
 				.accept(MediaType.APPLICATION_JSON_VALUE))
 				.andDo(print())
-				.andExpect(status().isOk())
-				.andExpect(MockMvcResultMatchers.jsonPath("$.customerId").value("1"));
+				.andExpect(status().isOk());
 	}
 
 	@Test

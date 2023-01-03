@@ -1,6 +1,9 @@
 package com.demo.advertising.general_management.controllers;
 
 import com.demo.advertising.general_management.controllers.requests.CreateAdSpaceRequest;
+import com.demo.advertising.general_management.controllers.requests.CreateBenchAdRequest;
+import com.demo.advertising.general_management.controllers.requests.CreateBillboardAdRequest;
+import com.demo.advertising.general_management.controllers.requests.CreateBusAdRequest;
 import com.demo.advertising.general_management.controllers.responses.CreateAdSpaceResponse;
 import com.demo.advertising.general_management.controllers.responses.GetAdSpaceResponse;
 import com.demo.advertising.general_management.services.models.AdSpace;
@@ -27,21 +30,41 @@ public class AdSpaceController {
     ModelMapper mapper;
 
     @PostMapping(value = "/AdSpace", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CreateAdSpaceResponse> submit(@Valid @RequestBody CreateAdSpaceRequest newAdSpace) {
+    public ResponseEntity<CreateAdSpaceResponse> createAdSpace(@Valid @RequestHeader String Type, @RequestBody(required=false) CreateBusAdRequest busAd,
+                                                               @RequestBody(required=false) CreateBillboardAdRequest bbAd,
+                                                               @RequestBody(required=false) CreateBenchAdRequest benchAd) {
 
-        if(!Objects.equals(newAdSpace.getType(), "bus") && !Objects.equals(newAdSpace.getType(), "bench") &&
-                !Objects.equals(newAdSpace.getType(), "billboard")){
+        if(!Objects.equals(Type, "bus") && !Objects.equals(Type, "bench") &&
+                !Objects.equals(Type, "billboard")) {
             throw new IllegalStateException("Type must be bus, bench or billboard!");
-        }else if(Objects.equals(newAdSpace.getPopularity(), "string")||Objects.equals(newAdSpace.getSize(), "string")||
-                Objects.equals(newAdSpace.getPrice(), "string")||Objects.equals(newAdSpace.getMinWeeks(), "string")||
-                Objects.equals(newAdSpace.getMaxWeeks(), "string")){
-            throw new IllegalStateException("Please fill in all fields!");
-        }else if((Objects.equals(newAdSpace.getLocation(), "string")&&!Objects.equals(newAdSpace.getBusRoute(), "string"))||
-                (!Objects.equals(newAdSpace.getLocation(), "string")&&Objects.equals(newAdSpace.getBusRoute(), "string"))){
-            throw new IllegalStateException("Please only fill in busRoute or location!");
         }
 
-        AdSpace adSpace = mapper.map(newAdSpace, AdSpace.class);
+        AdSpace adSpace = new AdSpace();
+        switch (Type) {
+            case "bus":
+                adSpace = mapper.map(busAd, AdSpace.class);
+                break;
+            case "billboard":
+                adSpace = mapper.map(bbAd, AdSpace.class);
+                break;
+            case "bench":
+                adSpace = mapper.map(benchAd, AdSpace.class);
+                break;
+        }
+
+        adSpace.setType(Type);
+        if(Objects.equals(adSpace.getPopularity(), "string")||Objects.equals(adSpace.getSize(), "string")||
+                Objects.equals(adSpace.getPrice(), "string")||Objects.equals(adSpace.getMinWeeks(), "string")||
+                Objects.equals(adSpace.getMaxWeeks(), "string")){
+            throw new IllegalStateException("Please fill in all fields!");
+        }
+
+        int minweeks = Integer.parseInt(adSpace.getMinWeeks());
+        int maxweeks = Integer.parseInt(adSpace.getMaxWeeks());
+
+        if(minweeks>maxweeks){
+            throw new IllegalStateException("Minimum weeks must be less than maximum weeks!");
+        }
 
         String SpaceId = adSpaceService.createAdSpace(adSpace);
 

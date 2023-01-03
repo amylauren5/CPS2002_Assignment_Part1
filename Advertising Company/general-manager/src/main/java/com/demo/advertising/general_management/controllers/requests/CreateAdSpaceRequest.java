@@ -4,22 +4,15 @@ import java.util.List;
 
 public class CreateAdSpaceRequest {
     private String Popularity;     //people viewing space per day
-    private String Type;        //billboard, buses, benches
     private String Size;           //size of advertising space
     private String Price;          //cost to rent space per week
-    private String Location;    //town/park where ad space is
-    private String BusRoute;       //bus route
     private String MinWeeks;
     private String MaxWeeks;
 
-    public CreateAdSpaceRequest(String Popularity, String Type, String Size, String Price, String Location,
-                                String BusRoute, String MinWeeks, String MaxWeeks) {
+    public CreateAdSpaceRequest(String Popularity, String Size, String Price, String MinWeeks, String MaxWeeks) {
         this.Popularity = Popularity;
-        this.Type = Type;
         this.Size = Size;
         this.Price = Price;
-        this.Location = Location;
-        this.BusRoute = BusRoute;
         this.MinWeeks = MinWeeks;
         this.MaxWeeks = MaxWeeks;
     }
@@ -51,30 +44,6 @@ public class CreateAdSpaceRequest {
         Price = price;
     }
 
-    public String getBusRoute() {
-        return BusRoute;
-    }
-
-    public void setBusRoute(String busRoute) {
-        BusRoute = busRoute;
-    }
-
-    public String getLocation() {
-        return Location;
-    }
-
-    public void setLocation(String location) {
-        Location = location;
-    }
-
-    public String getType() {
-        return Type;
-    }
-
-    public void setType(String type) {
-        Type = type;
-    }
-
     public String getMinWeeks() {
         return MinWeeks;
     }
@@ -91,3 +60,4 @@ public class CreateAdSpaceRequest {
         MaxWeeks = maxWeeks;
     }
 }
+
