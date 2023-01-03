@@ -3,6 +3,8 @@ package com.demo.advertising.general_management.services;
 import com.demo.advertising.general_management.data.entities.CustomerEntity;
 import com.demo.advertising.general_management.data.repositories.CustomerRepository;
 import com.demo.advertising.general_management.services.models.Customer;
+import com.demo.advertising.general_management.services.models.PaymentByCard;
+import com.demo.advertising.general_management.services.models.PaymentByWebsite;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -52,6 +54,20 @@ public class CustomerService {
             throw new IllegalStateException("Phone number is required!");
         } else if(customer.getPaymentDetails().equals("string")) {
             throw new IllegalStateException("Payment details are required!");
+        }
+
+        //choose paymentStrategy
+
+        PaymentService paymentService = new PaymentService();
+
+        if(customer.getPaymentDetails().equalsIgnoreCase("card")){
+            paymentService.setStrategy(new PaymentByCard());
+            paymentService.processOrder();
+        } else if(customer.getPaymentDetails().equalsIgnoreCase("website")){
+            paymentService.setStrategy(new PaymentByWebsite());
+            paymentService.processOrder();
+        } else {
+            throw new IllegalStateException("Invalid payment details!");
         }
 
         customerRepository.save(customerEntity);
