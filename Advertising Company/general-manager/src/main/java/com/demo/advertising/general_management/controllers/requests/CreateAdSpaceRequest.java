@@ -3,61 +3,70 @@ package com.demo.advertising.general_management.controllers.requests;
 import java.util.List;
 
 public class CreateAdSpaceRequest {
-    private String Popularity;     //people viewing space per day
-    private String Size;           //size of advertising space
-    private String Price;          //cost to rent space per week
-    private String MinWeeks;
-    private String MaxWeeks;
+    private String popularity;     //people viewing space per day
+    private String size;           //size of advertising space
+    private String price;          //cost to rent space per week
+    private String minWeeks;
+    private String maxWeeks;
+    private String type;
 
-    public CreateAdSpaceRequest(String Popularity, String Size, String Price, String MinWeeks, String MaxWeeks) {
-        this.Popularity = Popularity;
-        this.Size = Size;
-        this.Price = Price;
-        this.MinWeeks = MinWeeks;
-        this.MaxWeeks = MaxWeeks;
+    public CreateAdSpaceRequest(String popularity, String size, String price, String minWeeks, String maxWeeks, String type) {
+        this.popularity = popularity;
+        this.size = size;
+        this.price = price;
+        this.minWeeks = minWeeks;
+        this.maxWeeks = maxWeeks;
+        this.type = type;
     }
 
-    public CreateAdSpaceRequest() {
-    }
+    public CreateAdSpaceRequest(){}
 
     public String getPopularity() {
-        return Popularity;
+        return popularity;
     }
 
     public void setPopularity(String popularity) {
-        Popularity = popularity;
+        this.popularity = popularity;
     }
 
     public String getSize() {
-        return Size;
+        return size;
     }
 
     public void setSize(String size) {
-        Size = size;
+        this.size = size;
     }
 
     public String getPrice() {
-        return Price;
+        return price;
     }
 
     public void setPrice(String price) {
-        Price = price;
+        this.price = price;
     }
 
     public String getMinWeeks() {
-        return MinWeeks;
+        return minWeeks;
     }
 
     public void setMinWeeks(String minWeeks) {
-        MinWeeks = minWeeks;
+        this.minWeeks = minWeeks;
     }
 
     public String getMaxWeeks() {
-        return MaxWeeks;
+        return maxWeeks;
     }
 
     public void setMaxWeeks(String maxWeeks) {
-        MaxWeeks = maxWeeks;
+        this.maxWeeks = maxWeeks;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
 

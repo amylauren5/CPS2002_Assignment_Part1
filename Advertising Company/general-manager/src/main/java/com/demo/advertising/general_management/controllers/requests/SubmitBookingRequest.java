@@ -6,12 +6,12 @@ import java.util.List;
 
 public class SubmitBookingRequest {
 
-    private String SpaceId;
+    private String spaceId;
     private String startingDate;
     private String noOfWeeks;
 
-    public SubmitBookingRequest(String SpaceId,String startingDate, String noOfWeeks) {
-        this.SpaceId = SpaceId;
+    public SubmitBookingRequest(String spaceId,String startingDate, String noOfWeeks) {
+        this.spaceId = spaceId;
         this.startingDate = startingDate;
         this.noOfWeeks = noOfWeeks;
     }
@@ -20,11 +20,11 @@ public class SubmitBookingRequest {
     }
 
     public String getSpaceId() {
-        return SpaceId;
+        return spaceId;
     }
 
     public void setSpaceId(String spaceId) {
-        SpaceId = spaceId;
+        spaceId = spaceId;
     }
 
     public String getStartingDate() {

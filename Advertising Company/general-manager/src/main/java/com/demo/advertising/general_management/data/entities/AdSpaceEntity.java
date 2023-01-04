@@ -7,83 +7,103 @@ import javax.persistence.*;
 public class AdSpaceEntity {
 
     @Id
-    private String SpaceId;
-    private String Popularity;     //people viewing space per day
-    private String Type;        //billboard, buses, benches
-    private String Size;           //size of advertising space
-    private String Price;          //cost to rent space per week
-    private String Location;    //town/park where ad space is
-    private String BusRoute;       //bus route
-    private String MinWeeks;
-    private String MaxWeeks;
+    private String spaceId;
+    private String popularity;     //people viewing space per day
+    private String type;        //billboard, buses, benches
+    private String size;           //size of advertising space
+    private String price;          //cost to rent space per week
+    private String minWeeks;
+    private String maxWeeks;
+    private String busRoute;       //bus route
+    private String location;
+    private String position;
+    private String index;
 
     public String getSpaceId() {
-        return SpaceId;
+        return spaceId;
     }
 
-    public void setSpaceId(String SpaceId) {this.SpaceId = SpaceId;}
+    public void setSpaceId(String spaceId) {
+        this.spaceId = spaceId;
+    }
 
     public String getPopularity() {
-        return Popularity;
+        return popularity;
     }
 
-    public void setPopularity(String Popularity) {
-        this.Popularity = Popularity;
+    public void setPopularity(String popularity) {
+        this.popularity = popularity;
     }
 
     public String getType() {
-        return Type;
+        return type;
     }
 
-    public void setType(String Type) {
-        this.Type = Type;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getSize() {
-        return Size;
+        return size;
     }
 
-    public void setSize(String Size) {
-        this.Size = Size;
+    public void setSize(String size) {
+        this.size = size;
     }
 
     public String getPrice() {
-        return Price;
+        return price;
     }
 
-    public void setPrice(String Price) {
-        this.Price = Price;
-    }
-
-    public String getLocation() {
-        return Location;
-    }
-
-    public void setLocation(String Location) {
-        this.Location = Location;
-    }
-
-    public String getBusRoute() {
-        return BusRoute;
-    }
-
-    public void setBusRoute(String BusRoute) {
-        this.BusRoute = BusRoute;
+    public void setPrice(String price) {
+        this.price = price;
     }
 
     public String getMinWeeks() {
-        return MinWeeks;
+        return minWeeks;
     }
 
     public void setMinWeeks(String minWeeks) {
-        MinWeeks = minWeeks;
+        this.minWeeks = minWeeks;
     }
 
     public String getMaxWeeks() {
-        return MaxWeeks;
+        return maxWeeks;
     }
 
     public void setMaxWeeks(String maxWeeks) {
-        MaxWeeks = maxWeeks;
+        this.maxWeeks = maxWeeks;
+    }
+
+    public String getBusRoute() {
+        return busRoute;
+    }
+
+    public void setBusRoute(String busRoute) {
+        this.busRoute = busRoute;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public String getIndex() {
+        return index;
+    }
+
+    public void setIndex(String index) {
+        this.index = index;
     }
 }

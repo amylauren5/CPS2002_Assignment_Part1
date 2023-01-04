@@ -1,8 +1,6 @@
-package com.demo.advertising.general_management.controllers.responses;
+package com.demo.advertising.general_management.services.models.AdSpace;
 
-
-public class GetAdSpaceResponse {
-
+public class AdSpace {
     private String spaceId;
     private String popularity;     //people viewing space per day
     private String type;        //billboard, buses, benches
@@ -10,18 +8,6 @@ public class GetAdSpaceResponse {
     private String price;          //cost to rent space per week
     private String minWeeks;
     private String maxWeeks;
-
-    public GetAdSpaceResponse(String spaceId, String popularity, String type, String size, String price, String minWeeks, String maxWeeks) {
-        this.spaceId = spaceId;
-        this.popularity = popularity;
-        this.type = type;
-        this.size = size;
-        this.price = price;
-        this.minWeeks = minWeeks;
-        this.maxWeeks = maxWeeks;
-    }
-
-    public GetAdSpaceResponse(){};
 
     public String getSpaceId() {
         return spaceId;
@@ -80,31 +66,3 @@ public class GetAdSpaceResponse {
     }
 }
 
-
-class GetBusAdResponse extends GetAdSpaceResponse{
-
-    private String busRoute;       //bus route
-    private String index;
-
-    public GetBusAdResponse(String spaceId, String popularity, String type, String size, String price, String minWeeks, String maxWeeks, String busRoute, String index) {
-        super(spaceId, popularity, type, size, price, minWeeks, maxWeeks);
-        this.busRoute = busRoute;
-        this.index = index;
-    }
-
-    public String getBusRoute() {
-        return busRoute;
-    }
-
-    public void setBusRoute(String busRoute) {
-        this.busRoute = busRoute;
-    }
-
-    public String getIndex() {
-        return index;
-    }
-
-    public void setIndex(String index) {
-        this.index = index;
-    }
-}

@@ -1,12 +1,9 @@
 package com.demo.advertising.general_management.controllers;
 
 import com.demo.advertising.general_management.controllers.requests.CreateAdSpaceRequest;
-import com.demo.advertising.general_management.controllers.requests.CreateBenchAdRequest;
-import com.demo.advertising.general_management.controllers.requests.CreateBillboardAdRequest;
-import com.demo.advertising.general_management.controllers.requests.CreateBusAdRequest;
 import com.demo.advertising.general_management.controllers.responses.CreateAdSpaceResponse;
 import com.demo.advertising.general_management.controllers.responses.GetAdSpaceResponse;
-import com.demo.advertising.general_management.services.models.AdSpace;
+import com.demo.advertising.general_management.services.models.AdSpace.AdSpace;
 import com.demo.advertising.general_management.services.AdSpaceService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,29 +27,19 @@ public class AdSpaceController {
     ModelMapper mapper;
 
     @PostMapping(value = "/AdSpace", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CreateAdSpaceResponse> createAdSpace(@Valid @RequestHeader String Type, @RequestBody(required=false) CreateBusAdRequest busAd,
-                                                               @RequestBody(required=false) CreateBillboardAdRequest bbAd,
-                                                               @RequestBody(required=false) CreateBenchAdRequest benchAd) {
+    public ResponseEntity<CreateAdSpaceResponse> createAdSpace(@Valid @RequestBody CreateAdSpaceRequest newAdSpace,
+                                                               @RequestParam(required=false) String location,
+                                                               @RequestParam(required=false) String busRoute,
+                                                               @RequestParam(required=false) String position,
+                                                               @RequestParam(required=false) String index){
 
-        if(!Objects.equals(Type, "bus") && !Objects.equals(Type, "bench") &&
-                !Objects.equals(Type, "billboard")) {
+        if(!Objects.equals(newAdSpace.getType(), "bus") && !Objects.equals(newAdSpace.getType(), "bench") &&
+                !Objects.equals(newAdSpace.getType(), "billboard")) {
             throw new IllegalStateException("Type must be bus, bench or billboard!");
         }
 
-        AdSpace adSpace = new AdSpace();
-        switch (Type) {
-            case "bus":
-                adSpace = mapper.map(busAd, AdSpace.class);
-                break;
-            case "billboard":
-                adSpace = mapper.map(bbAd, AdSpace.class);
-                break;
-            case "bench":
-                adSpace = mapper.map(benchAd, AdSpace.class);
-                break;
-        }
+        AdSpace adSpace = mapper.map(newAdSpace, AdSpace.class);
 
-        adSpace.setType(Type);
         if(Objects.equals(adSpace.getPopularity(), "string")||Objects.equals(adSpace.getSize(), "string")||
                 Objects.equals(adSpace.getPrice(), "string")||Objects.equals(adSpace.getMinWeeks(), "string")||
                 Objects.equals(adSpace.getMaxWeeks(), "string")){
@@ -66,7 +53,7 @@ public class AdSpaceController {
             throw new IllegalStateException("Minimum weeks must be less than maximum weeks!");
         }
 
-        String SpaceId = adSpaceService.createAdSpace(adSpace);
+        String SpaceId = adSpaceService.createAdSpace(adSpace,location,busRoute,position,index);
 
         return ResponseEntity.ok(new CreateAdSpaceResponse(SpaceId));
     }
@@ -92,8 +79,9 @@ public class AdSpaceController {
     public void updateAdSpace(@RequestHeader String SpaceId, @RequestParam(required = false) String Popularity,
                                @RequestParam(required = false) String Type, @RequestParam(required = false) String Size,
                                @RequestParam(required = false) String Price, @RequestParam(required = false) String Location,
-                               @RequestParam(required = false) String BusRoute) {
-        adSpaceService.updateAdSpace(SpaceId, Popularity, Type, Size, Price, Location, BusRoute);
+                               @RequestParam(required = false) String BusRoute, @RequestParam(required = false) String Position,
+                              @RequestParam(required = false) String Index) {
+        adSpaceService.updateAdSpace(SpaceId, Popularity, Type, Size, Price, Location, BusRoute, Position, Index);
     }
 
 
