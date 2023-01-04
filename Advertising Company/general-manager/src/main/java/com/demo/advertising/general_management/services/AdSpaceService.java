@@ -4,7 +4,9 @@ import com.demo.advertising.general_management.data.entities.AdSpaceEntity;
 import com.demo.advertising.general_management.data.repositories.AdSpaceRepository;
 import com.demo.advertising.general_management.services.models.AdSpace.AdSpace;
 
+import com.demo.advertising.general_management.services.models.AdSpace.BenchAd;
 import com.demo.advertising.general_management.services.models.AdSpace.BillboardAd;
+import com.demo.advertising.general_management.services.models.AdSpace.BusAd;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -67,11 +69,19 @@ public class AdSpaceService {
 
         if (retrievedOrderEntity.isEmpty()) return null;
 
-        List<AdSpace> spaces = retrievedOrderEntity
-                .stream()
-                .map(user -> mapper.map(user, AdSpace.class))
-                .collect(Collectors.toList());
-
+        List<AdSpace> spaces= new ArrayList<>();
+        for (AdSpaceEntity adSpaceEntity : retrievedOrderEntity) {
+            if (Objects.equals(adSpaceEntity.getType(), "bus")) {
+                BusAd adSpace = mapper.map(adSpaceEntity, BusAd.class);
+                spaces.add(adSpace);
+            } else if (Objects.equals(adSpaceEntity.getType(), "billboard")) {
+                BillboardAd adSpace = mapper.map(adSpaceEntity, BillboardAd.class);
+                spaces.add(adSpace);
+            } else if (Objects.equals(adSpaceEntity.getType(), "bench")) {
+                BenchAd adSpace = mapper.map(adSpaceEntity, BenchAd.class);
+                spaces.add(adSpace);
+            }
+        }
         return spaces;
     }
 
