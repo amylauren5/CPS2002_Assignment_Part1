@@ -8,8 +8,8 @@ public class PaymentService {
 
     private PaymentStrategy paymentStrategy;
 
-    public void processPaymentMethod(){
-        paymentStrategy.selectPaymentMethod();
+    public String processPaymentMethod(){
+        return paymentStrategy.selectPaymentMethod();
     }
 
     public void setStrategy(PaymentStrategy paymentStrategy) {

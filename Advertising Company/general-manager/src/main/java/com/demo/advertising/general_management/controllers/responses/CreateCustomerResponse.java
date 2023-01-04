@@ -2,24 +2,26 @@ package com.demo.advertising.general_management.controllers.responses;
 
 import com.demo.advertising.general_management.services.models.Customer;
 
+import java.util.List;
+
 public class CreateCustomerResponse {
-    private String notificationMessage;
+    private List<String> notificationMessage;
     private String paymentMessage;
 
-    public CreateCustomerResponse(String notificationMessage) {
+    public CreateCustomerResponse(List<String> notificationMessage) {
         this.notificationMessage = notificationMessage;
     }
 
-    public CreateCustomerResponse(String notificationMessage, String paymentMessage) {
+    public CreateCustomerResponse(List<String> notificationMessage, String paymentMessage) {
         this.notificationMessage = notificationMessage;
         this.paymentMessage = paymentMessage;
     }
 
-    public String getNotificationMessage() {
+    public List<String> getNotificationMessage() {
         return notificationMessage;
     }
 
-    public void setNotificationMessage(String notificationMessage) {
+    public void setNotificationMessage(List<String> notificationMessage) {
         this.notificationMessage = notificationMessage;
     }
 

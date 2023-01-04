@@ -2,6 +2,8 @@ package com.demo.advertising.general_management.services.models.Notification;
 
 import com.demo.advertising.general_management.services.models.Customer;
 
+import java.util.List;
+
 public class WhatsAppDecorator extends BaseNotificationDecorator {
 
     private final String phoneNumber;
@@ -12,8 +14,9 @@ public class WhatsAppDecorator extends BaseNotificationDecorator {
     }
 
     @Override
-    public String sendMessage(String message){
-        super.sendMessage(message);
-         return "Sending " + message + " by Whatsapp on " + phoneNumber;
+    public List<String> sendMessage(List<String> myList, String message){
+        super.sendMessage(myList, message);
+        myList.add("Sending " + message + " by Whatsapp on " + phoneNumber);
+        return myList;
     }
 }

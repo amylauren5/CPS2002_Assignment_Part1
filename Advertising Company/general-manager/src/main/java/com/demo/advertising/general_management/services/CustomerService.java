@@ -33,9 +33,7 @@ public class CustomerService {
     public void createCustomer(Customer customer) {
 
         CustomerEntity customerEntity;
-        PaymentService paymentService;
         boolean card = false;
-        boolean paypal = false;
 
         customerEntity = mapper.map(customer, CustomerEntity.class);
 
@@ -96,14 +94,6 @@ public class CustomerService {
             }
         }
 
-        //if card details are NOT inputted then PayPal is true
-        if((customer.getCardDetails().getCardNumber().equals("string")
-                && customer.getCardDetails().getExpiryDate().equals("string")
-                && customer.getCardDetails().getCvv().equals("string")
-        )){
-            paypal = true;
-        }
-
         //if PayPal details are NOT inputted then card is true
         if((customer.getPaypalDetails().getUsername().equals("string")
                 && customer.getPaypalDetails().getPassword().equals("string")
@@ -125,29 +115,15 @@ public class CustomerService {
             throw new IllegalStateException("Type yes or no to subscribe!");
         }
 
-        //choose paymentStrategy
-
-        paymentService = new PaymentService();
-
         if(card){
 
             // check if cvv is valid
             if (customer.getCardDetails().getCvv().length() != 3) {
                 throw new IllegalStateException("Invalid cvv! It must be 3 characters long!");
             }
-
             customerRepository.save(customerEntity);
-
-            paymentService.setStrategy(new PaymentByCardStrategy());
-            paymentService.processPaymentMethod();
-        }
-
-        if(paypal){
-
+        } else {
             customerRepository.save(customerEntity);
-
-            paymentService.setStrategy(new PaymentByPayPalStrategy());
-            paymentService.processPaymentMethod();
         }
     }
 

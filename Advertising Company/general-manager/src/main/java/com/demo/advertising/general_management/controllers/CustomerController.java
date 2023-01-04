@@ -3,12 +3,15 @@ package com.demo.advertising.general_management.controllers;
 import com.demo.advertising.general_management.controllers.responses.CreateCustomerResponse;
 import com.demo.advertising.general_management.data.entities.CardEntity;
 import com.demo.advertising.general_management.data.entities.PayPalEntity;
+import com.demo.advertising.general_management.services.PaymentService;
 import com.demo.advertising.general_management.services.models.Customer;
 import com.demo.advertising.general_management.services.CustomerService;
 import com.demo.advertising.general_management.services.models.Notification.INotification;
 import com.demo.advertising.general_management.services.models.Notification.Notification;
 import com.demo.advertising.general_management.services.models.Notification.SMSDecorator;
 import com.demo.advertising.general_management.services.models.Notification.WhatsAppDecorator;
+import com.demo.advertising.general_management.services.models.Payment.PaymentByCardStrategy;
+import com.demo.advertising.general_management.services.models.Payment.PaymentByPayPalStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -32,17 +36,34 @@ public class CustomerController {
     @PostMapping(value = "/Customer", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<CreateCustomerResponse> registerCustomer(@Valid @RequestBody Customer customer){
 
-        String message;
+        PaymentService paymentService = new PaymentService();
+
+        List<String> notificationList = new ArrayList<>();
+        String paymentMessage;
+
         customerService.createCustomer(customer);
 
         if(customer.getSubscribe().equalsIgnoreCase("yes")){
             INotification notification = new WhatsAppDecorator(customer, new SMSDecorator(customer, new Notification(customer)));
-            message = notification.sendMessage("Notification success - hello!");
+            notificationList = notification.sendMessage(notificationList, "Notification success - hello!");
         } else {
-            message = "Notification will not be sent!";
+            notificationList.add("Notification will not be sent!");
         }
 
-        return ResponseEntity.ok(new CreateCustomerResponse(message));
+        if(!customer.getCardDetails().getCardNumber().equals("string")){
+            //customer will pay by card
+            paymentService.setStrategy(new PaymentByCardStrategy());
+            paymentMessage = paymentService.processPaymentMethod();
+        } else if(!customer.getPaypalDetails().getUsername().equals("string")){
+            //customer will pay by PayPal
+            paymentService.setStrategy(new PaymentByPayPalStrategy());
+            paymentMessage = paymentService.processPaymentMethod();
+        } else {
+            paymentMessage = "Something went wrong!";
+        }
+
+
+        return ResponseEntity.ok(new CreateCustomerResponse(notificationList, paymentMessage));
     }
 
     @GetMapping(value = "/Customer/{customerId}")

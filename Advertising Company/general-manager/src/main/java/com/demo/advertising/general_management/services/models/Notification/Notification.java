@@ -2,6 +2,8 @@ package com.demo.advertising.general_management.services.models.Notification;
 
 import com.demo.advertising.general_management.services.models.Customer;
 
+import java.util.List;
+
 public class Notification implements INotification {
 
     private final String email;
@@ -11,8 +13,10 @@ public class Notification implements INotification {
     }
 
     @Override
-    public String sendMessage(String message){
-        return "Sending " + message + " by Email to " + email;
+    public List<String> sendMessage(List<String> myList, String message){
+
+        myList.add("Sending " + message + " by Email to " + email);
+        return myList;
     }
     @Override
     public String getContact(){
