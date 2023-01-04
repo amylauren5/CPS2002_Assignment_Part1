@@ -1,9 +1,14 @@
 package com.demo.advertising.general_management.controllers;
 
+import com.demo.advertising.general_management.controllers.responses.CreateCustomerResponse;
 import com.demo.advertising.general_management.data.entities.CardEntity;
 import com.demo.advertising.general_management.data.entities.PayPalEntity;
 import com.demo.advertising.general_management.services.models.Customer;
 import com.demo.advertising.general_management.services.CustomerService;
+import com.demo.advertising.general_management.services.models.Notification.INotification;
+import com.demo.advertising.general_management.services.models.Notification.Notification;
+import com.demo.advertising.general_management.services.models.Notification.SMSDecorator;
+import com.demo.advertising.general_management.services.models.Notification.WhatsAppDecorator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -25,9 +30,19 @@ public class CustomerController {
     }
 
     @PostMapping(value = "/Customer", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Customer> registerCustomer(@Valid @RequestBody Customer customer){
+    public ResponseEntity<CreateCustomerResponse> registerCustomer(@Valid @RequestBody Customer customer){
+
+        String message;
         customerService.createCustomer(customer);
-        return new ResponseEntity<Customer>(customer, HttpStatus.CREATED);
+
+        if(customer.getSubscribe().equalsIgnoreCase("yes")){
+            INotification notification = new WhatsAppDecorator(customer, new SMSDecorator(customer, new Notification(customer)));
+            message = notification.sendMessage("Notification success - hello!");
+        } else {
+            message = "Notification will not be sent!";
+        }
+
+        return ResponseEntity.ok(new CreateCustomerResponse(message));
     }
 
     @GetMapping(value = "/Customer/{customerId}")
@@ -48,9 +63,10 @@ public class CustomerController {
     public void updateCustomer(@PathVariable("customerId") String customerId,
                                @RequestParam(required = false) String name,
                                @RequestParam(required = false) String email,
-                               @RequestParam(required = false) String phoneNumber) {
+                               @RequestParam(required = false) String phoneNumber,
+                               @RequestBody(required = false) CardEntity card) {
 
-        customerService.updateCustomer(customerId, name, email, phoneNumber);
+        customerService.updateCustomer(customerId, name, email, phoneNumber, card);
     }
 
     @DeleteMapping(value = "Customer/{customerId}")

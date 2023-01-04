@@ -1,6 +1,6 @@
 package com.demo.advertising.general_management.services;
 
-import com.demo.advertising.general_management.services.models.PaymentStrategy;
+import com.demo.advertising.general_management.services.models.Payment.PaymentStrategy;
 import org.springframework.stereotype.Service;
 
 @Service

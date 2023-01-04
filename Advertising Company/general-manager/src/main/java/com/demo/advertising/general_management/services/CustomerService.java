@@ -2,11 +2,10 @@ package com.demo.advertising.general_management.services;
 
 import com.demo.advertising.general_management.data.entities.CardEntity;
 import com.demo.advertising.general_management.data.entities.CustomerEntity;
-import com.demo.advertising.general_management.data.entities.PayPalEntity;
 import com.demo.advertising.general_management.data.repositories.CustomerRepository;
 import com.demo.advertising.general_management.services.models.Customer;
-import com.demo.advertising.general_management.services.models.PaymentByCardStrategy;
-import com.demo.advertising.general_management.services.models.PaymentByPayPalStrategy;
+import com.demo.advertising.general_management.services.models.Payment.PaymentByCardStrategy;
+import com.demo.advertising.general_management.services.models.Payment.PaymentByPayPalStrategy;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -14,7 +13,6 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -106,7 +104,7 @@ public class CustomerService {
             paypal = true;
         }
 
-        //if paypal details are NOT inputted then card is true
+        //if PayPal details are NOT inputted then card is true
         if((customer.getPaypalDetails().getUsername().equals("string")
                 && customer.getPaypalDetails().getPassword().equals("string")
         )){
@@ -168,7 +166,7 @@ public class CustomerService {
 
     //update customer
     @Transactional
-    public void updateCustomer(String customerId, String name, String email, String phoneNumber) {
+    public void updateCustomer(String customerId, String name, String email, String phoneNumber, CardEntity card) {
 
         CustomerEntity customer = customerRepository.findById(customerId).orElseThrow(
                 () -> new IllegalStateException("Customer ID " + customerId + " does not exist!")
@@ -191,6 +189,16 @@ public class CustomerService {
 
         if(phoneNumber != null && !Objects.equals(customer.getPhoneNumber(), phoneNumber)){
             customer.setPhoneNumber(phoneNumber);
+        }
+
+        if(card.getCardNumber() != null && !Objects.equals(customer.getCardDetails().getCardNumber(), card.getCardNumber())){
+            customer.getCardDetails().setCardNumber(card.getCardNumber());
+            if(card.getExpiryDate() != null && !Objects.equals(customer.getCardDetails().getExpiryDate(), card.getExpiryDate())){
+                customer.getCardDetails().setExpiryDate(card.getExpiryDate());
+                if(card.getCvv() != null && !Objects.equals(customer.getCardDetails().getCvv(), card.getCvv())){
+                    customer.getCardDetails().setCvv(card.getCvv());
+                }
+            }
         }
 
     }
