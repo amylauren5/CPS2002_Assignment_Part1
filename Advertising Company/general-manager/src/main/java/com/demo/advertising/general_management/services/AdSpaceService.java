@@ -116,9 +116,6 @@ public class AdSpaceService {
             adSpace.setBusRoute(BusRoute);
         }
 
-        if(Position != null && Position.length() > 0 && !Objects.equals(adSpace.getPosition(), Position)){
-            adSpace.setPosition(Position);
-        }
 
         if(Index != null && Index.length() > 0 && !Objects.equals(adSpace.getIndex(), Index)){
             adSpace.setIndex(Index);
