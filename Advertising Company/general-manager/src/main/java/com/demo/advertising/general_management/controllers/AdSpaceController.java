@@ -79,8 +79,9 @@ public class AdSpaceController {
     public void updateAdSpace(@RequestHeader String SpaceId, @RequestParam(required = false) String Popularity,
                                @RequestParam(required = false) String Type, @RequestParam(required = false) String Size,
                                @RequestParam(required = false) String Price, @RequestParam(required = false) String Location,
-                               @RequestParam(required = false) String BusRoute) {
-        adSpaceService.updateAdSpace(SpaceId, Popularity, Type, Size, Price, Location, BusRoute);
+                               @RequestParam(required = false) String BusRoute, @RequestParam(required = false) String Position,
+                              @RequestParam(required = false) String Index) {
+        adSpaceService.updateAdSpace(SpaceId, Popularity, Type, Size, Price, Location, BusRoute, Position, Index);
     }
 
 

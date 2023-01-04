@@ -61,14 +61,18 @@ public class AdSpaceService {
             adSpaceEntityToFind.setSize(Filter);
         }else if(Objects.equals(FilterBy, "Price")){
             adSpaceEntityToFind.setPrice(Filter);
-        }else if(Objects.equals(FilterBy, "Location")){
-            adSpaceEntityToFind.setLocation(Filter);
-        }else if(Objects.equals(FilterBy, "BusRoute")){
-            adSpaceEntityToFind.setBusRoute(Filter);
         }else if(Objects.equals(FilterBy, "MinWeeks")){
             adSpaceEntityToFind.setMinWeeks(Filter);
         }else if(Objects.equals(FilterBy, "MaxWeeks")){
             adSpaceEntityToFind.setMaxWeeks(Filter);
+        }else if(Objects.equals(FilterBy, "BusRoute")){
+            adSpaceEntityToFind.setBusRoute(Filter);
+        }else if(Objects.equals(FilterBy, "Location")){
+            adSpaceEntityToFind.setLocation(Filter);
+        }else if(Objects.equals(FilterBy, "Position")){
+            adSpaceEntityToFind.setPosition(Filter);
+        }else if(Objects.equals(FilterBy, "Index")){
+            adSpaceEntityToFind.setIndex(Filter);
         }
 
         List<AdSpaceEntity> retrievedOrderEntity =
@@ -86,7 +90,8 @@ public class AdSpaceService {
 
     //update ad space
     @Transactional
-    public void updateAdSpace(String SpaceId, String Popularity, String Type, String Size, String Price, String Location, String BusRoute) {
+    public void updateAdSpace(String SpaceId, String Popularity, String Type, String Size,
+                              String Price, String Location, String BusRoute, String Position, String Index) {
 
         AdSpaceEntity adSpace = adSpaceRepository.findById(SpaceId).orElseThrow(
                 () -> new IllegalStateException("Ad space does not exist!")
@@ -116,6 +121,13 @@ public class AdSpaceService {
             adSpace.setBusRoute(BusRoute);
         }
 
+        if(Position != null && Position.length() > 0 && !Objects.equals(adSpace.getPosition(), Position)){
+            adSpace.setPosition(Position);
+        }
+
+        if(Index != null && Index.length() > 0 && !Objects.equals(adSpace.getIndex(), Index)){
+            adSpace.setIndex(Index);
+        }
     }
 
     //delete resource
