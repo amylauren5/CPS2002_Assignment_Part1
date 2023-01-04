@@ -8,6 +8,9 @@ import com.demo.advertising.general_management.controllers.responses.CreateAdSpa
 import com.demo.advertising.general_management.controllers.responses.GetAdSpaceResponse;
 import com.demo.advertising.general_management.services.models.AdSpace;
 import com.demo.advertising.general_management.services.AdSpaceService;
+import com.demo.advertising.general_management.services.models.BenchAd;
+import com.demo.advertising.general_management.services.models.BillboardAd;
+import com.demo.advertising.general_management.services.models.BusAd;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -31,7 +34,7 @@ public class AdSpaceController {
 
     @PostMapping(value = "/AdSpace", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<CreateAdSpaceResponse> createAdSpace(@Valid @RequestHeader String Type, @RequestBody(required=false) CreateBusAdRequest busAd,
-                                                               @RequestBody(required=false) CreateBillboardAdRequest bbAd,
+                                                               @RequestBody(required=false) CreateBillboardAdRequest billboardAd,
                                                                @RequestBody(required=false) CreateBenchAdRequest benchAd) {
 
         if(!Objects.equals(Type, "bus") && !Objects.equals(Type, "bench") &&
@@ -39,18 +42,10 @@ public class AdSpaceController {
             throw new IllegalStateException("Type must be bus, bench or billboard!");
         }
 
-        AdSpace adSpace = new AdSpace();
-        switch (Type) {
-            case "bus":
-                adSpace = mapper.map(busAd, AdSpace.class);
-                break;
-            case "billboard":
-                adSpace = mapper.map(bbAd, AdSpace.class);
-                break;
-            case "bench":
-                adSpace = mapper.map(benchAd, AdSpace.class);
-                break;
-        }
+
+
+        BusAd adSpace = mapper.map(busAd, BusAd.class);
+
 
         adSpace.setType(Type);
         if(Objects.equals(adSpace.getPopularity(), "string")||Objects.equals(adSpace.getSize(), "string")||
