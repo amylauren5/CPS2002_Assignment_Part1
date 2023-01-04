@@ -32,8 +32,7 @@ public class AdSpaceController {
     @PostMapping(value = "/AdSpace", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<CreateAdSpaceResponse> createAdSpace(@Valid @RequestBody CreateAdSpaceRequest newAdSpace,
                                                                @RequestParam(required=false) String location,
-                                                               @RequestParam(required=false) String busRoute,
-                                                               @RequestParam(required=false) String index) {
+                                                               @RequestParam(required=false) String busRoute) {
 
         if (!Objects.equals(newAdSpace.getType(), "bus") && !Objects.equals(newAdSpace.getType(), "bench") &&
                 !Objects.equals(newAdSpace.getType(), "billboard")) {

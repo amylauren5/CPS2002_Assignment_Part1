@@ -16,7 +16,6 @@ public class AdSpaceEntity {
     private String maxWeeks;
     private String busRoute;       //bus route
     private String location;
-    private String position;
     private String index;
 
     public String getSpaceId() {
@@ -89,14 +88,6 @@ public class AdSpaceEntity {
 
     public void setLocation(String location) {
         this.location = location;
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
     }
 
     public String getIndex() {

@@ -9,14 +9,16 @@ public class CreateAdSpaceRequest {
     private String minWeeks;
     private String maxWeeks;
     private String type;
+    private String index;
 
-    public CreateAdSpaceRequest(String popularity, String size, String price, String minWeeks, String maxWeeks, String type) {
+    public CreateAdSpaceRequest(String popularity, String size, String price, String minWeeks, String maxWeeks, String type, String index) {
         this.popularity = popularity;
         this.size = size;
         this.price = price;
         this.minWeeks = minWeeks;
         this.maxWeeks = maxWeeks;
         this.type = type;
+        this.index = index;
     }
 
     public CreateAdSpaceRequest(){}
@@ -67,6 +69,14 @@ public class CreateAdSpaceRequest {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getIndex() {
+        return index;
+    }
+
+    public void setIndex(String index) {
+        this.index = index;
     }
 }
 
