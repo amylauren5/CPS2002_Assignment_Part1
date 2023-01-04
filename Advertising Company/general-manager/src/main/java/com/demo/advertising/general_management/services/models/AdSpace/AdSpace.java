@@ -8,6 +8,7 @@ public abstract class AdSpace {
     private String price;          //cost to rent space per week
     private String minWeeks;
     private String maxWeeks;
+    private String index;
 
     public String getSpaceId() {
         return spaceId;
@@ -63,6 +64,14 @@ public abstract class AdSpace {
 
     public void setMaxWeeks(String maxWeeks) {
         this.maxWeeks = maxWeeks;
+    }
+
+    public String getIndex() {
+        return index;
+    }
+
+    public void setIndex(String index) {
+        this.index = index;
     }
 }
 

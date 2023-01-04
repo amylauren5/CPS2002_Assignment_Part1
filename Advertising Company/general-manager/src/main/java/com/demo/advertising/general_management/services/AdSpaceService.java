@@ -58,8 +58,6 @@ public class AdSpaceService {
             adSpaceEntityToFind.setBusRoute(Filter);
         }else if(Objects.equals(FilterBy, "Location")){
             adSpaceEntityToFind.setLocation(Filter);
-        }else if(Objects.equals(FilterBy, "Position")){
-            adSpaceEntityToFind.setPosition(Filter);
         }else if(Objects.equals(FilterBy, "Index")){
             adSpaceEntityToFind.setIndex(Filter);
         }

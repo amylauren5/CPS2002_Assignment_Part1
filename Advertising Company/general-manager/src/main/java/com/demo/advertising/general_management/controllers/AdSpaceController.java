@@ -33,7 +33,6 @@ public class AdSpaceController {
     public ResponseEntity<CreateAdSpaceResponse> createAdSpace(@Valid @RequestBody CreateAdSpaceRequest newAdSpace,
                                                                @RequestParam(required=false) String location,
                                                                @RequestParam(required=false) String busRoute,
-                                                               @RequestParam(required=false) String position,
                                                                @RequestParam(required=false) String index) {
 
         if (!Objects.equals(newAdSpace.getType(), "bus") && !Objects.equals(newAdSpace.getType(), "bench") &&

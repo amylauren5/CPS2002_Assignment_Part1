@@ -12,10 +12,9 @@ public class GetAdSpaceResponse {
     private String maxWeeks;
     private String busRoute;       //bus route
     private String location;
-    private String position;
     private String index;
 
-    public GetAdSpaceResponse(String spaceId, String popularity, String type, String size, String price, String minWeeks, String maxWeeks, String busRoute, String location, String position, String index) {
+    public GetAdSpaceResponse(String spaceId, String popularity, String type, String size, String price, String minWeeks, String maxWeeks, String busRoute, String location, String index) {
         this.spaceId = spaceId;
         this.popularity = popularity;
         this.type = type;
@@ -25,7 +24,6 @@ public class GetAdSpaceResponse {
         this.maxWeeks = maxWeeks;
         this.busRoute = busRoute;
         this.location = location;
-        this.position = position;
         this.index = index;
     }
 
@@ -101,14 +99,6 @@ public class GetAdSpaceResponse {
 
     public void setLocation(String location) {
         this.location = location;
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
     }
 
     public String getIndex() {

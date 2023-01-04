@@ -4,7 +4,6 @@ import com.demo.advertising.general_management.services.models.AdSpace.AdSpace;
 
 public class BusAd extends AdSpace {
     private String busRoute;       //bus route
-    private String position;       //side or back of bus
 
     public String getBusRoute() {
         return busRoute;
@@ -14,11 +13,4 @@ public class BusAd extends AdSpace {
         this.busRoute = busRoute;
     }
 
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
-    }
 }
