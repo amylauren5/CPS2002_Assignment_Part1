@@ -18,8 +18,4 @@ public class Notification implements INotification {
         myList.add("Sending " + message + " by Email to " + email);
         return myList;
     }
-    @Override
-    public String getContact(){
-        return email;
-    }
 }

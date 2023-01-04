@@ -14,9 +14,5 @@ public class BaseNotificationDecorator implements INotification{
         wrapped.sendMessage(myList, message);
         return myList;
     }
-    @Override
-    public String getContact(){
-        return wrapped.getContact();
-    }
-
 }
+
