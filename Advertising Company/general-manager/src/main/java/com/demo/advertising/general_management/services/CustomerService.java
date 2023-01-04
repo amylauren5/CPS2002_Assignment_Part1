@@ -4,7 +4,7 @@ import com.demo.advertising.general_management.data.entities.CustomerEntity;
 import com.demo.advertising.general_management.data.repositories.CustomerRepository;
 import com.demo.advertising.general_management.services.models.Customer;
 import com.demo.advertising.general_management.services.models.PaymentByCardStrategy;
-import com.demo.advertising.general_management.services.models.PaymentByPaypalStrategy;
+import com.demo.advertising.general_management.services.models.PaymentByPayPalStrategy;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -132,10 +132,10 @@ public class CustomerService {
 
         if(card){
             paymentService.setStrategy(new PaymentByCardStrategy());
-            paymentService.processOrder();
+            paymentService.processPaymentMethod();
         } else if(paypal){
-            paymentService.setStrategy(new PaymentByPaypalStrategy());
-            paymentService.processOrder();
+            paymentService.setStrategy(new PaymentByPayPalStrategy());
+            paymentService.processPaymentMethod();
         } else {
             throw new IllegalStateException("Invalid payment details!");
         }

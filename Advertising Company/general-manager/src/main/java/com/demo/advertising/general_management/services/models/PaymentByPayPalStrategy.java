@@ -1,6 +1,6 @@
 package com.demo.advertising.general_management.services.models;
 
-public class PaymentByPaypalStrategy implements PaymentStrategy {
+public class PaymentByPayPalStrategy implements PaymentStrategy {
 
     @Override
     public void selectPaymentMethod(){
