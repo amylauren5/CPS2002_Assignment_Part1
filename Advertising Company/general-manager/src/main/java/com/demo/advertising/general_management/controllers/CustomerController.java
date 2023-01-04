@@ -41,9 +41,8 @@ public class CustomerController {
 
     @PutMapping(value = "Customer/{customerId}")
     public void updateCustomer(@PathVariable("customerId") String customerId, @RequestParam(required = false) String name,
-                               @RequestParam(required = false) String email, @RequestParam(required = false) String paymentDetails,
-                               @RequestParam(required = false) String phoneNumber) {
-        customerService.updateCustomer(customerId, name, email, paymentDetails, phoneNumber);
+                               @RequestParam(required = false) String email, @RequestParam(required = false) String phoneNumber) {
+        customerService.updateCustomer(customerId, name, email, phoneNumber);
     }
 
     @DeleteMapping(value = "Customer/{customerId}")

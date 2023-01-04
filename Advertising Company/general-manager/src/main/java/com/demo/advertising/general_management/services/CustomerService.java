@@ -162,7 +162,7 @@ public class CustomerService {
 
     //update customer
     @Transactional
-    public void updateCustomer(String customerId, String name, String email, String paymentDetails, String phoneNumber) {
+    public void updateCustomer(String customerId, String name, String email, String phoneNumber) {
 
         CustomerEntity customer = customerRepository.findById(customerId).orElseThrow(
                 () -> new IllegalStateException("Customer ID " + customerId + " does not exist!")
