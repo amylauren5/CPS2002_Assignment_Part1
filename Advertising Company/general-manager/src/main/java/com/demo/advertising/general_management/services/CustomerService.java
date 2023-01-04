@@ -111,7 +111,7 @@ public class CustomerService {
         }
 
         if(customer.getSubscribe().equals("string")){
-            throw new IllegalStateException("Type yes or no to subscribe!");
+            throw new IllegalStateException("Type yes OR no to subscribe!");
         }
 
         if(customer.getSubscribe().equalsIgnoreCase("yes")){
