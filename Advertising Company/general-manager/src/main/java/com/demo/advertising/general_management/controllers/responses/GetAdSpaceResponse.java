@@ -10,8 +10,12 @@ public class GetAdSpaceResponse {
     private String price;          //cost to rent space per week
     private String minWeeks;
     private String maxWeeks;
+    private String busRoute;       //bus route
+    private String location;
+    private String position;
+    private String index;
 
-    public GetAdSpaceResponse(String spaceId, String popularity, String type, String size, String price, String minWeeks, String maxWeeks) {
+    public GetAdSpaceResponse(String spaceId, String popularity, String type, String size, String price, String minWeeks, String maxWeeks, String busRoute, String location, String position, String index) {
         this.spaceId = spaceId;
         this.popularity = popularity;
         this.type = type;
@@ -19,6 +23,10 @@ public class GetAdSpaceResponse {
         this.price = price;
         this.minWeeks = minWeeks;
         this.maxWeeks = maxWeeks;
+        this.busRoute = busRoute;
+        this.location = location;
+        this.position = position;
+        this.index = index;
     }
 
     public GetAdSpaceResponse(){};
@@ -78,19 +86,6 @@ public class GetAdSpaceResponse {
     public void setMaxWeeks(String maxWeeks) {
         this.maxWeeks = maxWeeks;
     }
-}
-
-
-class GetBusAdResponse extends GetAdSpaceResponse{
-
-    private String busRoute;       //bus route
-    private String index;
-
-    public GetBusAdResponse(String spaceId, String popularity, String type, String size, String price, String minWeeks, String maxWeeks, String busRoute, String index) {
-        super(spaceId, popularity, type, size, price, minWeeks, maxWeeks);
-        this.busRoute = busRoute;
-        this.index = index;
-    }
 
     public String getBusRoute() {
         return busRoute;
@@ -98,6 +93,22 @@ class GetBusAdResponse extends GetAdSpaceResponse{
 
     public void setBusRoute(String busRoute) {
         this.busRoute = busRoute;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
     }
 
     public String getIndex() {
@@ -108,3 +119,4 @@ class GetBusAdResponse extends GetAdSpaceResponse{
         this.index = index;
     }
 }
+

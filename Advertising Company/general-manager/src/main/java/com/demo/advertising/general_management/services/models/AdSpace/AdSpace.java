@@ -1,6 +1,6 @@
 package com.demo.advertising.general_management.services.models.AdSpace;
 
-public class AdSpace {
+public abstract class AdSpace {
     private String spaceId;
     private String popularity;     //people viewing space per day
     private String type;        //billboard, buses, benches
