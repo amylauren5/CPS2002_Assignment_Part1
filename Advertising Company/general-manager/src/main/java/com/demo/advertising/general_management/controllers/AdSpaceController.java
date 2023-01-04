@@ -2,7 +2,11 @@ package com.demo.advertising.general_management.controllers;
 
 import com.demo.advertising.general_management.controllers.requests.CreateAdSpaceRequest;
 import com.demo.advertising.general_management.controllers.responses.CreateAdSpaceResponse;
-import com.demo.advertising.general_management.controllers.responses.GetAdSpaceResponse;
+import com.demo.advertising.general_management.controllers.responses.GetAdSpace.GetAdSpaceResponse;
+import com.demo.advertising.general_management.controllers.responses.GetAdSpace.GetBenchAdResponse;
+import com.demo.advertising.general_management.controllers.responses.GetAdSpace.GetBillboardAdResponse;
+import com.demo.advertising.general_management.controllers.responses.GetAdSpace.GetBusAdResponse;
+import com.demo.advertising.general_management.data.entities.AdSpaceEntity;
 import com.demo.advertising.general_management.services.models.AdSpace.AdSpace;
 import com.demo.advertising.general_management.services.AdSpaceService;
 import com.demo.advertising.general_management.services.models.AdSpace.BenchAd;
@@ -14,6 +18,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -74,10 +79,19 @@ public class AdSpaceController {
             return ResponseEntity.notFound().build();
         }
 
-        List<GetAdSpaceResponse> getAdSpaceResponse = adSpaces
-                .stream()
-                .map(user -> mapper.map(user, GetAdSpaceResponse.class))
-                .collect(Collectors.toList());
+        List<GetAdSpaceResponse> getAdSpaceResponse= new ArrayList<>();
+        for (AdSpace adSpace : adSpaces) {
+            if (Objects.equals(adSpace.getType(), "bus")) {
+                GetBusAdResponse getAdSpace = mapper.map(adSpace, GetBusAdResponse.class);
+                getAdSpaceResponse.add(getAdSpace);
+            } else if (Objects.equals(adSpace.getType(), "billboard")) {
+                GetBillboardAdResponse getAdSpace = mapper.map(adSpace, GetBillboardAdResponse.class);
+                getAdSpaceResponse.add(getAdSpace);
+            } else if (Objects.equals(adSpace.getType(), "bench")) {
+                GetBenchAdResponse getAdSpace = mapper.map(adSpace, GetBenchAdResponse.class);
+                getAdSpaceResponse.add(getAdSpace);
+            }
+        }
 
         return ResponseEntity.ok(getAdSpaceResponse);
     }
@@ -86,9 +100,8 @@ public class AdSpaceController {
     public void updateAdSpace(@RequestHeader String SpaceId, @RequestParam(required = false) String Popularity,
                                @RequestParam(required = false) String Type, @RequestParam(required = false) String Size,
                                @RequestParam(required = false) String Price, @RequestParam(required = false) String Location,
-                               @RequestParam(required = false) String BusRoute, @RequestParam(required = false) String Position,
-                              @RequestParam(required = false) String Index) {
-        adSpaceService.updateAdSpace(SpaceId, Popularity, Type, Size, Price, Location, BusRoute, Position, Index);
+                               @RequestParam(required = false) String BusRoute, @RequestParam(required = false) String Index) {
+        adSpaceService.updateAdSpace(SpaceId, Popularity, Type, Size, Price, Location, BusRoute, Index);
     }
 
 

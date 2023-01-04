@@ -1,4 +1,4 @@
-package com.demo.advertising.general_management.controllers.responses;
+package com.demo.advertising.general_management.controllers.responses.GetAdSpace;
 
 
 public class GetAdSpaceResponse {
@@ -10,11 +10,9 @@ public class GetAdSpaceResponse {
     private String price;          //cost to rent space per week
     private String minWeeks;
     private String maxWeeks;
-    private String busRoute;       //bus route
-    private String location;
     private String index;
 
-    public GetAdSpaceResponse(String spaceId, String popularity, String type, String size, String price, String minWeeks, String maxWeeks, String busRoute, String location, String index) {
+    public GetAdSpaceResponse(String spaceId, String popularity, String type, String size, String price, String minWeeks, String maxWeeks, String index) {
         this.spaceId = spaceId;
         this.popularity = popularity;
         this.type = type;
@@ -22,8 +20,6 @@ public class GetAdSpaceResponse {
         this.price = price;
         this.minWeeks = minWeeks;
         this.maxWeeks = maxWeeks;
-        this.busRoute = busRoute;
-        this.location = location;
         this.index = index;
     }
 
@@ -85,21 +81,6 @@ public class GetAdSpaceResponse {
         this.maxWeeks = maxWeeks;
     }
 
-    public String getBusRoute() {
-        return busRoute;
-    }
-
-    public void setBusRoute(String busRoute) {
-        this.busRoute = busRoute;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
 
     public String getIndex() {
         return index;

@@ -40,25 +40,25 @@ public class AdSpaceService {
     public List<AdSpace> getAdSpace(String FilterBy, String Filter) {
         AdSpaceEntity adSpaceEntityToFind = new AdSpaceEntity();
 
-        if(Objects.equals(FilterBy, "SpaceId")){
+        if(Objects.equals(FilterBy, "spaceId")){
             adSpaceEntityToFind.setSpaceId(Filter);
-        }else if(Objects.equals(FilterBy, "Popularity")){
+        }else if(Objects.equals(FilterBy, "popularity")){
             adSpaceEntityToFind.setPopularity(Filter);
-        }else if(Objects.equals(FilterBy, "Type")){
+        }else if(Objects.equals(FilterBy, "type")){
             adSpaceEntityToFind.setType(Filter);
-        }else if(Objects.equals(FilterBy, "Size")){
+        }else if(Objects.equals(FilterBy, "size")){
             adSpaceEntityToFind.setSize(Filter);
-        }else if(Objects.equals(FilterBy, "Price")){
+        }else if(Objects.equals(FilterBy, "price")){
             adSpaceEntityToFind.setPrice(Filter);
-        }else if(Objects.equals(FilterBy, "MinWeeks")){
+        }else if(Objects.equals(FilterBy, "minWeeks")){
             adSpaceEntityToFind.setMinWeeks(Filter);
-        }else if(Objects.equals(FilterBy, "MaxWeeks")){
+        }else if(Objects.equals(FilterBy, "maxWeeks")){
             adSpaceEntityToFind.setMaxWeeks(Filter);
-        }else if(Objects.equals(FilterBy, "BusRoute")){
+        }else if(Objects.equals(FilterBy, "busRoute")){
             adSpaceEntityToFind.setBusRoute(Filter);
-        }else if(Objects.equals(FilterBy, "Location")){
+        }else if(Objects.equals(FilterBy, "location")){
             adSpaceEntityToFind.setLocation(Filter);
-        }else if(Objects.equals(FilterBy, "Index")){
+        }else if(Objects.equals(FilterBy, "index")){
             adSpaceEntityToFind.setIndex(Filter);
         }
 
@@ -86,7 +86,7 @@ public class AdSpaceService {
     //update ad space
     @Transactional
     public void updateAdSpace(String SpaceId, String Popularity, String Type, String Size,
-                              String Price, String Location, String BusRoute, String Position, String Index) {
+                              String Price, String Location, String BusRoute, String Index) {
 
         AdSpaceEntity adSpace = adSpaceRepository.findById(SpaceId).orElseThrow(
                 () -> new IllegalStateException("Ad space does not exist!")
