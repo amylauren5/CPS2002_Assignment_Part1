@@ -1,27 +1,28 @@
 package com.demo.advertising.general_management.controllers.requests;
 
 public class CreateBenchAdRequest extends CreateAdSpaceRequest {
-    private String Location;       //town/park where ad space is
-    private String Position;       //back or seat of bench
-    CreateBenchAdRequest(String Location, String Position){
-        this.Location = Location;
-        this.Position = Position;
+    private String location;       //town/park where ad space is
+    private String position;       //back or seat of bench
+
+    public CreateBenchAdRequest(String popularity, String size, String price, String minWeeks, String maxWeeks, String location, String position) {
+        super(popularity, size, price, minWeeks, maxWeeks);
+        this.location = location;
+        this.position = position;
     }
-    CreateBenchAdRequest(){};
 
     public String getLocation() {
-        return Location;
+        return location;
     }
 
-    public void setLocation(String Location) {
-        this.Location = Location;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getPosition() {
-        return Position;
+        return position;
     }
 
-    public void setPosition(String Position) {
-        this.Position = Position;
+    public void setPosition(String position) {
+        this.position = position;
     }
 }

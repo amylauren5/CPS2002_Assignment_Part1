@@ -10,7 +10,6 @@ public class GetBookingResponse {
     private String SpaceId;
     private String startingDate;
     private String noOfWeeks;
-
     private String price;
     private List<AdSpace> adspace;
 

@@ -2,29 +2,30 @@ package com.demo.advertising.general_management.controllers.requests;
 
 public class CreateBillboardAdRequest extends CreateAdSpaceRequest {
 
-    private String Location;    //town/park where ad space is
-    private String Index;       //index of ad
+    private String location;    //town/park where ad space is
+    private String index;       //index of ad
 
-    CreateBillboardAdRequest(String Location, String Index){
-        this.Location = Location;
-        this.Index = Index;
+    public CreateBillboardAdRequest(String popularity, String size, String price, String minWeeks, String maxWeeks, String location, String index) {
+        super(popularity, size, price, minWeeks, maxWeeks);
+        this.location = location;
+        this.index = index;
     }
 
-    CreateBillboardAdRequest(){};
+    public CreateBillboardAdRequest(){}
 
     public String getLocation() {
-        return Location;
+        return location;
     }
 
-    public void setLocation(String Location) {
-        this.Location = Location;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getIndex() {
-        return Index;
+        return index;
     }
 
-    public void setIndex(String Index) {
-        this.Index = Index;
+    public void setIndex(String index) {
+        this.index = index;
     }
 }

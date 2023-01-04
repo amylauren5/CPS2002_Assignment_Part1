@@ -3,100 +3,108 @@ package com.demo.advertising.general_management.controllers.responses;
 
 public class GetAdSpaceResponse {
 
-    private String SpaceId;
-    private String Popularity;     //people viewing space per day
-    private String Type;        //billboard, buses, benches
-    private String Size;           //size of advertising space
-    private String Price;          //cost to rent space per week
-    private String Location;    //town/park where ad space is
-    private String BusRoute;       //bus route
-    private String MinWeeks;
-    private String MaxWeeks;
+    private String spaceId;
+    private String popularity;     //people viewing space per day
+    private String type;        //billboard, buses, benches
+    private String size;           //size of advertising space
+    private String price;          //cost to rent space per week
+    private String minWeeks;
+    private String maxWeeks;
 
-    public GetAdSpaceResponse(String Popularity, String Type, String Size, String Price, String Location,
-                                String BusRoute, String MinWeeks, String MaxWeeks) {
-        this.Popularity = Popularity;
-        this.Type = Type;
-        this.Size = Size;
-        this.Price = Price;
-        this.Location = Location;
-        this.BusRoute = BusRoute;
-        this.MinWeeks = MinWeeks;
-        this.MaxWeeks = MaxWeeks;
+    public GetAdSpaceResponse(String spaceId, String popularity, String type, String size, String price, String minWeeks, String maxWeeks) {
+        this.spaceId = spaceId;
+        this.popularity = popularity;
+        this.type = type;
+        this.size = size;
+        this.price = price;
+        this.minWeeks = minWeeks;
+        this.maxWeeks = maxWeeks;
     }
 
-    public GetAdSpaceResponse() {
-    }
+    public GetAdSpaceResponse(){};
 
     public String getSpaceId() {
-        return SpaceId;
+        return spaceId;
     }
 
     public void setSpaceId(String spaceId) {
-        SpaceId = spaceId;
+        this.spaceId = spaceId;
     }
 
     public String getPopularity() {
-        return Popularity;
+        return popularity;
     }
 
     public void setPopularity(String popularity) {
-        Popularity = popularity;
-    }
-
-    public String getSize() {
-        return Size;
-    }
-
-    public void setSize(String size) {
-        Size = size;
-    }
-
-    public String getPrice() {
-        return Price;
-    }
-
-    public void setPrice(String price) {
-        Price = price;
-    }
-
-    public String getBusRoute() {
-        return BusRoute;
-    }
-
-    public void setBusRoute(String busRoute) {
-        BusRoute = busRoute;
-    }
-
-    public String getLocation() {
-        return Location;
-    }
-
-    public void setLocation(String location) {
-        Location = location;
+        this.popularity = popularity;
     }
 
     public String getType() {
-        return Type;
+        return type;
     }
 
     public void setType(String type) {
-        Type = type;
+        this.type = type;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 
     public String getMinWeeks() {
-        return MinWeeks;
+        return minWeeks;
     }
 
     public void setMinWeeks(String minWeeks) {
-        MinWeeks = minWeeks;
+        this.minWeeks = minWeeks;
     }
 
     public String getMaxWeeks() {
-        return MaxWeeks;
+        return maxWeeks;
     }
 
     public void setMaxWeeks(String maxWeeks) {
-        MaxWeeks = maxWeeks;
+        this.maxWeeks = maxWeeks;
+    }
+}
+
+
+class GetBusAdResponse extends GetAdSpaceResponse{
+
+    private String busRoute;       //bus route
+    private String index;
+
+    public GetBusAdResponse(String spaceId, String popularity, String type, String size, String price, String minWeeks, String maxWeeks, String busRoute, String index) {
+        super(spaceId, popularity, type, size, price, minWeeks, maxWeeks);
+        this.busRoute = busRoute;
+        this.index = index;
+    }
+
+    public String getBusRoute() {
+        return busRoute;
+    }
+
+    public void setBusRoute(String busRoute) {
+        this.busRoute = busRoute;
+    }
+
+    public String getIndex() {
+        return index;
+    }
+
+    public void setIndex(String index) {
+        this.index = index;
     }
 }
