@@ -27,16 +27,19 @@ public class AdSpaceService {
     AdSpaceRepository adSpaceRepository;
 
     //create ad space
-    public String createAdSpace(String Type, BusAd busAd, BillboardAd billboardAd, BenchAd benchAd){
+    public String createAdSpace(AdSpace adSpace,String location,String busRoute,String position,String index){
 
-        AdSpaceEntity adSpaceEntity = new AdSpaceEntity();
+        AdSpaceEntity adSpaceEntity = mapper.map(adSpace, AdSpaceEntity.class);
 
-        if(Objects.equals(Type, "bus")){
-            adSpaceEntity = mapper.map(busAd, AdSpaceEntity.class);
-        }else if(Objects.equals(Type, "billboard")){
-            adSpaceEntity = mapper.map(billboardAd, AdSpaceEntity.class);
-        }else if(Objects.equals(Type, "bench")){
-            adSpaceEntity = mapper.map(benchAd, AdSpaceEntity.class);
+        if(Objects.equals(adSpace.getType(), "bus")){
+            adSpaceEntity.setBusRoute(busRoute);
+            adSpaceEntity.setPosition(position);
+        }else if(Objects.equals(adSpace.getType(), "billboard")){
+            adSpaceEntity.setLocation(location);
+            adSpaceEntity.setIndex(index);
+        }else if(Objects.equals(adSpace.getType(), "bench")){
+            adSpaceEntity.setLocation(location);
+            adSpaceEntity.setPosition(position);
         }
 
         adSpaceEntity.setSpaceId(UUID.randomUUID().toString());

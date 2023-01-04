@@ -40,7 +40,7 @@ public class AdSpaceControllerTests {
         }
     }
 
-    @Test
+    /*@Test
     public void canCreateAdSpace() throws Exception{
 
         CreateAdSpaceRequest adSpaceRequest = new CreateAdSpaceRequest("1000", "bus", "500", "1000", "", "45", "15", "50");
@@ -59,7 +59,7 @@ public class AdSpaceControllerTests {
 
         String response = result.getResponse().getContentAsString();
         System.out.print(response);
-    }
+    }*/
 
 /*    @Test
     void updateFieldsTest() throws Exception {

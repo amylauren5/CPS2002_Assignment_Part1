@@ -8,13 +8,15 @@ public class CreateAdSpaceRequest {
     private String price;          //cost to rent space per week
     private String minWeeks;
     private String maxWeeks;
+    private String type;
 
-    public CreateAdSpaceRequest(String popularity, String size, String price, String minWeeks, String maxWeeks) {
+    public CreateAdSpaceRequest(String popularity, String size, String price, String minWeeks, String maxWeeks, String type) {
         this.popularity = popularity;
         this.size = size;
         this.price = price;
         this.minWeeks = minWeeks;
         this.maxWeeks = maxWeeks;
+        this.type = type;
     }
 
     public CreateAdSpaceRequest(){}
@@ -57,6 +59,14 @@ public class CreateAdSpaceRequest {
 
     public void setMaxWeeks(String maxWeeks) {
         this.maxWeeks = maxWeeks;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
 
