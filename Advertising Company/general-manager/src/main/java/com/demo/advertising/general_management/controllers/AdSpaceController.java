@@ -1,16 +1,15 @@
 package com.demo.advertising.general_management.controllers;
 
-import com.demo.advertising.general_management.controllers.requests.CreateAdSpaceRequest;
 import com.demo.advertising.general_management.controllers.requests.CreateBenchAdRequest;
 import com.demo.advertising.general_management.controllers.requests.CreateBillboardAdRequest;
 import com.demo.advertising.general_management.controllers.requests.CreateBusAdRequest;
 import com.demo.advertising.general_management.controllers.responses.CreateAdSpaceResponse;
 import com.demo.advertising.general_management.controllers.responses.GetAdSpaceResponse;
-import com.demo.advertising.general_management.services.models.AdSpace;
+import com.demo.advertising.general_management.services.models.AdSpace.AdSpace;
 import com.demo.advertising.general_management.services.AdSpaceService;
-import com.demo.advertising.general_management.services.models.BenchAd;
-import com.demo.advertising.general_management.services.models.BillboardAd;
-import com.demo.advertising.general_management.services.models.BusAd;
+import com.demo.advertising.general_management.services.models.AdSpace.BenchAd;
+import com.demo.advertising.general_management.services.models.AdSpace.BillboardAd;
+import com.demo.advertising.general_management.services.models.AdSpace.BusAd;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -33,21 +32,34 @@ public class AdSpaceController {
     ModelMapper mapper;
 
     @PostMapping(value = "/AdSpace", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CreateAdSpaceResponse> createAdSpace(@Valid @RequestHeader String Type, @RequestBody(required=false) CreateBusAdRequest busAd,
-                                                               @RequestBody(required=false) CreateBillboardAdRequest billboardAd,
-                                                               @RequestBody(required=false) CreateBenchAdRequest benchAd) {
+    public ResponseEntity<CreateAdSpaceResponse> createAdSpace(@Valid @RequestHeader String Type, @RequestBody(required=false) CreateBusAdRequest newBusAd,
+                                                               @RequestBody(required=false) CreateBillboardAdRequest newBillboardAd,
+                                                               @RequestBody(required=false) CreateBenchAdRequest newBenchAd) {
 
         if(!Objects.equals(Type, "bus") && !Objects.equals(Type, "bench") &&
                 !Objects.equals(Type, "billboard")) {
             throw new IllegalStateException("Type must be bus, bench or billboard!");
         }
 
+        BusAd busAd = mapper.map(newBusAd, BusAd.class);
+        BillboardAd billboardAd = mapper.map(newBillboardAd, BillboardAd.class);
+        BenchAd benchAd = mapper.map(newBenchAd, BenchAd.class);
 
-
-        BusAd adSpace = mapper.map(busAd, BusAd.class);
-
-
-        adSpace.setType(Type);
+        AdSpace adSpace = new AdSpace();
+        switch (Type) {
+            case "bus": {
+                adSpace = mapper.map(busAd, AdSpace.class);
+                break;
+            }
+            case "billboard": {
+                adSpace = mapper.map(billboardAd, AdSpace.class);
+                break;
+            }
+            case "bench": {
+                adSpace = mapper.map(benchAd, AdSpace.class);
+                break;
+            }
+        }
         if(Objects.equals(adSpace.getPopularity(), "string")||Objects.equals(adSpace.getSize(), "string")||
                 Objects.equals(adSpace.getPrice(), "string")||Objects.equals(adSpace.getMinWeeks(), "string")||
                 Objects.equals(adSpace.getMaxWeeks(), "string")){
@@ -61,7 +73,7 @@ public class AdSpaceController {
             throw new IllegalStateException("Minimum weeks must be less than maximum weeks!");
         }
 
-        String SpaceId = adSpaceService.createAdSpace(adSpace);
+        String SpaceId = adSpaceService.createAdSpace(Type,busAd,billboardAd,benchAd);
 
         return ResponseEntity.ok(new CreateAdSpaceResponse(SpaceId));
     }

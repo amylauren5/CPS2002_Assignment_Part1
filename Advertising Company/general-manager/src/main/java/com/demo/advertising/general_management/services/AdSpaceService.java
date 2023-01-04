@@ -2,7 +2,10 @@ package com.demo.advertising.general_management.services;
 
 import com.demo.advertising.general_management.data.entities.AdSpaceEntity;
 import com.demo.advertising.general_management.data.repositories.AdSpaceRepository;
-import com.demo.advertising.general_management.services.models.AdSpace;
+import com.demo.advertising.general_management.services.models.AdSpace.AdSpace;
+import com.demo.advertising.general_management.services.models.AdSpace.BenchAd;
+import com.demo.advertising.general_management.services.models.AdSpace.BillboardAd;
+import com.demo.advertising.general_management.services.models.AdSpace.BusAd;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -24,8 +27,18 @@ public class AdSpaceService {
     AdSpaceRepository adSpaceRepository;
 
     //create ad space
-    public String createAdSpace(AdSpace space) {
-        AdSpaceEntity adSpaceEntity = mapper.map(space, AdSpaceEntity.class);
+    public String createAdSpace(String Type, BusAd busAd, BillboardAd billboardAd, BenchAd benchAd){
+
+        AdSpaceEntity adSpaceEntity = new AdSpaceEntity();
+
+        if(Objects.equals(Type, "bus")){
+            adSpaceEntity = mapper.map(busAd, AdSpaceEntity.class);
+        }else if(Objects.equals(Type, "billboard")){
+            adSpaceEntity = mapper.map(billboardAd, AdSpaceEntity.class);
+        }else if(Objects.equals(Type, "bench")){
+            adSpaceEntity = mapper.map(benchAd, AdSpaceEntity.class);
+        }
+
         adSpaceEntity.setSpaceId(UUID.randomUUID().toString());
         adSpaceEntity = adSpaceRepository.save(adSpaceEntity);
         return adSpaceEntity.getSpaceId();

@@ -1,4 +1,4 @@
-package com.demo.advertising.general_management.services.models;
+package com.demo.advertising.general_management.services.models.AdSpace;
 
 public class AdSpaceFactory {
 

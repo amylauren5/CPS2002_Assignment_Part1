@@ -1,4 +1,6 @@
-package com.demo.advertising.general_management.services.models;
+package com.demo.advertising.general_management.services.models.AdSpace;
+
+import com.demo.advertising.general_management.services.models.AdSpace.AdSpace;
 
 public class BenchAd extends AdSpace {
     private String location;       //town/park where ad space is
