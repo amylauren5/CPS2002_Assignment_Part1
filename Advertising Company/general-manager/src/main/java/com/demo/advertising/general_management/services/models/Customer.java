@@ -11,8 +11,8 @@ public class Customer {
     private String name;
     private String email;
     private String phoneNumber;
-    private List<CardEntity> cardDetails;
-    private List<PayPalEntity> paypalDetails;
+    private CardEntity cardDetails;
+    private PayPalEntity paypalDetails;
     private String subscribe;
 
     public Customer(){
@@ -26,8 +26,8 @@ public class Customer {
         this.phoneNumber = phoneNumber;
     }
 
-    public Customer(String customerId, String name, String email, String phoneNumber, List<CardEntity> cardDetails,
-                    List<PayPalEntity> paypalDetails, String subscribe) {
+    public Customer(String customerId, String name, String email, String phoneNumber, CardEntity cardDetails,
+                    PayPalEntity paypalDetails, String subscribe) {
         this.customerId = customerId;
         this.name = name;
         this.email = email;
@@ -69,19 +69,19 @@ public class Customer {
         this.phoneNumber = phoneNumber;
     }
 
-    public List<CardEntity> getCardDetails() {
+    public CardEntity getCardDetails() {
         return cardDetails;
     }
 
-    public void setCardDetails(List<CardEntity> cardDetails) {
+    public void setCardDetails(CardEntity cardDetails) {
         this.cardDetails = cardDetails;
     }
 
-    public List<PayPalEntity> getPaypalDetails() {
+    public PayPalEntity getPaypalDetails() {
         return paypalDetails;
     }
 
-    public void setPaypalDetails(List<PayPalEntity> paypalDetails) {
+    public void setPaypalDetails(PayPalEntity paypalDetails) {
         this.paypalDetails = paypalDetails;
     }
 

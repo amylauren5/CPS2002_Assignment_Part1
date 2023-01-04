@@ -12,22 +12,15 @@ public class CustomerEntity {
     private String name;
     private String email;
     private String phoneNumber;
-
-    @ElementCollection
-    @CollectionTable(name="CARD_DETAILS", joinColumns=@JoinColumn(name="CUSTOMER_ID"))
-    private List<CardEntity> cardDetails; // cardNumber, expiryDate, cvv
-
-    @ElementCollection
-    @CollectionTable(name="PAYPAL_DETAILS", joinColumns=@JoinColumn(name="CUSTOMER_ID"))
-    private List<PayPalEntity> paypalDetails; // username and password
-
+    private CardEntity cardDetails; // cardNumber, expiryDate, cvv
+    private PayPalEntity paypalDetails; // username and password
     private String subscribe; // subscribe to mailing list
 
     public CustomerEntity(){
     }
 
     public CustomerEntity(String customerId, String name, String email, String phoneNumber,
-                          List<CardEntity> cardDetails, List<PayPalEntity> paypalDetails, String subscribe) {
+                          CardEntity cardDetails, PayPalEntity paypalDetails, String subscribe) {
         this.customerId = customerId;
         this.name = name;
         this.email = email;
@@ -69,19 +62,19 @@ public class CustomerEntity {
         this.phoneNumber = phoneNumber;
     }
 
-    public List<CardEntity> getCardDetails() {
+    public CardEntity getCardDetails() {
         return cardDetails;
     }
 
-    public void setCardDetails(List<CardEntity> cardDetails) {
+    public void setCardDetails(CardEntity cardDetails) {
         this.cardDetails = cardDetails;
     }
 
-    public List<PayPalEntity> getPaypalDetails() {
+    public PayPalEntity getPaypalDetails() {
         return paypalDetails;
     }
 
-    public void setPaypalDetails(List<PayPalEntity> paypalDetails) {
+    public void setPaypalDetails(PayPalEntity paypalDetails) {
         this.paypalDetails = paypalDetails;
     }
 

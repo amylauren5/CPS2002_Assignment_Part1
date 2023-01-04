@@ -1,5 +1,7 @@
 package com.demo.advertising.general_management.controllers;
 
+import com.demo.advertising.general_management.data.entities.CardEntity;
+import com.demo.advertising.general_management.data.entities.PayPalEntity;
 import com.demo.advertising.general_management.services.models.Customer;
 import com.demo.advertising.general_management.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 public class CustomerController {
@@ -39,9 +42,14 @@ public class CustomerController {
         return ResponseEntity.ok(customer);
     }
 
+
+
     @PutMapping(value = "Customer/{customerId}")
-    public void updateCustomer(@PathVariable("customerId") String customerId, @RequestParam(required = false) String name,
-                               @RequestParam(required = false) String email, @RequestParam(required = false) String phoneNumber) {
+    public void updateCustomer(@PathVariable("customerId") String customerId,
+                               @RequestParam(required = false) String name,
+                               @RequestParam(required = false) String email,
+                               @RequestParam(required = false) String phoneNumber) {
+
         customerService.updateCustomer(customerId, name, email, phoneNumber);
     }
 

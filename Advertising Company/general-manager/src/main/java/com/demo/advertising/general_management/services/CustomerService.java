@@ -1,6 +1,8 @@
 package com.demo.advertising.general_management.services;
 
+import com.demo.advertising.general_management.data.entities.CardEntity;
 import com.demo.advertising.general_management.data.entities.CustomerEntity;
+import com.demo.advertising.general_management.data.entities.PayPalEntity;
 import com.demo.advertising.general_management.data.repositories.CustomerRepository;
 import com.demo.advertising.general_management.services.models.Customer;
 import com.demo.advertising.general_management.services.models.PaymentByCardStrategy;
@@ -12,6 +14,7 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -63,49 +66,49 @@ public class CustomerService {
         //card details and payment details both empty
 
         if(
-                (customer.getCardDetails().get(0).getCardNumber().equals("string")
-                        && customer.getCardDetails().get(0).getExpiryDate().equals("string")
-                        && customer.getCardDetails().get(0).getCvv().equals("string")
+                (customer.getCardDetails().getCardNumber().equals("string")
+                        && customer.getCardDetails().getExpiryDate().equals("string")
+                        && customer.getCardDetails().getCvv().equals("string")
                 ) &&
-                        (customer.getPaypalDetails().get(0).getUsername().equals("string")
-                                && customer.getPaypalDetails().get(0).getPassword().equals("string")
+                        (customer.getPaypalDetails().getUsername().equals("string")
+                                && customer.getPaypalDetails().getPassword().equals("string")
                         )
-
-        ) {
+        )
+        {
             throw new IllegalStateException("Please fill in either card details or paypal details!");
         }
 
 
         //if first field of Card is filled in then the other fields are also expected to be filled in
-        if(!customer.getCardDetails().get(0).getCardNumber().equals("string")){
-            if(customer.getCardDetails().get(0).getExpiryDate().equals("string")){
+        if(!customer.getCardDetails().getCardNumber().equals("string")){
+            if(customer.getCardDetails().getExpiryDate().equals("string")){
                 throw new IllegalStateException("Card expiry date is required!");
-            } else if(customer.getCardDetails().get(0).getCvv().equals("string")){
+            } else if(customer.getCardDetails().getCvv().equals("string")){
                 throw new IllegalStateException("Card cvv is required!");
-            } else if(!customer.getPaypalDetails().get(0).getUsername().equals("string")
-            || !customer.getPaypalDetails().get(0).getPassword().equals("string")){
+            } else if(!customer.getPaypalDetails().getUsername().equals("string")
+            || !customer.getPaypalDetails().getPassword().equals("string")){
                 throw new IllegalStateException("Choose either card OR paypal!");
             }
         }
 
         //if first field of PayPal is filled in then the other fields are also expected to be filled in
-        if(!customer.getPaypalDetails().get(0).getUsername().equals("string")){
-            if(customer.getPaypalDetails().get(0).getPassword().equals("string")){
+        if(!customer.getPaypalDetails().getUsername().equals("string")){
+            if(customer.getPaypalDetails().getPassword().equals("string")){
                 throw new IllegalStateException("Password is required!");
             }
         }
 
-        //if card details are NOT inputted then paypal is true
-        if((customer.getCardDetails().get(0).getCardNumber().equals("string")
-                && customer.getCardDetails().get(0).getExpiryDate().equals("string")
-                && customer.getCardDetails().get(0).getCvv().equals("string")
+        //if card details are NOT inputted then PayPal is true
+        if((customer.getCardDetails().getCardNumber().equals("string")
+                && customer.getCardDetails().getExpiryDate().equals("string")
+                && customer.getCardDetails().getCvv().equals("string")
         )){
             paypal = true;
         }
 
         //if paypal details are NOT inputted then card is true
-        if((customer.getPaypalDetails().get(0).getUsername().equals("string")
-                && customer.getPaypalDetails().get(0).getPassword().equals("string")
+        if((customer.getPaypalDetails().getUsername().equals("string")
+                && customer.getPaypalDetails().getPassword().equals("string")
         )){
             card = true;
         }
@@ -131,20 +134,23 @@ public class CustomerService {
         if(card){
 
             // check if cvv is valid
-            if (customer.getCardDetails().get(0).getCvv().length() != 3) {
+            if (customer.getCardDetails().getCvv().length() != 3) {
                 throw new IllegalStateException("Invalid cvv! It must be 3 characters long!");
             }
+
+            customerRepository.save(customerEntity);
 
             paymentService.setStrategy(new PaymentByCardStrategy());
             paymentService.processPaymentMethod();
         }
 
         if(paypal){
+
+            customerRepository.save(customerEntity);
+
             paymentService.setStrategy(new PaymentByPayPalStrategy());
             paymentService.processPaymentMethod();
         }
-
-        customerRepository.save(customerEntity);
     }
 
     //read customer
