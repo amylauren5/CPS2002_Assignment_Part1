@@ -46,7 +46,7 @@ public class BookingService {
         return mapper.map(retrievedBookingEntity.get(), Booking.class);
     }
 
-    public boolean checkBookingAvailability(String startingDate, String SpaceId, int noOfWeeks){
+    public boolean validateBooking(String startingDate, String SpaceId, int noOfWeeks){
 
         //converts string to LocalDate
         LocalDate startingDateConverted = LocalDate.parse(startingDate);
@@ -55,13 +55,13 @@ public class BookingService {
         LocalDate today = java.time.LocalDate.now();
 
         //checks if date has passed
-        if(startingDateConverted.isBefore(today) || getSchedule(startingDateConverted, SpaceId, noOfWeeks)){
+        if(startingDateConverted.isBefore(today) || checkBookingAvailability(startingDateConverted, SpaceId, noOfWeeks)){
             return false;
         }
         return true;
     }
 
-    public boolean getSchedule(LocalDate startingDate, String SpaceId, int noOfWeeks){
+    public boolean checkBookingAvailability(LocalDate startingDate, String SpaceId, int noOfWeeks){
 
         ScheduleEntity scheduleEntityToFind = new ScheduleEntity();
         scheduleEntityToFind.setSpaceId(SpaceId);

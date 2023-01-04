@@ -33,7 +33,7 @@ class CustomerControllerTests {
 	public void createCustomerTest() throws Exception{
 		mvc.perform(MockMvcRequestBuilders
 						.post("/Customer")
-						.content(asJsonString(new Customer("1", "Name1", "email1@mail.com", "phone1", "card1")))
+						.content(asJsonString(new Customer("1", "Name1", "email1@mail.com", "phone1")))
 						.contentType(MediaType.APPLICATION_JSON_VALUE)
 						.accept(MediaType.APPLICATION_JSON_VALUE))
 				.andExpect(status().isCreated())
@@ -64,14 +64,13 @@ class CustomerControllerTests {
 
 		mvc.perform(MockMvcRequestBuilders
 						.put("/Customer/{customerId}", "2")
-						.content(asJsonString(new Customer("2","Name2", "email2@mail.com", "phone2", "card2")))
+						.content(asJsonString(new Customer("2","Name2", "email2@mail.com", "phone2")))
 						.contentType(MediaType.APPLICATION_JSON_VALUE)
 						.accept(MediaType.APPLICATION_JSON_VALUE))
 				.andExpect(status().isOk())
 				.andExpect(MockMvcResultMatchers.jsonPath("$.name").value("Name2"))
 				.andExpect(MockMvcResultMatchers.jsonPath("$.email").value("email2@mail.com"))
-				.andExpect(MockMvcResultMatchers.jsonPath("$.phoneNumber").value("phone2"))
-				.andExpect(MockMvcResultMatchers.jsonPath("$.paymentDetails").value("card2"));
+				.andExpect(MockMvcResultMatchers.jsonPath("$.phoneNumber").value("phone2"));
 	}
 
 	@Test
