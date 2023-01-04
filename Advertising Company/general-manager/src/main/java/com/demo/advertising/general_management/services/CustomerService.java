@@ -110,6 +110,8 @@ public class CustomerService {
             card = true;
         }
 
+        // subscribe validation
+
         if(customer.getSubscribe().equals("string")){
             throw new IllegalStateException("Type yes OR no to subscribe!");
         }
@@ -122,22 +124,24 @@ public class CustomerService {
             throw new IllegalStateException("Type yes or no to subscribe!");
         }
 
-        if(customer.getCardDetails().get(0).getCvv().length() != 3){
-            throw new IllegalStateException("Invalid cvv! It must be 3 characters long!");
-        }
-
         //choose paymentStrategy
 
         paymentService = new PaymentService();
 
         if(card){
+
+            // check if cvv is valid
+            if (customer.getCardDetails().get(0).getCvv().length() != 3) {
+                throw new IllegalStateException("Invalid cvv! It must be 3 characters long!");
+            }
+
             paymentService.setStrategy(new PaymentByCardStrategy());
             paymentService.processPaymentMethod();
-        } else if(paypal){
+        }
+
+        if(paypal){
             paymentService.setStrategy(new PaymentByPayPalStrategy());
             paymentService.processPaymentMethod();
-        } else {
-            throw new IllegalStateException("Invalid payment details!");
         }
 
         customerRepository.save(customerEntity);
