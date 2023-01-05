@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 
 @Service
-public abstract class AdSpaceService {
+public class AdSpaceService {
     @Autowired
     ModelMapper mapper;
 
@@ -27,8 +27,7 @@ public abstract class AdSpaceService {
     AdSpaceRepository adSpaceRepository;
 
     //create ad space
-    public abstract AdSpace createAdSpace();
-    public String saveAdSpace(AdSpace adSpace){
+    public String createAdSpace(AdSpace adSpace){
         AdSpaceEntity adSpaceEntity = mapper.map(adSpace, AdSpaceEntity.class);
         adSpaceEntity.setSpaceId(UUID.randomUUID().toString());
         adSpaceEntity = adSpaceRepository.save(adSpaceEntity);
