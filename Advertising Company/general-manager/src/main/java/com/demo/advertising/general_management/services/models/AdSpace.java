@@ -3,7 +3,7 @@ package com.demo.advertising.general_management.services.models;
 public class AdSpace {
 
     //required
-    private String spaceId;
+    private final String spaceId;
     private final String popularity;     //people viewing space per day
     private final String type;        //billboard, buses, benches
     private final String size;           //size of advertising space
@@ -57,6 +57,7 @@ public class AdSpace {
     }
 
     private AdSpace(AdSpaceBuilder builder) {
+        this.spaceId = builder.spaceId;
         this.popularity = builder.popularity;
         this.type = builder.type;
         this.size = builder.size;
