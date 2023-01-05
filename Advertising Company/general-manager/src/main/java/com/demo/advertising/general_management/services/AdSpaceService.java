@@ -19,8 +19,7 @@ import java.util.stream.Collectors;
 
 
 @Service
-public class AdSpaceService {
-
+public abstract class AdSpaceService {
     @Autowired
     ModelMapper mapper;
 
@@ -28,13 +27,13 @@ public class AdSpaceService {
     AdSpaceRepository adSpaceRepository;
 
     //create ad space
-    public String createAdSpace(AdSpace adSpace){
+    public abstract AdSpace createAdSpace();
+    public String saveAdSpace(AdSpace adSpace){
         AdSpaceEntity adSpaceEntity = mapper.map(adSpace, AdSpaceEntity.class);
         adSpaceEntity.setSpaceId(UUID.randomUUID().toString());
         adSpaceEntity = adSpaceRepository.save(adSpaceEntity);
         return adSpaceEntity.getSpaceId();
     }
-
 
     //get ad space
     public List<AdSpace> getAdSpace(String FilterBy, String Filter) {
@@ -66,7 +65,6 @@ public class AdSpaceService {
                 adSpaceRepository.findAll(Example.of(adSpaceEntityToFind, ExampleMatcher.matchingAll()));
 
         if (retrievedOrderEntity.isEmpty()) return null;
-
 
         List<AdSpace> spaces= new ArrayList<>();
         for (AdSpaceEntity adSpaceEntity : retrievedOrderEntity) {

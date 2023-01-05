@@ -1,7 +1,5 @@
 package com.demo.advertising.general_management.controllers.requests;
 
-import java.util.List;
-
 public class CreateAdSpaceRequest {
     private String popularity;     //people viewing space per day
     private String size;           //size of advertising space
@@ -10,8 +8,10 @@ public class CreateAdSpaceRequest {
     private String maxWeeks;
     private String type;
     private String index;
+    private String location;
+    private String busRoute;
 
-    public CreateAdSpaceRequest(String popularity, String size, String price, String minWeeks, String maxWeeks, String type, String index) {
+    public CreateAdSpaceRequest(String popularity, String size, String price, String minWeeks, String maxWeeks, String type, String index, String location, String busRoute) {
         this.popularity = popularity;
         this.size = size;
         this.price = price;
@@ -19,6 +19,8 @@ public class CreateAdSpaceRequest {
         this.maxWeeks = maxWeeks;
         this.type = type;
         this.index = index;
+        this.location = location;
+        this.busRoute = busRoute;
     }
 
     public CreateAdSpaceRequest(){}
@@ -77,6 +79,22 @@ public class CreateAdSpaceRequest {
 
     public void setIndex(String index) {
         this.index = index;
+    }
+
+    public String getBusRoute() {
+        return busRoute;
+    }
+
+    public void setBusRoute(String busRoute) {
+        this.busRoute = busRoute;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }
 

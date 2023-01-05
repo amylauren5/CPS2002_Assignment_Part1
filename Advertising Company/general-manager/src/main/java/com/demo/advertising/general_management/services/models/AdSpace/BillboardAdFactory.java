@@ -1,6 +1,8 @@
 package com.demo.advertising.general_management.services.models.AdSpace;
 
-public class BillboardAdFactory extends AdSpaceFactory{
+import com.demo.advertising.general_management.services.AdSpaceService;
+
+public class BillboardAdFactory extends AdSpaceService {
 
     @Override
     public AdSpace createAdSpace(){
