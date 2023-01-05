@@ -16,8 +16,8 @@ public class AdSpace {
     private final String busRoute;
     private final String location;
 
-    public void setSpaceId(String spaceId) {
-        this.spaceId = spaceId;
+    public String getSpaceId() {
+        return spaceId;
     }
 
     public String getPopularity() {
