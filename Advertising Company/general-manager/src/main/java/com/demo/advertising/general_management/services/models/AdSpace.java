@@ -3,9 +3,19 @@ package com.demo.advertising.general_management.services.models;
 public class AdSpace {
 
     //required
+    private String spaceId;
+    private final String popularity;     //people viewing space per day
+    private final String type;        //billboard, buses, benches
+    private final String size;           //size of advertising space
     private final String price;          //cost to rent space per week
     private final String minWeeks;
     private final String maxWeeks;
+    private final String index;
+
+    //optional
+    private final String busRoute;
+    private final String location;
+
 
     public String getPrice() {
         return price;
@@ -21,19 +31,15 @@ public class AdSpace {
 
 
     private AdSpace(AdSpaceBuilder builder) {
-        //people viewing space per day
-        String popularity = builder.popularity;
-        //billboard, buses, benches
-        String type = builder.type;
-        //size of advertising space
-        String size = builder.size;
+        this.popularity = builder.popularity;
+        this.type = builder.type;
+        this.size = builder.size;
         this.price = builder.price;
         this.minWeeks = builder.minWeeks;
         this.maxWeeks = builder.maxWeeks;
-        String index = builder.index;
-        //optional
-        String busRoute = builder.busRoute;
-        String location = builder.location;
+        this.index = builder.index;
+        this.busRoute = builder.busRoute;
+        this.location = builder.location;
     }
 
     //Builder Class
