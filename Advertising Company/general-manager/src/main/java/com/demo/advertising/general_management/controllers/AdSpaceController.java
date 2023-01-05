@@ -45,17 +45,14 @@ public class AdSpaceController {
 
         String SpaceId = null;
         if (Objects.equals(newAdSpace.getType(), "bus")) {
-            AdSpaceService ads = new BusAdFactory();
             BusAd adSpace = mapper.map(newAdSpace, BusAd.class);
-            SpaceId = ads.saveAdSpace(adSpace);
+            SpaceId = adSpaceService.createAdSpace(adSpace);
         } else if (Objects.equals(newAdSpace.getType(), "billboard")) {
-            AdSpaceService ads = new BillboardAdFactory();
             BillboardAd adSpace = mapper.map(newAdSpace, BillboardAd.class);
-            SpaceId = ads.saveAdSpace(adSpace);
+            SpaceId = adSpaceService.createAdSpace(adSpace);
         } else if (Objects.equals(newAdSpace.getType(), "bench")) {
-            AdSpaceService ads = new BenchAdFactory();
             BenchAd adSpace = mapper.map(newAdSpace, BenchAd.class);
-            SpaceId = ads.saveAdSpace(adSpace);
+            SpaceId = adSpaceService.createAdSpace(adSpace);
         }
 
         return ResponseEntity.ok(new CreateAdSpaceResponse(SpaceId));
