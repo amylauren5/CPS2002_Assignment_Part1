@@ -1,8 +1,6 @@
 package com.demo.advertising.general_management.controllers.responses.GetAdSpace;
 
-
 public class GetAdSpaceResponse {
-
     private String spaceId;
     private String popularity;     //people viewing space per day
     private String type;        //billboard, buses, benches

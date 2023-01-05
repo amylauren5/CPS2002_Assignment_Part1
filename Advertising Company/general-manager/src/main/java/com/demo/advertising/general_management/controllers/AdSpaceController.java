@@ -7,11 +7,8 @@ import com.demo.advertising.general_management.controllers.responses.GetAdSpace.
 import com.demo.advertising.general_management.controllers.responses.GetAdSpace.GetBillboardAdResponse;
 import com.demo.advertising.general_management.controllers.responses.GetAdSpace.GetBusAdResponse;
 import com.demo.advertising.general_management.data.entities.AdSpaceEntity;
-import com.demo.advertising.general_management.services.models.AdSpace.AdSpace;
+import com.demo.advertising.general_management.services.models.AdSpace.*;
 import com.demo.advertising.general_management.services.AdSpaceService;
-import com.demo.advertising.general_management.services.models.AdSpace.BenchAd;
-import com.demo.advertising.general_management.services.models.AdSpace.BillboardAd;
-import com.demo.advertising.general_management.services.models.AdSpace.BusAd;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -56,6 +53,7 @@ public class AdSpaceController {
         }
 
         String SpaceId = null;
+
         if (Objects.equals(newAdSpace.getType(), "bus")) {
             BusAd adSpace = mapper.map(newAdSpace, BusAd.class);
             SpaceId = adSpaceService.createAdSpace(adSpace);
@@ -71,7 +69,7 @@ public class AdSpaceController {
     }
 
     @GetMapping(value = "/AdSpace/{Filter}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<GetAdSpaceResponse>> get(@RequestHeader String FilterBy, @RequestHeader String Filter) {
+    public ResponseEntity<List<AdSpace>> get(@RequestHeader String FilterBy, @RequestHeader String Filter) {
 
         List<AdSpace> adSpaces = adSpaceService.getAdSpace(FilterBy, Filter);
 
@@ -79,21 +77,9 @@ public class AdSpaceController {
             return ResponseEntity.notFound().build();
         }
 
-        List<GetAdSpaceResponse> getAdSpaceResponse= new ArrayList<>();
-        for (AdSpace adSpace : adSpaces) {
-            if (Objects.equals(adSpace.getType(), "bus")) {
-                GetBusAdResponse getAdSpace = mapper.map(adSpace, GetBusAdResponse.class);
-                getAdSpaceResponse.add(getAdSpace);
-            } else if (Objects.equals(adSpace.getType(), "billboard")) {
-                GetBillboardAdResponse getAdSpace = mapper.map(adSpace, GetBillboardAdResponse.class);
-                getAdSpaceResponse.add(getAdSpace);
-            } else if (Objects.equals(adSpace.getType(), "bench")) {
-                GetBenchAdResponse getAdSpace = mapper.map(adSpace, GetBenchAdResponse.class);
-                getAdSpaceResponse.add(getAdSpace);
-            }
-        }
 
-        return ResponseEntity.ok(getAdSpaceResponse);
+
+        return ResponseEntity.ok(adSpaces);
     }
 
     @PutMapping(value = "/AdSpace/{SpaceId}", produces = MediaType.APPLICATION_JSON_VALUE)

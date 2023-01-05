@@ -28,7 +28,7 @@ public class AdSpaceService {
     AdSpaceRepository adSpaceRepository;
 
     //create ad space
-    public <T extends AdSpace> String createAdSpace(AdSpace adSpace){
+    public String createAdSpace(AdSpace adSpace){
         AdSpaceEntity adSpaceEntity = mapper.map(adSpace, AdSpaceEntity.class);
         adSpaceEntity.setSpaceId(UUID.randomUUID().toString());
         adSpaceEntity = adSpaceRepository.save(adSpaceEntity);
@@ -66,6 +66,7 @@ public class AdSpaceService {
                 adSpaceRepository.findAll(Example.of(adSpaceEntityToFind, ExampleMatcher.matchingAll()));
 
         if (retrievedOrderEntity.isEmpty()) return null;
+
 
         List<AdSpace> spaces= new ArrayList<>();
         for (AdSpaceEntity adSpaceEntity : retrievedOrderEntity) {
@@ -115,7 +116,6 @@ public class AdSpaceService {
         if(BusRoute != null && BusRoute.length() > 0 && !Objects.equals(adSpace.getBusRoute(), BusRoute)){
             adSpace.setBusRoute(BusRoute);
         }
-
 
         if(Index != null && Index.length() > 0 && !Objects.equals(adSpace.getIndex(), Index)){
             adSpace.setIndex(Index);

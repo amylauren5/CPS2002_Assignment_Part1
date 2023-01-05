@@ -2,6 +2,7 @@ package com.demo.advertising.general_management.controllers;
 
 import com.demo.advertising.general_management.controllers.responses.CreateCustomerResponse;
 import com.demo.advertising.general_management.data.entities.CardEntity;
+import com.demo.advertising.general_management.data.entities.PayPalEntity;
 import com.demo.advertising.general_management.services.PaymentService;
 import com.demo.advertising.general_management.services.models.Customer;
 import com.demo.advertising.general_management.services.CustomerService;
