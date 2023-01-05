@@ -18,9 +18,6 @@ public class AdSpaceController {
     @Autowired
     AdSpaceService adSpaceService;
 
-    @Autowired
-    ModelMapper mapper;
-
     @PostMapping(value = "/AdSpace", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<CreateAdSpaceResponse> createAdSpace(@RequestParam String popularity,
                                                                @RequestParam String type, @RequestParam String size,
