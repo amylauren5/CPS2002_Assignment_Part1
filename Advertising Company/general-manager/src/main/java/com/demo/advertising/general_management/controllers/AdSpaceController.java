@@ -2,6 +2,7 @@ package com.demo.advertising.general_management.controllers;
 
 import com.demo.advertising.general_management.controllers.requests.CreateAdSpaceRequest;
 import com.demo.advertising.general_management.controllers.responses.CreateAdSpaceResponse;
+import com.demo.advertising.general_management.controllers.responses.GetAdSpace.GetAdSpaceResponse;
 import com.demo.advertising.general_management.data.entities.AdSpaceEntity;
 import com.demo.advertising.general_management.services.models.AdSpace.*;
 import com.demo.advertising.general_management.services.AdSpaceService;
@@ -28,7 +29,7 @@ public class AdSpaceController {
     ModelMapper mapper;
 
     @PostMapping(value = "/AdSpace", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CreateAdSpaceResponse> createAdSpace(@Valid @RequestBody AdSpace newAdSpace) {
+    public ResponseEntity<CreateAdSpaceResponse> createAdSpace(@Valid @RequestBody CreateAdSpaceRequest newAdSpace) {
 
         if (!Objects.equals(newAdSpace.getType(), "bus") && !Objects.equals(newAdSpace.getType(), "bench") &&
                 !Objects.equals(newAdSpace.getType(), "billboard")) {
