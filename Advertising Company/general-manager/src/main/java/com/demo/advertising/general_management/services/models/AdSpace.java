@@ -16,6 +16,21 @@ public class AdSpace {
     private final String busRoute;
     private final String location;
 
+    public void setSpaceId(String spaceId) {
+        this.spaceId = spaceId;
+    }
+
+    public String getPopularity() {
+        return popularity;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getSize() {
+        return size;
+    }
 
     public String getPrice() {
         return price;
@@ -29,6 +44,17 @@ public class AdSpace {
         return maxWeeks;
     }
 
+    public String getIndex() {
+        return index;
+    }
+
+    public String getBusRoute() {
+        return busRoute;
+    }
+
+    public String getLocation() {
+        return location;
+    }
 
     private AdSpace(AdSpaceBuilder builder) {
         this.popularity = builder.popularity;
