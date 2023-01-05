@@ -72,6 +72,7 @@ public class AdSpaceService {
             } else {
                 adSpace = builder.setLocation(adSpaceEntity.getLocation()).build();
             }
+            adSpace.setSpaceId(adSpaceEntity.getSpaceId());
             spaces.add(adSpace);
         }
         return spaces;
