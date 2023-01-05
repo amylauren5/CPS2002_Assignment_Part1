@@ -10,6 +10,10 @@ public class CreateCustomerResponse {
     private List<String> notificationMessage;
     private String paymentMessage;
 
+    public CreateCustomerResponse(){
+
+    }
+
     public CreateCustomerResponse(Customer customer, List<String> notificationMessage, String paymentMessage) {
         this.customer = customer;
         this.notificationMessage = notificationMessage;
