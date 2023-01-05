@@ -3,34 +3,9 @@ package com.demo.advertising.general_management.services.models;
 public class AdSpace {
 
     //required
-    private String spaceId;
-    private final String popularity;     //people viewing space per day
-    private final String type;        //billboard, buses, benches
-    private final String size;           //size of advertising space
     private final String price;          //cost to rent space per week
     private final String minWeeks;
     private final String maxWeeks;
-    private final String index;
-
-    //optional
-    private final String busRoute;
-    private final String location;
-
-    public void setSpaceId(String spaceId) {
-        this.spaceId = spaceId;
-    }
-
-    public String getPopularity() {
-        return popularity;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public String getSize() {
-        return size;
-    }
 
     public String getPrice() {
         return price;
@@ -44,34 +19,28 @@ public class AdSpace {
         return maxWeeks;
     }
 
-    public String getIndex() {
-        return index;
-    }
-
-    public String getBusRoute() {
-        return busRoute;
-    }
-
-    public String getLocation() {
-        return location;
-    }
 
     private AdSpace(AdSpaceBuilder builder) {
-        this.popularity = builder.popularity;
-        this.type = builder.type;
-        this.size = builder.size;
+        //people viewing space per day
+        String popularity = builder.popularity;
+        //billboard, buses, benches
+        String type = builder.type;
+        //size of advertising space
+        String size = builder.size;
         this.price = builder.price;
         this.minWeeks = builder.minWeeks;
         this.maxWeeks = builder.maxWeeks;
-        this.index = builder.index;
-        this.busRoute = builder.busRoute;
-        this.location = builder.location;
+        String index = builder.index;
+        //optional
+        String busRoute = builder.busRoute;
+        String location = builder.location;
     }
 
     //Builder Class
     public static class AdSpaceBuilder {
 
         // required parameters
+        private String spaceId;
         private String popularity;     //people viewing space per day
         private String type;        //billboard, buses, benches
         private String size;           //size of advertising space
@@ -101,6 +70,11 @@ public class AdSpace {
 
         public AdSpaceBuilder setLocation(String location) {
             this.location = location;
+            return this;
+        }
+
+        public AdSpaceBuilder setSpaceId(String spaceId) {
+            this.spaceId = spaceId;
             return this;
         }
 

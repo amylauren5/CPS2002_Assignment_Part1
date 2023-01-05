@@ -56,7 +56,7 @@ public class AdSpaceController {
     }
 
     @GetMapping(value = "/AdSpace/{Filter}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<GetAdSpaceResponse>> get(@RequestHeader String FilterBy, @RequestHeader String Filter) {
+    public ResponseEntity<List<AdSpace>> get(@RequestHeader String FilterBy, @RequestHeader String Filter) {
 
         List<AdSpace> adSpaces = adSpaceService.getAdSpace(FilterBy, Filter);
 
@@ -64,12 +64,7 @@ public class AdSpaceController {
             return ResponseEntity.notFound().build();
         }
 
-        List<GetAdSpaceResponse> getAdSpaceResponse = adSpaces
-                .stream()
-                .map(user -> mapper.map(user, GetAdSpaceResponse.class))
-                .collect(Collectors.toList());
-
-        return ResponseEntity.ok(getAdSpaceResponse);
+        return ResponseEntity.ok(adSpaces);
     }
 
     @PutMapping(value = "/AdSpace/{SpaceId}", produces = MediaType.APPLICATION_JSON_VALUE)

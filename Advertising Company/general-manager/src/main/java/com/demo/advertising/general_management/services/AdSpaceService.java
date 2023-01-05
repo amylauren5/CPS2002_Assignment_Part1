@@ -65,14 +65,14 @@ public class AdSpaceService {
         for (AdSpaceEntity adSpaceEntity : retrievedOrderEntity) {
             AdSpace.AdSpaceBuilder builder = new AdSpace.AdSpaceBuilder(
                     adSpaceEntity.getPopularity(),adSpaceEntity.getType(), adSpaceEntity.getSize(),
-                    adSpaceEntity.getPrice(),adSpaceEntity.getIndex(),adSpaceEntity.getMinWeeks(),adSpaceEntity.getMaxWeeks());
+                    adSpaceEntity.getPrice(),adSpaceEntity.getIndex(),adSpaceEntity.getMinWeeks(),
+                    adSpaceEntity.getMaxWeeks()).setSpaceId(adSpaceEntity.getSpaceId());
             AdSpace adSpace;
             if (Objects.equals(adSpaceEntity.getType(), "bus")) {
                 adSpace = builder.setBusRoute(adSpaceEntity.getBusRoute()).build();
             } else {
                 adSpace = builder.setLocation(adSpaceEntity.getLocation()).build();
             }
-            adSpace.setSpaceId(adSpaceEntity.getSpaceId());
             spaces.add(adSpace);
         }
         return spaces;
