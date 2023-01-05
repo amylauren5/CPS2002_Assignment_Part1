@@ -2,7 +2,6 @@ package com.demo.advertising.general_management.controllers;
 
 import com.demo.advertising.general_management.controllers.responses.CreateCustomerResponse;
 import com.demo.advertising.general_management.data.entities.CardEntity;
-import com.demo.advertising.general_management.data.entities.PayPalEntity;
 import com.demo.advertising.general_management.services.PaymentService;
 import com.demo.advertising.general_management.services.models.Customer;
 import com.demo.advertising.general_management.services.CustomerService;
@@ -62,8 +61,7 @@ public class CustomerController {
             paymentMessage = "Something went wrong!";
         }
 
-
-        return ResponseEntity.ok(new CreateCustomerResponse(notificationList, paymentMessage));
+        return ResponseEntity.ok((new CreateCustomerResponse(customer, notificationList, paymentMessage)));
     }
 
     @GetMapping(value = "/Customer/{customerId}")
@@ -93,7 +91,7 @@ public class CustomerController {
     @DeleteMapping(value = "Customer/{customerId}")
     public ResponseEntity<HttpStatus> deleteCustomer(@PathVariable("customerId") String customerId) {
         customerService.deleteCustomer(customerId);
-        return new ResponseEntity<HttpStatus>(HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
 }

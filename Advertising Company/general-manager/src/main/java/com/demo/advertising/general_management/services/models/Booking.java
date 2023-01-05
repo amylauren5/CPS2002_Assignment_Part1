@@ -11,6 +11,17 @@ public class Booking {
     private String startingDate;
     private String noOfWeeks;
 
+    public Booking() {
+
+    }
+
+    public Booking(String spaceId, String customerId, String bookingId, String startingDate, String noOfWeeks) {
+        SpaceId = spaceId;
+        this.customerId = customerId;
+        this.bookingId = bookingId;
+        this.startingDate = startingDate;
+        this.noOfWeeks = noOfWeeks;
+    }
     public String getCustomerId() {
         return customerId;
     }

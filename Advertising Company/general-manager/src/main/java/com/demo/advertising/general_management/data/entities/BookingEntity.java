@@ -13,6 +13,18 @@ public class BookingEntity {
     private String startingDate;
     private String noOfWeeks;
 
+    public BookingEntity(){
+
+    }
+
+    public BookingEntity(String spaceId, String customerId, String bookingId, String startingDate, String noOfWeeks) {
+        SpaceId = spaceId;
+        this.customerId = customerId;
+        this.bookingId = bookingId;
+        this.startingDate = startingDate;
+        this.noOfWeeks = noOfWeeks;
+    }
+
     public String getSpaceId() {
         return SpaceId;
     }

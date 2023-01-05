@@ -1,10 +1,11 @@
-package com.demo.advertising.general_management;
+package com.demo.advertising.general_management.controllers;
 
 import com.demo.advertising.general_management.controllers.BookingController;
 import com.demo.advertising.general_management.controllers.requests.CreateAdSpaceRequest;
 import com.demo.advertising.general_management.controllers.requests.SubmitBookingRequest;
 import com.demo.advertising.general_management.services.BookingService;
 import com.demo.advertising.general_management.services.CustomerService;
+import com.demo.advertising.general_management.services.models.Booking;
 import com.demo.advertising.general_management.services.models.Customer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -21,6 +22,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @AutoConfigureJsonTesters
@@ -33,17 +35,13 @@ public class BookingControllerTests {
     private ModelMapper mapper;
     @MockBean
     BookingService bookingService;
-
-    private String SpaceId;
-    private String startingDate;
-    private String noOfWeeks;
     @Autowired
     private JacksonTester<SubmitBookingRequest> jsonBooking;
 
     @Test
-    public void createAdSpaceTest() throws Exception {
+    public void createBookingTest() throws Exception {
         mvc.perform(MockMvcRequestBuilders
-                        .post("/booking/")
+                        .post("/booking")
                         .content(jsonBooking.write(new SubmitBookingRequest()).getJson())
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .accept(MediaType.APPLICATION_JSON_VALUE))

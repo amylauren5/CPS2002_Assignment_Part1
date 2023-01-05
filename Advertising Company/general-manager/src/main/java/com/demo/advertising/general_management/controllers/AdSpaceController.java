@@ -2,7 +2,6 @@ package com.demo.advertising.general_management.controllers;
 
 import com.demo.advertising.general_management.controllers.requests.CreateAdSpaceRequest;
 import com.demo.advertising.general_management.controllers.responses.CreateAdSpaceResponse;
-import com.demo.advertising.general_management.data.entities.AdSpaceEntity;
 import com.demo.advertising.general_management.services.models.AdSpace.*;
 import com.demo.advertising.general_management.services.AdSpaceService;
 import org.modelmapper.ModelMapper;
@@ -11,10 +10,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -28,7 +25,7 @@ public class AdSpaceController {
     ModelMapper mapper;
 
     @PostMapping(value = "/AdSpace", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CreateAdSpaceResponse> createAdSpace(@Valid @RequestBody AdSpace newAdSpace) {
+    public ResponseEntity<CreateAdSpaceResponse> createAdSpace(@Valid @RequestBody CreateAdSpaceRequest newAdSpace) {
 
         if (!Objects.equals(newAdSpace.getType(), "bus") && !Objects.equals(newAdSpace.getType(), "bench") &&
                 !Objects.equals(newAdSpace.getType(), "billboard")) {
@@ -48,14 +45,17 @@ public class AdSpaceController {
 
         String SpaceId = null;
         if (Objects.equals(newAdSpace.getType(), "bus")) {
+            AdSpaceService ads = new BusAdFactory();
             BusAd adSpace = mapper.map(newAdSpace, BusAd.class);
-            SpaceId = adSpaceService.createAdSpace(adSpace);
+            SpaceId = ads.saveAdSpace(adSpace);
         } else if (Objects.equals(newAdSpace.getType(), "billboard")) {
+            AdSpaceService ads = new BillboardAdFactory();
             BillboardAd adSpace = mapper.map(newAdSpace, BillboardAd.class);
-            SpaceId = adSpaceService.createAdSpace(adSpace);
+            SpaceId = ads.saveAdSpace(adSpace);
         } else if (Objects.equals(newAdSpace.getType(), "bench")) {
+            AdSpaceService ads = new BenchAdFactory();
             BenchAd adSpace = mapper.map(newAdSpace, BenchAd.class);
-            SpaceId = adSpaceService.createAdSpace(adSpace);
+            SpaceId = ads.saveAdSpace(adSpace);
         }
 
         return ResponseEntity.ok(new CreateAdSpaceResponse(SpaceId));
