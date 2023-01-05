@@ -4,7 +4,7 @@ import com.demo.advertising.general_management.controllers.requests.SubmitBookin
 import com.demo.advertising.general_management.controllers.responses.GetBookingResponse;
 import com.demo.advertising.general_management.controllers.responses.SubmitBookingResponse;
 import com.demo.advertising.general_management.services.CustomerService;
-import com.demo.advertising.general_management.services.models.AdSpace.AdSpace;
+import com.demo.advertising.general_management.services.models.AdSpace;
 import com.demo.advertising.general_management.services.AdSpaceService;
 import com.demo.advertising.general_management.services.BookingService;
 import com.demo.advertising.general_management.services.models.Booking;

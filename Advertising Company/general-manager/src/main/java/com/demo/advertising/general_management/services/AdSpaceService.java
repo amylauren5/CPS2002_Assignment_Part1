@@ -2,11 +2,8 @@ package com.demo.advertising.general_management.services;
 
 import com.demo.advertising.general_management.data.entities.AdSpaceEntity;
 import com.demo.advertising.general_management.data.repositories.AdSpaceRepository;
-import com.demo.advertising.general_management.services.models.AdSpace.AdSpace;
+import com.demo.advertising.general_management.services.models.AdSpace;
 
-import com.demo.advertising.general_management.services.models.AdSpace.BenchAd;
-import com.demo.advertising.general_management.services.models.AdSpace.BillboardAd;
-import com.demo.advertising.general_management.services.models.AdSpace.BusAd;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -15,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.*;
-import java.util.stream.Collectors;
 
 
 @Service
@@ -67,16 +63,16 @@ public class AdSpaceService {
 
         List<AdSpace> spaces= new ArrayList<>();
         for (AdSpaceEntity adSpaceEntity : retrievedOrderEntity) {
+            AdSpace.AdSpaceBuilder builder = new AdSpace.AdSpaceBuilder(
+                    adSpaceEntity.getPopularity(),adSpaceEntity.getType(), adSpaceEntity.getSize(),
+                    adSpaceEntity.getPrice(),adSpaceEntity.getIndex(),adSpaceEntity.getMinWeeks(),adSpaceEntity.getMaxWeeks());
+            AdSpace adSpace;
             if (Objects.equals(adSpaceEntity.getType(), "bus")) {
-                BusAd adSpace = mapper.map(adSpaceEntity, BusAd.class);
-                spaces.add(adSpace);
-            } else if (Objects.equals(adSpaceEntity.getType(), "billboard")) {
-                BillboardAd adSpace = mapper.map(adSpaceEntity, BillboardAd.class);
-                spaces.add(adSpace);
-            } else if (Objects.equals(adSpaceEntity.getType(), "bench")) {
-                BenchAd adSpace = mapper.map(adSpaceEntity, BenchAd.class);
-                spaces.add(adSpace);
+                adSpace = builder.setBusRoute(adSpaceEntity.getBusRoute()).build();
+            } else {
+                adSpace = builder.setLocation(adSpaceEntity.getLocation()).build();
             }
+            spaces.add(adSpace);
         }
         return spaces;
     }

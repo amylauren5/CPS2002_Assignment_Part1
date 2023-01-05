@@ -1,8 +1,7 @@
 package com.demo.advertising.general_management.controllers;
 
-import com.demo.advertising.general_management.controllers.requests.CreateAdSpaceRequest;
 import com.demo.advertising.general_management.controllers.responses.CreateAdSpaceResponse;
-import com.demo.advertising.general_management.services.models.AdSpace.*;
+import com.demo.advertising.general_management.services.models.AdSpace;
 import com.demo.advertising.general_management.services.AdSpaceService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Objects;
-
-import javax.validation.Valid;
 
 @RestController
 public class AdSpaceController {
@@ -25,35 +22,33 @@ public class AdSpaceController {
     ModelMapper mapper;
 
     @PostMapping(value = "/AdSpace", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<CreateAdSpaceResponse> createAdSpace(@Valid @RequestBody CreateAdSpaceRequest newAdSpace) {
+    public ResponseEntity<CreateAdSpaceResponse> createAdSpace(@RequestParam String popularity,
+                                                               @RequestParam String type, @RequestParam String size,
+                                                               @RequestParam String price,@RequestParam String index,
+                                                               @RequestParam(required = false) String location,
+                                                               @RequestParam(required = false) String busRoute,
+                                                               @RequestParam String minWeeks,@RequestParam String maxWeeks) {
 
-        if (!Objects.equals(newAdSpace.getType(), "bus") && !Objects.equals(newAdSpace.getType(), "bench") &&
-                !Objects.equals(newAdSpace.getType(), "billboard")) {
+        if (!Objects.equals(type, "bus") && !Objects.equals(type, "bench") &&
+                !Objects.equals(type, "billboard")) {
             throw new IllegalStateException("Type must be bus, bench or billboard!");
-        }else if (Objects.equals(newAdSpace.getPopularity(), "string") || Objects.equals(newAdSpace.getSize(), "string") ||
-                Objects.equals(newAdSpace.getPrice(), "string") || Objects.equals(newAdSpace.getMinWeeks(), "string") ||
-                Objects.equals(newAdSpace.getMaxWeeks(), "string")) {
-            throw new IllegalStateException("Please fill in all fields!");
         }
 
-        int minweeks = Integer.parseInt(newAdSpace.getMinWeeks());
-        int maxweeks = Integer.parseInt(newAdSpace.getMaxWeeks());
+        int minweeks = Integer.parseInt(minWeeks);
+        int maxweeks = Integer.parseInt(maxWeeks);
 
         if (minweeks > maxweeks) {
             throw new IllegalStateException("Minimum weeks must be less than maximum weeks!");
         }
 
-        String SpaceId = null;
-        if (Objects.equals(newAdSpace.getType(), "bus")) {
-            BusAd adSpace = mapper.map(newAdSpace, BusAd.class);
-            SpaceId = adSpaceService.createAdSpace(adSpace);
-        } else if (Objects.equals(newAdSpace.getType(), "billboard")) {
-            BillboardAd adSpace = mapper.map(newAdSpace, BillboardAd.class);
-            SpaceId = adSpaceService.createAdSpace(adSpace);
-        } else if (Objects.equals(newAdSpace.getType(), "bench")) {
-            BenchAd adSpace = mapper.map(newAdSpace, BenchAd.class);
-            SpaceId = adSpaceService.createAdSpace(adSpace);
+        AdSpace.AdSpaceBuilder builder = new AdSpace.AdSpaceBuilder(popularity,type,size,price,index,minWeeks,maxWeeks);
+        AdSpace adSpace;
+        if (Objects.equals(type, "bus")) {
+            adSpace = builder.setBusRoute(busRoute).build();
+        } else{
+            adSpace = builder.setLocation(location).build();
         }
+        String SpaceId = adSpaceService.createAdSpace(adSpace);
 
         return ResponseEntity.ok(new CreateAdSpaceResponse(SpaceId));
     }

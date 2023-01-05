@@ -1,5 +1,5 @@
 package com.demo.advertising.general_management.controllers.responses;
-import com.demo.advertising.general_management.services.models.AdSpace.AdSpace;
+import com.demo.advertising.general_management.services.models.AdSpace;
 
 import java.util.List;
 

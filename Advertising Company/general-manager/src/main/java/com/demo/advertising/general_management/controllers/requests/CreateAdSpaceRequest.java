@@ -8,10 +8,9 @@ public class CreateAdSpaceRequest {
     private String maxWeeks;
     private String type;
     private String index;
-    private String location;
-    private String busRoute;
+    private ExtraAdRequest extras;
 
-    public CreateAdSpaceRequest(String popularity, String size, String price, String minWeeks, String maxWeeks, String type, String index, String location, String busRoute) {
+    public CreateAdSpaceRequest(String popularity, String size, String price, String minWeeks, String maxWeeks, String type, String index, ExtraAdRequest extras) {
         this.popularity = popularity;
         this.size = size;
         this.price = price;
@@ -19,8 +18,7 @@ public class CreateAdSpaceRequest {
         this.maxWeeks = maxWeeks;
         this.type = type;
         this.index = index;
-        this.location = location;
-        this.busRoute = busRoute;
+        this.extras = extras;
     }
 
     public CreateAdSpaceRequest(){}
@@ -81,20 +79,12 @@ public class CreateAdSpaceRequest {
         this.index = index;
     }
 
-    public String getBusRoute() {
-        return busRoute;
+    public ExtraAdRequest getExtras() {
+        return extras;
     }
 
-    public void setBusRoute(String busRoute) {
-        this.busRoute = busRoute;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
+    public void setExtras(ExtraAdRequest extras) {
+        this.extras = extras;
     }
 }
 
