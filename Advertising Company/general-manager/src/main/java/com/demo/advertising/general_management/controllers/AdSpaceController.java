@@ -1,7 +1,6 @@
 package com.demo.advertising.general_management.controllers;
 
 import com.demo.advertising.general_management.controllers.responses.CreateAdSpaceResponse;
-import com.demo.advertising.general_management.controllers.responses.GetAdSpace.GetAdSpaceResponse;
 import com.demo.advertising.general_management.services.models.AdSpace;
 import com.demo.advertising.general_management.services.AdSpaceService;
 import org.modelmapper.ModelMapper;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @RestController
 public class AdSpaceController {

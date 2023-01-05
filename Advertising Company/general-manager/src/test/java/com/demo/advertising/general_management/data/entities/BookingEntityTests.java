@@ -1,4 +1,4 @@
-package com.demo.advertising.general_management;
+package com.demo.advertising.general_management.data.entities;
 
 import com.demo.advertising.general_management.data.entities.BookingEntity;
 import org.junit.jupiter.api.Assertions;

@@ -1,4 +1,4 @@
-package com.demo.advertising.general_management;
+package com.demo.advertising.general_management.services.models;
 
 import com.demo.advertising.general_management.services.models.Booking;
 import org.junit.jupiter.api.Assertions;

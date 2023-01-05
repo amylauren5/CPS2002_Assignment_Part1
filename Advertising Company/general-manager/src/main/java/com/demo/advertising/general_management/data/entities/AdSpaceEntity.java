@@ -18,6 +18,21 @@ public class AdSpaceEntity {
     private String location;
     private String index;
 
+    public AdSpaceEntity(String spaceId, String popularity, String type, String size, String price, String minWeeks, String maxWeeks, String busRoute, String location, String index) {
+        this.spaceId = spaceId;
+        this.popularity = popularity;
+        this.type = type;
+        this.size = size;
+        this.price = price;
+        this.minWeeks = minWeeks;
+        this.maxWeeks = maxWeeks;
+        this.busRoute = busRoute;
+        this.location = location;
+        this.index = index;
+    }
+
+    public AdSpaceEntity(){};
+
     public String getSpaceId() {
         return spaceId;
     }
