@@ -19,11 +19,12 @@ public class Customer {
 
     }
 
-    public Customer(String customerId, String name, String email, String phoneNumber) {
+    public Customer(String customerId, String name, String email, String phoneNumber, String subscribe) {
         this.customerId = customerId;
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.subscribe = subscribe;
     }
 
     public Customer(String customerId, String name, String email, String phoneNumber, CardEntity cardDetails,
