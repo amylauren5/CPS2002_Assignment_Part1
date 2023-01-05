@@ -1,6 +1,7 @@
 package com.demo.advertising.general_management.controllers;
 
 import com.demo.advertising.general_management.controllers.responses.CreateAdSpaceResponse;
+import com.demo.advertising.general_management.controllers.responses.GetAdSpace.GetAdSpaceResponse;
 import com.demo.advertising.general_management.services.models.AdSpace;
 import com.demo.advertising.general_management.services.AdSpaceService;
 import org.modelmapper.ModelMapper;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @RestController
 public class AdSpaceController {
@@ -54,7 +56,7 @@ public class AdSpaceController {
     }
 
     @GetMapping(value = "/AdSpace/{Filter}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<AdSpace>> get(@RequestHeader String FilterBy, @RequestHeader String Filter) {
+    public ResponseEntity<List<GetAdSpaceResponse>> get(@RequestHeader String FilterBy, @RequestHeader String Filter) {
 
         List<AdSpace> adSpaces = adSpaceService.getAdSpace(FilterBy, Filter);
 
@@ -62,7 +64,12 @@ public class AdSpaceController {
             return ResponseEntity.notFound().build();
         }
 
-        return ResponseEntity.ok(adSpaces);
+        List<GetAdSpaceResponse> getAdSpaceResponse = adSpaces
+                .stream()
+                .map(user -> mapper.map(user, GetAdSpaceResponse.class))
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(getAdSpaceResponse);
     }
 
     @PutMapping(value = "/AdSpace/{SpaceId}", produces = MediaType.APPLICATION_JSON_VALUE)
