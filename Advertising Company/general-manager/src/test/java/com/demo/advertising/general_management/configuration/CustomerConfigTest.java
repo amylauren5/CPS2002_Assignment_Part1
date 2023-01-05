@@ -1,4 +1,4 @@
-package com.demo.advertising.general_management;
+package com.demo.advertising.general_management.configuration;
 
 import com.demo.advertising.general_management.configuration.CustomerConfig;
 import com.demo.advertising.general_management.services.CustomerService;
