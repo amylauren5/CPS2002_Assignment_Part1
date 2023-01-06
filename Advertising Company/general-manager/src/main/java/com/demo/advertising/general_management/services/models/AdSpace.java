@@ -82,11 +82,11 @@ public class AdSpace {
         private String spaceId;
         private String popularity;     //people viewing space per day
         private String type;        //billboard, buses, benches
-        private String length;           //size of advertising space
-        private String maxWeeks;
         private String price;          //cost to rent space per week
-        private String minWeeks;
+        private String length;           //size of advertising space
         private String width;
+        private String minWeeks;
+        private String maxWeeks;
 
         // optional parameters
         private String busRoute;

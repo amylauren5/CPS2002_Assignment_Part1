@@ -43,12 +43,21 @@ public class AdSpaceController {
         AdSpace adSpace = null;
         switch (type) {
             case "bus":
+                if(Objects.equals(busRoute, "string")){
+                throw new IllegalStateException("Please fill in busRoute field!");
+                }
                 adSpace = builder.setBusRoute(busRoute).build();
                 break;
             case "billboard":
+                if(Objects.equals(location, "string")){
+                    throw new IllegalStateException("Please fill in location field!");
+                }
                 adSpace = builder.setLocation(location).setDurationInterval(durationInterval).build();
                 break;
             case "bench":
+                if(Objects.equals(location, "string")||Objects.equals(durationInterval, "string")){
+                    throw new IllegalStateException("Please fill in both location and durationInterval fields!");
+                }
                 adSpace = builder.setLocation(location).build();
                 break;
         }
