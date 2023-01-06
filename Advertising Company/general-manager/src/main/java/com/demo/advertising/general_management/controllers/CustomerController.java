@@ -65,7 +65,7 @@ public class CustomerController {
     }
 
     @GetMapping(value = "/Customer/{customerId}")
-    public ResponseEntity<Customer> getCustomer(@PathVariable("customerId") String customerId) {
+    public ResponseEntity<Customer> getCustomer(@RequestHeader String customerId) {
 
         Customer customer = customerService.getCustomer(customerId);
 

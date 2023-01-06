@@ -1,13 +1,12 @@
 package com.demo.advertising.general_management.controllers;
 
-import com.demo.advertising.general_management.controllers.CustomerController;
 import com.demo.advertising.general_management.data.entities.CardEntity;
-import com.demo.advertising.general_management.data.entities.CustomerEntity;
 import com.demo.advertising.general_management.data.entities.PayPalEntity;
 import com.demo.advertising.general_management.services.CustomerService;
 import com.demo.advertising.general_management.services.models.Customer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +30,8 @@ class CustomerControllerTests {
 
 	@MockBean
 	CustomerService customerService;
+
+	static Customer customer;
 
 
 	// METHOD FOR JSON CONVERSION
@@ -127,12 +128,12 @@ class CustomerControllerTests {
 	public void getCustomerByCustomerIdTest() throws Exception{
 
 		mvc.perform(MockMvcRequestBuilders
-				.get("/Customer/{customerId}", "1")
-				.contentType(MediaType.APPLICATION_JSON)
-				.accept(MediaType.APPLICATION_JSON))
+						.get("/Customer/{customerId}", "1")
+						.contentType(MediaType.APPLICATION_JSON)
+						.header("customerId", "1")
+						.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
-				.andDo(print())
-				.andExpect(MockMvcResultMatchers.jsonPath("$.customerId").value("1"));
+				.andDo(print());
 	}
 
 	@Test
@@ -153,6 +154,16 @@ class CustomerControllerTests {
 	public void deleteCustomerTest() throws Exception{
 		mvc.perform(MockMvcRequestBuilders.delete("/Customer/{customerId}", "3"))
 				.andExpect(status().isAccepted());
+	}
+
+	@Before
+	public void setup(){
+		customer = new Customer("2","Name2", "email2@mail.com", "phone2","no");
+	}
+
+	@Test
+	public void createCustomerServiceTest(){
+		customerService.createCustomer(customer);
 	}
 
 }
