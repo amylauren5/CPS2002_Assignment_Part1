@@ -40,8 +40,10 @@ public class AdSpaceService {
             adSpaceEntityToFind.setPopularity(Filter);
         }else if(Objects.equals(FilterBy, "type")){
             adSpaceEntityToFind.setType(Filter);
-        }else if(Objects.equals(FilterBy, "size")){
-            adSpaceEntityToFind.setSize(Filter);
+        }else if(Objects.equals(FilterBy, "length")){
+            adSpaceEntityToFind.setLength(Filter);
+        }else if(Objects.equals(FilterBy, "width")){
+            adSpaceEntityToFind.setWidth(Filter);
         }else if(Objects.equals(FilterBy, "price")){
             adSpaceEntityToFind.setPrice(Filter);
         }else if(Objects.equals(FilterBy, "minWeeks")){
@@ -52,8 +54,6 @@ public class AdSpaceService {
             adSpaceEntityToFind.setBusRoute(Filter);
         }else if(Objects.equals(FilterBy, "location")){
             adSpaceEntityToFind.setLocation(Filter);
-        }else if(Objects.equals(FilterBy, "index")){
-            adSpaceEntityToFind.setIndex(Filter);
         }
 
         List<AdSpaceEntity> retrievedOrderEntity =
@@ -64,14 +64,21 @@ public class AdSpaceService {
         List<AdSpace> spaces= new ArrayList<>();
         for (AdSpaceEntity adSpaceEntity : retrievedOrderEntity) {
             AdSpace.AdSpaceBuilder builder = new AdSpace.AdSpaceBuilder(
-                    adSpaceEntity.getPopularity(),adSpaceEntity.getType(), adSpaceEntity.getSize(),
-                    adSpaceEntity.getPrice(),adSpaceEntity.getIndex(),adSpaceEntity.getMinWeeks(),
+                    adSpaceEntity.getPopularity(),adSpaceEntity.getType(), adSpaceEntity.getLength(),
+                    adSpaceEntity.getWidth(),adSpaceEntity.getPrice(),adSpaceEntity.getMinWeeks(),
                     adSpaceEntity.getMaxWeeks()).setSpaceId(adSpaceEntity.getSpaceId());
-            AdSpace adSpace;
-            if (Objects.equals(adSpaceEntity.getType(), "bus")) {
-                adSpace = builder.setBusRoute(adSpaceEntity.getBusRoute()).build();
-            } else {
-                adSpace = builder.setLocation(adSpaceEntity.getLocation()).build();
+            AdSpace adSpace = null;
+            switch (adSpaceEntity.getType()) {
+                case "bus":
+                    adSpace = builder.setBusRoute(adSpaceEntity.getBusRoute()).build();
+                    break;
+                case "billboard":
+                    adSpace = builder.setLocation(adSpaceEntity.getLocation())
+                            .setDurationInterval(adSpaceEntity.getDurationInterval()).build();
+                    break;
+                case "bench":
+                    adSpace = builder.setLocation(adSpaceEntity.getLocation()).build();
+                    break;
             }
             spaces.add(adSpace);
         }
@@ -80,8 +87,8 @@ public class AdSpaceService {
 
     //update ad space
     @Transactional
-    public void updateAdSpace(String SpaceId, String Popularity, String Type, String Size,
-                              String Price, String Location, String BusRoute, String Index) {
+    public void updateAdSpace(String SpaceId, String Popularity, String Type, String Length, String Width,
+                              String Price, String Location, String BusRoute, String DurationInterval) {
 
         AdSpaceEntity adSpace = adSpaceRepository.findById(SpaceId).orElseThrow(
                 () -> new IllegalStateException("Ad space does not exist!")
@@ -95,8 +102,12 @@ public class AdSpaceService {
             adSpace.setType(Type);
         }
 
-        if(Size != null && Size.length() > 0 && !Objects.equals(adSpace.getSize(), Size)){
-            adSpace.setSize(Size);
+        if(Width != null && Width.length() > 0 && !Objects.equals(adSpace.getWidth(), Width)){
+            adSpace.setWidth(Width);
+        }
+
+        if(Length != null && Length.length() > 0 && !Objects.equals(adSpace.getLength(), Length)){
+            adSpace.setLength(Length);
         }
 
         if(Price != null && Price.length() > 0 && !Objects.equals(adSpace.getPrice(), Price)){
@@ -111,8 +122,9 @@ public class AdSpaceService {
             adSpace.setBusRoute(BusRoute);
         }
 
-        if(Index != null && Index.length() > 0 && !Objects.equals(adSpace.getIndex(), Index)){
-            adSpace.setIndex(Index);
+
+        if(DurationInterval != null && DurationInterval.length() > 0 && !Objects.equals(adSpace.getDurationInterval(), DurationInterval)){
+            adSpace.setDurationInterval(DurationInterval);
         }
     }
 

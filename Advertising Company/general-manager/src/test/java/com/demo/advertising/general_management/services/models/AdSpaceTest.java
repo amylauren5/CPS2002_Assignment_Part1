@@ -13,8 +13,8 @@ class AdSpaceTest {
 
     @BeforeAll
     public static void setup(){
-        adSpaceToGet = new AdSpace.AdSpaceBuilder("High","bus","1000","5000","15","45","9")
-                .setSpaceId("123abc").setBusRoute("235").setLocation("gharghur").build();
+        adSpaceToGet = new AdSpace.AdSpaceBuilder("High","bus","5","10","5000","15","45")
+                .setSpaceId("123abc").setBusRoute("235").setLocation("gharghur").setDurationInterval("10").build();
     }
 
     @Test
@@ -36,9 +36,15 @@ class AdSpaceTest {
     }
 
     @Test
-    void getSize() {
-        String size = adSpaceToGet.getSize();
-        Assertions.assertEquals("1000", size);
+    void getLength() {
+        String length = adSpaceToGet.getLength();
+        Assertions.assertEquals("5", length);
+    }
+
+    @Test
+    void getWidth() {
+        String width = adSpaceToGet.getWidth();
+        Assertions.assertEquals("10", width);
     }
 
     @Test
@@ -59,12 +65,6 @@ class AdSpaceTest {
     }
 
     @Test
-    void getIndex() {
-        String index = adSpaceToGet.getIndex();
-        Assertions.assertEquals("9", index);
-    }
-
-    @Test
     void getBusRoute() {
         String busRoute = adSpaceToGet.getBusRoute();
         Assertions.assertEquals("235", busRoute);
@@ -74,5 +74,11 @@ class AdSpaceTest {
     void getLocation() {
         String location = adSpaceToGet.getLocation();
         Assertions.assertEquals("gharghur", location);
+    }
+
+    @Test
+    void getDurationInterval() {
+        String durationInterval = adSpaceToGet.getDurationInterval();
+        Assertions.assertEquals("10", durationInterval);
     }
 }

@@ -13,7 +13,7 @@ class AdSpaceEntityTest {
 
     @BeforeAll
     public static void setup(){
-        adSpaceToGet = new AdSpaceEntity("123abc","High","bus","1000","5000","15","45","235","gharghur","9");
+        adSpaceToGet = new AdSpaceEntity("123abc","High","bus","5","10","5000","15","45","235","gharghur","10");
         adSpaceToSet = new AdSpaceEntity();
     }
 
@@ -26,7 +26,7 @@ class AdSpaceEntityTest {
     @Test
     void setSpaceId() {
         adSpaceToSet.setSpaceId("123abc");
-        Assertions.assertEquals("123abc",  adSpaceToSet.getSpaceId());
+        Assertions.assertEquals("123abc", adSpaceToSet.getSpaceId());
     }
 
     @Test
@@ -54,15 +54,27 @@ class AdSpaceEntityTest {
     }
 
     @Test
-    void getSize() {
-        String size = adSpaceToGet.getSize();
-        Assertions.assertEquals("1000", size);
+    void getLength() {
+        String length = adSpaceToGet.getLength();
+        Assertions.assertEquals("5", length);
     }
 
     @Test
-    void setSize() {
-        adSpaceToSet.setSize("1000");
-        Assertions.assertEquals("1000",  adSpaceToSet.getSize());
+    void setLength() {
+        adSpaceToSet.setLength("5");
+        Assertions.assertEquals("5",  adSpaceToSet.getLength());
+    }
+
+    @Test
+    void getWidth() {
+        String width = adSpaceToGet.getWidth();
+        Assertions.assertEquals("10", width);
+    }
+
+    @Test
+    void setWidth() {
+        adSpaceToSet.setWidth("10");
+        Assertions.assertEquals("10",  adSpaceToSet.getWidth());
     }
 
     @Test
@@ -126,14 +138,15 @@ class AdSpaceEntityTest {
     }
 
     @Test
-    void getIndex() {
-        String index = adSpaceToGet.getIndex();
-        Assertions.assertEquals("9", index);
+    void getDurationInterval() {
+        String durationInterval = adSpaceToGet.getDurationInterval();
+        Assertions.assertEquals("10", durationInterval);
     }
 
     @Test
-    void setIndex() {
-        adSpaceToSet.setIndex("9");
-        Assertions.assertEquals("9",  adSpaceToSet.getIndex());
+    void setDurationInterval() {
+        adSpaceToSet.setDurationInterval("10");
+        Assertions.assertEquals("10",  adSpaceToSet.getDurationInterval());
     }
+
 }

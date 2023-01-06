@@ -20,11 +20,12 @@ public class AdSpaceController {
 
     @PostMapping(value = "/AdSpace", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<CreateAdSpaceResponse> createAdSpace(@RequestParam String popularity,
-                                                               @RequestParam String type, @RequestParam String size,
-                                                               @RequestParam String price,@RequestParam String index,
+                                                               @RequestParam String type, @RequestParam String length,
+                                                               @RequestParam String width,@RequestParam String price,
+                                                               @RequestParam String minWeeks,@RequestParam String maxWeeks,
+                                                               @RequestParam(required = false) String durationInterval,
                                                                @RequestParam(required = false) String location,
-                                                               @RequestParam(required = false) String busRoute,
-                                                               @RequestParam String minWeeks,@RequestParam String maxWeeks) {
+                                                               @RequestParam(required = false) String busRoute) {
 
         if (!Objects.equals(type, "bus") && !Objects.equals(type, "bench") &&
                 !Objects.equals(type, "billboard")) {
@@ -38,12 +39,18 @@ public class AdSpaceController {
             throw new IllegalStateException("Minimum weeks must be less than maximum weeks!");
         }
 
-        AdSpace.AdSpaceBuilder builder = new AdSpace.AdSpaceBuilder(popularity,type,size,price,index,minWeeks,maxWeeks);
-        AdSpace adSpace;
-        if (Objects.equals(type, "bus")) {
-            adSpace = builder.setBusRoute(busRoute).build();
-        } else{
-            adSpace = builder.setLocation(location).build();
+        AdSpace.AdSpaceBuilder builder = new AdSpace.AdSpaceBuilder(popularity,type,length,width,price,minWeeks,maxWeeks);
+        AdSpace adSpace = null;
+        switch (type) {
+            case "bus":
+                adSpace = builder.setBusRoute(busRoute).build();
+                break;
+            case "billboard":
+                adSpace = builder.setLocation(location).setDurationInterval(durationInterval).build();
+                break;
+            case "bench":
+                adSpace = builder.setLocation(location).build();
+                break;
         }
         String SpaceId = adSpaceService.createAdSpace(adSpace);
 
@@ -64,10 +71,11 @@ public class AdSpaceController {
 
     @PutMapping(value = "/AdSpace/{SpaceId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public void updateAdSpace(@RequestHeader String SpaceId, @RequestParam(required = false) String Popularity,
-                               @RequestParam(required = false) String Type, @RequestParam(required = false) String Size,
-                               @RequestParam(required = false) String Price, @RequestParam(required = false) String Location,
-                               @RequestParam(required = false) String BusRoute, @RequestParam(required = false) String Index) {
-        adSpaceService.updateAdSpace(SpaceId, Popularity, Type, Size, Price, Location, BusRoute, Index);
+                               @RequestParam(required = false) String Type, @RequestParam(required = false) String Length,
+                              @RequestParam(required = false) String Width, @RequestParam(required = false) String Price,
+                              @RequestParam(required = false) String Location, @RequestParam(required = false) String BusRoute,
+                              @RequestParam(required = false) String DurationInterval) {
+        adSpaceService.updateAdSpace(SpaceId, Popularity, Type, Length, Width, Price, Location, BusRoute, DurationInterval);
     }
 
 

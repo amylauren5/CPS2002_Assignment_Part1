@@ -20,8 +20,11 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.util.List;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -42,29 +45,26 @@ class AdSpaceControllerTest {
 
     @BeforeAll
     public static void setup(){
-        adSpace1= new AdSpace.AdSpaceBuilder("High","bus","1000","5000","15","45","2")
+        adSpace1= new AdSpace.AdSpaceBuilder("High","bus","5","10","5000","15","45")
                 .setBusRoute("235").build();
-        adSpace2= new AdSpace.AdSpaceBuilder("High","bench","1000","5000","15","45","2")
+        adSpace2= new AdSpace.AdSpaceBuilder("High","bench","15","10","1000","15","45")
                 .setSpaceId("2").setLocation("gharghur").build();
-        adSpace3= new AdSpace.AdSpaceBuilder("High","bus","5000","10000","25","100","1")
+        adSpace3= new AdSpace.AdSpaceBuilder("High","bus","10","20","10000","25","100")
                 .setSpaceId("3").setBusRoute("31").build();
     }
 
     @Test
     public void canCreateAdSpace() throws Exception{
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        String json = objectMapper.writeValueAsString(adSpace1);
-
         MockHttpServletResponse result = mvc.perform(post("/AdSpace/")
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .param("popularity", "High")
                         .param("type", "bus")
-                        .param("size", "1000")
+                        .param("length", "5")
+                        .param("width", "10")
                         .param("price", "5000")
                         .param("minWeeks", "15")
                         .param("maxWeeks", "45")
-                        .param("index", "2")
                         .param("busRoute", "235")
                         .accept("application/json"))
                 .andExpect(status().isOk())
@@ -87,7 +87,8 @@ class AdSpaceControllerTest {
 
     @Test
     public void deleteAdSpaceTest() throws Exception{
-        mvc.perform(MockMvcRequestBuilders.delete("/AdSpace/{SpaceId}", 1))
-                .andExpect(status().isAccepted());
+        mvc.perform(MockMvcRequestBuilders.delete("/AdSpace/{SpaceId}","1")
+                        .header("SpaceId","1"))
+                .andExpect(status().isOk());
     }
 }

@@ -10,25 +10,27 @@ public class AdSpaceEntity {
     private String spaceId;
     private String popularity;     //people viewing space per day
     private String type;        //billboard, buses, benches
-    private String size;           //size of advertising space
+    private String length;           //size of advertising space
+    private String width;
     private String price;          //cost to rent space per week
     private String minWeeks;
     private String maxWeeks;
     private String busRoute;       //bus route
     private String location;
-    private String index;
+    private String durationInterval;
 
-    public AdSpaceEntity(String spaceId, String popularity, String type, String size, String price, String minWeeks, String maxWeeks, String busRoute, String location, String index) {
+    public AdSpaceEntity(String spaceId, String popularity, String type, String length, String width, String price, String minWeeks, String maxWeeks, String busRoute, String location, String durationInterval) {
         this.spaceId = spaceId;
         this.popularity = popularity;
         this.type = type;
-        this.size = size;
+        this.length = length;
+        this.width = width;
         this.price = price;
         this.minWeeks = minWeeks;
         this.maxWeeks = maxWeeks;
         this.busRoute = busRoute;
+        this.durationInterval = durationInterval;
         this.location = location;
-        this.index = index;
     }
 
     public AdSpaceEntity(){};
@@ -57,12 +59,20 @@ public class AdSpaceEntity {
         this.type = type;
     }
 
-    public String getSize() {
-        return size;
+    public String getLength() {
+        return length;
     }
 
-    public void setSize(String size) {
-        this.size = size;
+    public void setLength(String length) {
+        this.length = length;
+    }
+
+    public String getWidth() {
+        return width;
+    }
+
+    public void setWidth(String width) {
+        this.width = width;
     }
 
     public String getPrice() {
@@ -105,11 +115,11 @@ public class AdSpaceEntity {
         this.location = location;
     }
 
-    public String getIndex() {
-        return index;
+    public String getDurationInterval() {
+        return durationInterval;
     }
 
-    public void setIndex(String index) {
-        this.index = index;
+    public void setDurationInterval(String durationInterval) {
+        this.durationInterval = durationInterval;
     }
 }
